@@ -1,0 +1,51 @@
+FUNCTION bxxing : INT
+  VAR_INPUT
+    A,B,C,D : INT;
+  END_VAR
+  VAR_OUTPUT
+    SUM : INT;
+  END_VAR
+  VAR
+	E : INT;
+  END_VAR
+  E := D;
+  D := D + 1;
+  SUM := A+B+C;
+END_FUNCTION
+
+FUNCTION_BLOCK BXX
+  VAR_IN_OUT
+    A : INT;
+  END_VAR
+  VAR_INPUT
+    X : INT;
+  END_VAR
+
+  A := A+X;
+END_FUNCTION_BLOCK
+
+PROGRAM Example
+VAR_INPUT
+  in0, in1, in2: INT;
+  flag : BOOL;
+END_VAR
+VAR_OUTPUT out : INT; END_VAR
+VAR vars : INT := 100; END_VAR
+VAR acc : BXX; END_VAR
+
+out := vars + 1;
+IF flag THEN
+  vars := ADD(in0, in1, in2);
+  IF vars < 100 THEN
+    out := in0;
+  ELSE
+    acc(A:=in0, X:=5);
+    out := acc.A;
+  END_IF;
+ELSE
+  out := vars;
+END_IF;
+END_PROGRAM
+
+
+
