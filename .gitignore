@@ -1,18 +1,4 @@
-/matiec/bin
-/matiec/obj
-*.cbp
-*.depend
-*.layout
-*~
-*.Po
+/bin
+/obj
 
-
-
-!/matiec/include
-!/matiec/libmatiec
-!/matiec/lib
-!/matiec/src
-!/matiec/main.cpp
-!/matiec/in.txt
-!/matiec/debug.txt
 !*.md
