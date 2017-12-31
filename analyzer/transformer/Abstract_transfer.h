@@ -2,6 +2,7 @@
 #define ABSTRACT_TRANSFER_H
 
 #include <iostream>
+#include <string>
 
 #include "absyntax/absyntax.hh"
 
@@ -16,6 +17,7 @@ public:
 
     // all inherited class must implement this function
     virtual Value_set *Transform(symbol_c *, Value_set *)=0;
+    virtual std::string format()=0;
 
     /**
     * helpers for inherited classes

@@ -7,6 +7,7 @@ Abstract_transfer::~Abstract_transfer()
 {
 }
 
+
 /**
 * helpers for inherited classes
 */

@@ -87,6 +87,7 @@
 		<Unit filename="parser/Absyntax_visitor_weight.h" />
 		<Unit filename="parser/ST_parser.cpp" />
 		<Unit filename="parser/ST_parser.h" />
+		<Unit filename="test/builder_test.cpp" />
 		<Unit filename="test/domain_test.cpp" />
 		<Unit filename="test/structures_test.cpp" />
 		<Unit filename="test/transfer_test.cpp" />

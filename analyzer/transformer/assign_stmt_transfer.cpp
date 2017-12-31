@@ -6,6 +6,39 @@
 Assign_stmt_transfer::Assign_stmt_transfer()
 {
 }
+Assign_stmt_transfer::Assign_stmt_transfer(symbol_c *_assignment)
+{
+    assignment_statement_c *stmt = (assignment_statement_c *)_assignment;
+
+    str_left_var = ST_parser::parse(stmt->l_exp);
+
+    std::string str_r_exp_type = stmt->r_exp->absyntax_cname();
+    if (str_r_exp_type.compare("add_expression_c") == 0)
+    {
+        //SYM_REF2(add_expression_c, l_exp, r_exp, bool deprecated_operation;)
+        add_expression_c *r_exp = (add_expression_c *)stmt->r_exp;
+        op = "+";
+        str_right_var1 = ST_parser::parse(r_exp->l_exp);
+        str_right_var2 = ST_parser::parse(r_exp->r_exp);
+    }
+    else if (str_r_exp_type.compare("sub_expression_c") == 0)
+    {
+        //SYM_REF2(sub_expression_c, l_exp, r_exp, bool deprecated_operation;)
+        sub_expression_c *r_exp = (sub_expression_c *)stmt->r_exp;
+        op = "-";
+        str_right_var1 = ST_parser::parse(r_exp->l_exp);
+        str_right_var2 = ST_parser::parse(r_exp->r_exp);
+
+    }
+    else /* unary expression */
+    {
+        //SYM_TOKEN(integer_c)
+        //SYM_REF2(boolean_literal_c, type, value)
+        // variable
+        str_right_var1 = ST_parser::parse(stmt->r_exp);
+    }
+
+}
 Assign_stmt_transfer::~Assign_stmt_transfer()
 {
 }
@@ -20,8 +53,8 @@ Value_set *Assign_stmt_transfer::Transform(symbol_c *_assignment, Value_set *_vs
     left_var = _vs0->contains_var(str_left_var);
 
     std::string str_r_exp_type = stmt->r_exp->absyntax_cname();
-    /* binary expression*/
 
+    /* binary expression*/
     if (str_r_exp_type.compare("add_expression_c") == 0)
     {
         //SYM_REF2(add_expression_c, l_exp, r_exp, bool deprecated_operation;)
@@ -242,4 +275,9 @@ Value_set *Assign_stmt_transfer::Transform(symbol_c *_assignment, Value_set *_vs
 
 
     return ret;
+}
+
+std::string Assign_stmt_transfer::format()
+{
+    return (str_left_var + " <-- " + str_right_var1 + " " + op + " " + str_right_var2);
 }

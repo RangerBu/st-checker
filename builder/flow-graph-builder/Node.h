@@ -53,6 +53,7 @@ public:
     void print_dot(std::ostream &);
     friend std::ostream &operator<<(std::ostream &, Node &);
     friend std::ostream &operator<<(std::ostream &, Node *);
+    bool equals(Node *);
 
     /**
     * private attributes and methods

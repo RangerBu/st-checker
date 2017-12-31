@@ -14,6 +14,18 @@ CFG::~CFG()
 {
 
 }
+bool CFG::is_false_edge(Edge *_edge)
+{
+    int len = false_edges.size();
+    for (int i=0; i<len; i++)
+    {
+        if (_edge->equals(false_edges[i]))
+        {
+            return true;
+        }
+    }
+    return false;
+}
 
 
 /**
@@ -67,13 +79,23 @@ void CFG::print_dot(std::ostream &out)
         nodes[i]->set_str_node_name(str_node_name);
     }
     Abstract_transfer *w = 0;
-//    for (int i=0; i<e_len; i++)
-//    {
-//        Edge *e = edges[i];
-//        w = e->get_weight();
-//        out << "\"" << e->get_from()->get_str_node_name() << "\" -> \"" << e->get_to()->get_str_node_name();
+    for (int i=0; i<e_len; i++)
+    {
+        Edge *e = edges[i];
+        w = e->get_weight();
+        out << "\"" << e->get_from()->get_str_node_name() << "\" -> \"" << e->get_to()->get_str_node_name();
 //        out << "\" [label=\"[" << w->get_left_var() << " to " << w->get_right_var1() << " " << w->get_op() << " " << w->get_right_var2() <<"]\",color=black]\n";
-//    }
+        std::string false_edge;
+        if (w != 0)
+        {
+            false_edge = w->format();
+        }
+        else
+        {
+            false_edge = "T";
+        }
+        out << "\" [label=\"[ "<< false_edge <<" ]\",color=black]\n";
+    }
     out << "}\n";
 }
 std::ostream &operator<<(std::ostream &out, CFG &c)
@@ -115,6 +137,7 @@ void CFG::init()
     edges.push_back(new Edge(f, t));
 
     refine();
+    std::cout << false_edges.size() << std::endl;
     compute_weight();
 }
 void CFG::refine()
@@ -195,7 +218,9 @@ void CFG::refine()
                     new_t = new Node(elif_list->get_element(i));
                     new_e = new Edge(new_f, new_t);
                     nodes.push_back(new_t);
-                    edges.push_back(new_e); new_e = 0;
+                    edges.push_back(new_e);
+                    false_edges.push_back(new_e);
+                    new_e = 0;
 
                     statement_list_c *elif_stmts_list = (statement_list_c *) ((elseif_statement_c *)new_t->get_stmt())->statement_list;
                     Node *ff = new_t, *tt = 0;
@@ -236,6 +261,10 @@ void CFG::refine()
                     {
                         new_t = new Node(else_stmts_list->get_element(i));
                         new_e = new Edge(new_f, new_t);
+                        if (i==0)
+                        {
+                            false_edges.push_back(new_e);
+                        }
                         nodes.push_back(new_t);
 
                         if(new_f->get_node_type().compare(Node::IF) == 0)
@@ -258,6 +287,12 @@ void CFG::refine()
                         edges.push_back(new_e);
                     }
                 }
+                else
+                {
+                    new_e = new Edge(new_f, t);
+                    edges.push_back(new_e);
+                    false_edges.push_back(new_e);
+                }
 
             }
             else
@@ -273,6 +308,10 @@ void CFG::refine()
                     {
                         new_t = new Node(else_stmts_list->get_element(i));
                         new_e = new Edge(new_f, new_t);
+                        if(i==0)
+                        {
+                            false_edges.push_back(new_e);
+                        }
                         nodes.push_back(new_t);
 
                         if(i>0 && new_f->get_node_type().compare(Node::IF) == 0)
@@ -297,7 +336,9 @@ void CFG::refine()
                 }
                 else
                 {
-                    edges.push_back(new Edge(f, t));
+                    new_e = new Edge(f, t);
+                    edges.push_back(new_e);
+                    false_edges.push_back(new_e);
                 }
             }
 
@@ -318,31 +359,28 @@ void CFG::compute_weight()
     {
         from = edges[i]->get_from();
 
+        Abstract_transfer *transfer = 0;
         if (from->get_node_type().compare(Node::IF) == 0 || from->get_node_type().compare(Node::ELSE_IF) == 0)
         {
-            if (edges[i]->get_if_true())
+            if (is_false_edge(edges[i]))
             {
-//                weight = new Abstract_transfer(from->get_stmt());
-                ST_parser::parse_weight(from->get_stmt(), weight);
-                edges[i]->set_weight(weight);
+                transfer = new Elif_stmt_transfer(from->get_stmt());
+                edges[i]->set_weight(transfer);
             }
             else
             {
-//                weight = new Abstract_transfer();
-                edges[i]->set_weight(weight);
+                transfer = new If_stmt_transfer(from->get_stmt());
+                edges[i]->set_weight(transfer);
             }
-
         }
-        else if (from->get_node_type().compare(Node::ENTRY) == 0)
+        else if (from->get_node_type().compare(Node::ASSIGNMENT) == 0)
         {
-//            weight = new Abstract_transfer();
-            edges[i]->set_weight(weight);
+            transfer = new Assign_stmt_transfer(from->get_stmt());
+            edges[i]->set_weight(transfer);
         }
         else
         {
-//            weight = new Abstract_transfer(from->get_stmt());
-            ST_parser::parse_weight(from->get_stmt(), weight);
-            edges[i]->set_weight(weight);
+            edges[i]->set_weight(0);
         }
     }
 }

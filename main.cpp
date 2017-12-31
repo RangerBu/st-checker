@@ -26,7 +26,7 @@ runtime_options_t runtime_options;
 
 int main()
 {
-    std::string file_name = "../outputs/Example 4.st";
+    std::string file_name = "outputs/Example 4.st";
     ST_parser parser(file_name);
 
 //    CFG c(parser.get_stmts_list());
@@ -36,7 +36,7 @@ int main()
 //    {
 //        cout << nodes[i]->get_node_type() << endl;
 //    }
-//    ofstream dout("../outputs/Example4.dot");
+//    ofstream dout("outputs/Example4.dot");
 //    c.print_dot(dout);
 //    dout.close();
 

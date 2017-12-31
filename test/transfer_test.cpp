@@ -1,4 +1,4 @@
-#define TRANSFER_TEST
+//#define TRANSFER_TEST
 
 #ifdef TRANSFER_TEST
 
@@ -13,7 +13,7 @@
 
 int main()
 {
-    std::string file_name = "../outputs/Example 4.st";
+    std::string file_name = "outputs/Example 4.st";
     ST_parser parser(file_name);
     CFG_builder *builder = new CFG_builder(&parser);
 

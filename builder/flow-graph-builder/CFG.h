@@ -10,6 +10,9 @@
 #include "Node.h"
 #include "Edge.h"
 #include "../../analyzer/domain/Var.h"
+#include "../../analyzer/transformer/assign_stmt_transfer.h"
+#include "../../analyzer/transformer/elif_stmt_transfer.h"
+#include "../../analyzer/transformer/if_stmt_transfer.h"
 
 class CFG
 {
@@ -17,6 +20,8 @@ public:
     CFG();
     CFG(statement_list_c *);
     virtual ~CFG();
+
+    bool is_false_edge(Edge *);
 
     /**
     * getters and setters
@@ -43,6 +48,8 @@ private:
     std::vector<Edge *> edges;
     statement_list_c *stmts_list;
     std::vector<Var *> vars;
+
+    std::vector<Edge *> false_edges;
 
     /**
     * helpers

@@ -13,9 +13,11 @@ class If_stmt_transfer : public Abstract_transfer
     */
 public:
     If_stmt_transfer();
+    If_stmt_transfer(symbol_c *);
     virtual ~If_stmt_transfer();
 
     Value_set *Transform(symbol_c *, Value_set *);
+    std::string format();
 
     /**
     * private attributes

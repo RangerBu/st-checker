@@ -70,3 +70,7 @@ std::ostream &operator<<(std::ostream &out, Edge *e)
     out << *e;
     return out;
 }
+bool Edge::equals(Edge *_other)
+{
+    return from->equals(_other->get_from()) && to->equals(_other->get_to());
+}

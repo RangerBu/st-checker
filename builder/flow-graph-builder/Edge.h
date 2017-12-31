@@ -31,6 +31,7 @@ public:
     void print_dot(std::ostream &);
     friend std::ostream &operator<<(std::ostream &, Edge &);
     friend std::ostream &operator<<(std::ostream &, Edge *);
+    bool equals(Edge *);
 
 private:
     Node *from;

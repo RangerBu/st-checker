@@ -12,6 +12,15 @@ PROGRAM Example4
 
 	IF z < 50 THEN
 		x := x - 1;
+	ELSIF z < 100 THEN
+		x := x - 2;
+		IF x < 20 THEN
+			x := 20;
+		ELSIF x < 10 THEN
+			x := 10;
+		END_IF;
+	ELSIF z < 200 THEN
+		x := x - 3;
 	ELSE
 		x := 50;
 	END_IF;

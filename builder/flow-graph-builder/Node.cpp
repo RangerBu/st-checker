@@ -78,7 +78,7 @@ void Node::print(std::ostream &out)
 }
 void Node::print_dot(std::ostream &out)
 {
-    // not implemented
+    // need to be implemented
 }
 std::ostream &operator<<(std::ostream &out, Node &n)
 {
@@ -96,6 +96,10 @@ std::ostream &operator<<(std::ostream &out, Node *n)
 {
     out << *n;
     return out;
+}
+bool Node::equals(Node *_other)
+{
+    return str_stmt.compare(_other->get_str_stmt()) == 0 && type.compare(_other->get_node_type()) == 0;
 }
 
 /**

@@ -4,6 +4,85 @@
 If_stmt_transfer::If_stmt_transfer()
 {
 }
+If_stmt_transfer::If_stmt_transfer(symbol_c *_if_statement)
+{
+    //SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
+    if_statement_c *stmt = (if_statement_c *)_if_statement;
+
+    std::string str_expression = stmt->expression->absyntax_cname();
+
+    if (str_expression.compare("lt_expression_c") == 0)
+    {
+        //SYM_REF2( lt_expression_c, l_exp, r_exp)
+        lt_expression_c *lt_expression = (lt_expression_c *)stmt->expression;
+
+        op = "<";
+        str_left_var = ST_parser::parse(lt_expression->l_exp);
+        str_right_var = ST_parser::parse(lt_expression->r_exp);
+    }
+    else if (str_expression.compare("gt_expression_c") == 0)
+    {
+        //SYM_REF2( gt_expression_c, l_exp, r_exp)
+        gt_expression_c *gt_expression = (gt_expression_c *) stmt->expression;
+
+        op = ">";
+        str_left_var = ST_parser::parse(gt_expression->l_exp);
+        str_right_var = ST_parser::parse(gt_expression->r_exp);
+    }
+    else if (str_expression.compare("le_expression_c") == 0)
+    {
+        //SYM_REF2( le_expression_c, l_exp, r_exp)
+        le_expression_c *le_expression = (le_expression_c *)stmt->expression;
+
+        op = "<=";
+        str_left_var = ST_parser::parse(le_expression->l_exp);
+        str_right_var = ST_parser::parse(le_expression->r_exp);
+    }
+    else if (str_expression.compare("ge_expression_c") == 0)
+    {
+        //SYM_REF2( ge_expression_c, l_exp, r_exp)
+        ge_expression_c *ge_expression = (ge_expression_c *) stmt->expression;
+
+        op = ">=";
+        str_left_var = ST_parser::parse(ge_expression->l_exp);
+        str_right_var = ST_parser::parse(ge_expression->r_exp);
+    }
+    else if (str_expression.compare("equ_expression_c") == 0)
+    {
+        //SYM_REF2(equ_expression_c, l_exp, r_exp)
+        equ_expression_c *equ_expression = (equ_expression_c *) stmt->expression;
+
+        op = "=";
+        str_left_var = ST_parser::parse(equ_expression->l_exp);
+        str_right_var = ST_parser::parse(equ_expression->r_exp);
+    }
+    else if (str_expression.compare("notequ_expression_c") == 0)
+    {
+        //SYM_REF2(notequ_expression_c, l_exp, r_exp)
+        notequ_expression_c *notequ_expression = (notequ_expression_c *) stmt->expression;
+
+        op = "<>";
+        str_left_var = ST_parser::parse(notequ_expression->l_exp);
+        str_right_var = ST_parser::parse(notequ_expression->r_exp);
+    }
+    else if (str_expression.compare("not_expression_c") == 0)
+    {
+        //SYM_REF1(not_expression_c, exp)
+        not_expression_c *not_expression = (not_expression_c *) stmt->expression;
+
+        op = "NOT";
+        str_left_var = ST_parser::parse(not_expression->exp);
+        str_right_var = "";
+
+    }
+    else
+    {
+        //SYM_REF1(symbolic_variable_c, var_name)
+        op = "";
+        str_left_var = ST_parser::parse(stmt->expression);
+        str_right_var = "";
+    }
+}
 If_stmt_transfer::~If_stmt_transfer()
 {
 }
@@ -695,4 +774,9 @@ Value_set *If_stmt_transfer::Transform(symbol_c *_if_statement, Value_set *_vs0)
 
     }
     return ret;
+}
+
+std::string If_stmt_transfer::format()
+{
+    return (str_left_var + " " + op + " " + str_right_var);
 }
