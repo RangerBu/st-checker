@@ -1,0 +1,17 @@
+digraph "CFG" {
+"n0" [label="[Start]", color=lightblue,style=filled,shape=box]
+"n1" [label="[IF x < 50 THEN]", color=lightblue,style=filled,shape=box]
+"n2" [label="[IF y THEN]", color=lightblue,style=filled,shape=box]
+"n3" [label="[End]", color=lightblue,style=filled,shape=box]
+"n4" [label="[x := x + 5]", color=lightblue,style=filled,shape=box]
+"n5" [label="[x := 50]", color=lightblue,style=filled,shape=box]
+"n6" [label="[z := y]", color=lightblue,style=filled,shape=box]
+"n0" -> "n1" [label="[ to   ]",color=black]
+"n1" -> "n4" [label="[ to x < 50]",color=black]
+"n4" -> "n2" [label="[x to x + 5]",color=black]
+"n1" -> "n5" [label="[ to   ]",color=black]
+"n5" -> "n2" [label="[x to 50  ]",color=black]
+"n2" -> "n6" [label="[ to y  ]",color=black]
+"n6" -> "n3" [label="[z to y  ]",color=black]
+"n2" -> "n3" [label="[ to   ]",color=black]
+}

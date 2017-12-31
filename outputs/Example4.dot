@@ -1,0 +1,12 @@
+digraph "CFG" {
+"n0" [label="[Start]", color=lightblue,style=filled,shape=box]
+"n1" [label="[IF x < 50  THEN]", color=lightblue,style=filled,shape=box]
+"n2" [label="[End]", color=lightblue,style=filled,shape=box]
+"n3" [label="[x  := x + 5]", color=lightblue,style=filled,shape=box]
+"n4" [label="[x  := 50]", color=lightblue,style=filled,shape=box]
+"n0" -> "n1" [label="weight",color=black]
+"n1" -> "n3" [label="weight",color=black]
+"n3" -> "n2" [label="weight",color=black]
+"n1" -> "n4" [label="weight",color=black]
+"n4" -> "n2" [label="weight",color=black]
+}
