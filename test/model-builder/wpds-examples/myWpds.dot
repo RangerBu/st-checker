@@ -1,0 +1,18 @@
+digraph "WFA@0x7ffebb7ebe20" {
+	15 -> 3 [color=red,label="n5"];
+	2 -> 3 [color=red,label="*"];
+	2 -> 15 [color=red,label="*"];
+	2 -> 3 [color=red,label="n0"];
+	2 -> 3 [color=red,label="n1"];
+	2 -> 3 [color=red,label="n2"];
+	2 -> 3 [color=red,label="n3"];
+	2 -> 3 [color=red,label="n4"];
+	2 -> 3 [color=red,label="n5"];
+	2 -> 15 [color=red,label="n6"];
+	2 -> 15 [color=red,label="n7"];
+	2 -> 15 [color=red,label="n8"];
+	2 -> 15 [color=red,label="n9"];
+	3 [label="accept",color=lightblue,style=filled];
+	15 [label="(p,n6)_g1"];
+	2 [label="p",color=green,style=filled];
+}

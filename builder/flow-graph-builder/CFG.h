@@ -22,6 +22,8 @@ public:
     virtual ~CFG();
 
     bool is_false_edge(Edge *);
+    void insert_node(Node *);
+    void insert_edge(Edge *);
 
     /**
     * getters and setters

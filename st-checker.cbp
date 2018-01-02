@@ -16,10 +16,11 @@
 					<Add option="-I parser/libmatiec" />
 					<Add option="-Xlinker -zmuldefs" />
 					<Add directory="parser/libmatiec" />
-					<Add directory="builder/model-builder/wali" />
+					<Add directory="builder/model-builder/lib" />
 				</Compiler>
 				<Linker>
-					<Add library="builder/model-builder/wali/libwali.so" />
+					<Add option="-l wali" />
+					<Add library="builder/model-builder/lib/libwali.so" />
 					<Add library="parser/libmatiec/stage1_2/libstage1_2.a" />
 					<Add library="parser/libmatiec/absyntax/libabsyntax.a" />
 					<Add library="parser/libmatiec/absyntax_utils/libabsyntax_utils.a" />
@@ -60,6 +61,10 @@
 		<Unit filename="analyzer/structures/Strided_interval.h" />
 		<Unit filename="analyzer/transformer/Abstract_transfer.cpp" />
 		<Unit filename="analyzer/transformer/Abstract_transfer.h" />
+		<Unit filename="analyzer/transformer/abstract_effect.cpp" />
+		<Unit filename="analyzer/transformer/abstract_effect.h" />
+		<Unit filename="analyzer/transformer/abstract_new_value.cpp" />
+		<Unit filename="analyzer/transformer/abstract_new_value.h" />
 		<Unit filename="analyzer/transformer/assign_stmt_transfer.cpp" />
 		<Unit filename="analyzer/transformer/assign_stmt_transfer.h" />
 		<Unit filename="analyzer/transformer/elif_stmt_transfer.cpp" />
@@ -89,6 +94,10 @@
 		<Unit filename="parser/ST_parser.h" />
 		<Unit filename="test/builder_test.cpp" />
 		<Unit filename="test/domain_test.cpp" />
+		<Unit filename="test/model-builder/wpds-examples/ExReach.cpp" />
+		<Unit filename="test/model-builder/wpds-examples/Reach.cpp" />
+		<Unit filename="test/model-builder/wpds-examples/Reach.hpp" />
+		<Unit filename="test/model-builder/wpds_builder_test.cpp" />
 		<Unit filename="test/structures_test.cpp" />
 		<Unit filename="test/transfer_test.cpp" />
 		<Unit filename="utils/utils.cpp" />

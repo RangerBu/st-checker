@@ -17,6 +17,7 @@ public:
 
     // all inherited class must implement this function
     virtual Value_set *Transform(symbol_c *, Value_set *)=0;
+//    virtual Value_set *Transform(Value_set *)=0;
     virtual std::string format()=0;
 
     /**

@@ -457,10 +457,10 @@
 	"Abstract_transfer.h"
 	"../domain/Value_set.h"
 
-1514446951 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.cpp
 	"Value_set.h"
 
-1514440165 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.h
 	<iostream>
 	<sstream>
 	<string>
@@ -470,28 +470,28 @@
 	"../structures/Bits_vector_8.h"
 	"../structures/Strided_interval.h"
 
-1514430401 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.h
 	<string>
 	<iostream>
 	<sstream>
 
-1514465793 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.h
 	"Bits_vector.h"
 
-1513323077 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.h
 	<vector>
 	<iostream>
 	"../../analyzer/structures/Boolean4.h"
 
-1514381867 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.h
 	<string>
 	<sstream>
 	<iostream>
 
-1513240825 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.h
 	"Bits_vector.h"
 
-1514635857 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.h
 	<string>
 	<sstream>
 	<iostream>
@@ -500,42 +500,42 @@
 	"Boolean4.h"
 	"../../analyzer/structures/Data_width.h"
 
-1512466257 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.h
 	<string>
 	<sstream>
 	<iostream>
 
-1514430479 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.cpp
 	"Var.h"
 
-1513323091 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.cpp
 	"Bits_vector.h"
 
-1514466239 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.cpp
 	"Bits_vector_1.h"
 
-1513241013 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.cpp
 	"Bits_vector_8.h"
 
-1514425649 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.cpp
 	"Boolean4.h"
 
-1512525362 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.cpp
 	"Data_width.h"
 
-1514638552 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.cpp
 	"Strided_interval.h"
 
-1514722739 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/Abstract_transfer.cpp
+1514722806 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/Abstract_transfer.cpp
 	"Abstract_transfer.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/Abstract_transfer.h
+1514883345 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/Abstract_transfer.h
 	<iostream>
 	<string>
 	"absyntax/absyntax.hh"
 	"../domain/Value_set.h"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.hh
 	<stdio.h>
 	<vector>
 	<map>
@@ -544,7 +544,7 @@
 	"../main.hh"
 	"absyntax.def"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/main.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/main.hh
 	<stddef.h>
 	<stdint.h>
 	<limits>
@@ -552,13 +552,13 @@
 	<math.h>
 	<inttypes.h>
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.def
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.def
 
 1514718554 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.cpp
 	"assign_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.h
+1514718177 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.h
 	<string>
 	<iostream>
 	"Abstract_transfer.h"
@@ -566,7 +566,7 @@
 	"../structures/Strided_interval.h"
 	"../structures/Bits_vector_8.h"
 
-1512440686 /home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.h
 	<string>
 	<stdarg.h>
 	<cstdlib>
@@ -578,7 +578,7 @@
 	"Absyntax_visitor_weight.h"
 	"../analyzer/transformer/Abstract_transfer.h"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/absyntax_utils.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/absyntax_utils.hh
 	"../util/symtable.hh"
 	"../util/dsymtable.hh"
 	"../absyntax/absyntax.hh"
@@ -603,29 +603,29 @@
 	"get_datatype_info.hh"
 	"debug_ast.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/symtable.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/symtable.hh
 	"../absyntax/absyntax.hh"
 	<map>
 	<string>
 	"symtable.cc"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/symtable.cc
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/symtable.cc
 	<iostream>
 	"symtable.hh"
 	"../main.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/dsymtable.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/dsymtable.hh
 	"../absyntax/absyntax.hh"
 	<map>
 	<string>
 	"dsymtable.cc"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/dsymtable.cc
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/util/dsymtable.cc
 	<iostream>
 	"symtable.hh"
 	"../main.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/visitor.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/visitor.hh
 	"absyntax.hh"
 	"absyntax.def"
 	"absyntax.def"
@@ -634,66 +634,66 @@
 	"absyntax.def"
 	"absyntax.def"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/spec_init_separator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/spec_init_separator.hh
 	"../absyntax/absyntax.hh"
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/array_dimension_iterator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/array_dimension_iterator.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/case_element_iterator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/case_element_iterator.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_param_iterator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_param_iterator.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_call_iterator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_call_iterator.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_call_param_iterator.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/function_call_param_iterator.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/type_initial_value.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/type_initial_value.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_fb_instance_decl.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_fb_instance_decl.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_fb_typedecl.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_fb_typedecl.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_base_type.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_base_type.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_var_instance_decl.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_var_instance_decl.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/decompose_var_instance_name.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/decompose_var_instance_name.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_varfb_instance_type.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_varfb_instance_type.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/add_en_eno_param_decl.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/add_en_eno_param_decl.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_sizeof_datatype.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_sizeof_datatype.hh
 	"../absyntax/visitor.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_il_label.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/search_il_label.hh
 	"../absyntax_utils/absyntax_utils.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_var_name.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_var_name.hh
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_datatype_info.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/get_datatype_info.hh
 	"absyntax_utils.hh"
 	"../main.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/debug_ast.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax_utils/debug_ast.hh
 	"../absyntax/absyntax.hh"
 
-1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/stage1_2/stage1_2.hh
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/stage1_2/stage1_2.hh
 
-1512110640 /home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor.h
 	<string>
 	<iostream>
 	"absyntax/visitor.hh"
 
-1512440658 /home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor_weight.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor_weight.h
 	<string>
 	<iostream>
 	"absyntax/visitor.hh"
@@ -709,16 +709,16 @@
 	"if_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.h
+1514717630 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.h
 	<string>
 	"Abstract_transfer.h"
 	"../domain/Value_set.h"
 
-1514718488 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
+1514876358 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
 	"CFG.h"
 	"../../parser/ST_parser.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.h
+1514875892 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.h
 	<vector>
 	<string>
 	<queue>
@@ -730,20 +730,20 @@
 	"../../analyzer/transformer/elif_stmt_transfer.h"
 	"../../analyzer/transformer/if_stmt_transfer.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/Node.h
+1514698957 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/Node.h
 	<string>
 	<iostream>
 	"absyntax/absyntax.hh"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/Edge.h
+1514699163 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/Edge.h
 	<iostream>
 	"Node.h"
 	"../../analyzer/transformer/Abstract_transfer.h"
 
-1513245059 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG_builder.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG_builder.cpp
 	"CFG_builder.h"
 
-1512440768 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG_builder.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG_builder.h
 	<vector>
 	<string>
 	"CFG.h"
@@ -757,11 +757,12 @@
 	"../../parser/ST_parser.h"
 	"Node.h"
 
-1510022270 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/CES.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/CES.cpp
 
-1510022291 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/CES_builder.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/CES_builder.cpp
 
-1510022237 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.cpp
+1514876855 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.cpp
+	"WPDS_builder.h"
 
 1514700244 source:/home/zero/workspace/cb_projs/st-checker-new/main.cpp
 	<iostream>
@@ -791,27 +792,27 @@
 	"Var.h"
 	"Value_set.h"
 
-1510109727 source:/home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor.cpp
 	"Absyntax_visitor.h"
 	"../utils/utils.h"
 
-1510565284 /home/zero/workspace/cb_projs/st-checker-new/utils/utils.h
+1514691847 /home/zero/workspace/cb_projs/st-checker-new/utils/utils.h
 	<string>
 
-1514428615 source:/home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor_weight.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/parser/Absyntax_visitor_weight.cpp
 	"Absyntax_visitor_weight.h"
 	"ST_parser.h"
 
-1512108589 source:/home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.cpp
 	"ST_parser.h"
 
-1514429184 source:/home/zero/workspace/cb_projs/st-checker-new/test/domain_test.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/test/domain_test.cpp
 	<iostream>
 	"../analyzer/domain/Var.h"
 	"../analyzer/domain/Value_set.h"
 	"../analyzer/structures/Bits_vector_1.h"
 
-1514636139 source:/home/zero/workspace/cb_projs/st-checker-new/test/structures_test.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/test/structures_test.cpp
 	<iostream>
 	<set>
 	"../analyzer/structures/Boolean4.h"
@@ -819,7 +820,7 @@
 	"../analyzer/structures/Bits_vector_8.h"
 	"../analyzer/structures/Strided_interval.h"
 
-1510565412 source:/home/zero/workspace/cb_projs/st-checker-new/utils/utils.cpp
+1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/utils/utils.cpp
 	"utils.h"
 
 1514700132 source:/home/zero/workspace/cb_projs/st-checker-new/test/transfer_test.cpp
@@ -830,14 +831,265 @@
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
 
-1514700427 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
+1514874957 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
 	<iostream>
 	<fstream>
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
+	"../builder/model-builder/WPDS_builder.h"
 
-1514795284 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.h
+1514717904 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.h
 	<string>
 	"Abstract_transfer.h"
 	"../domain/Value_set.h"
+
+1514873504 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/wpds-examples/ExReach.cpp
+	"wali/Common.hpp"
+	"wali/wpds/WPDS.hpp"
+	"wali/wpds/Rule.hpp"
+	"wali/wpds/Config.hpp"
+	"wali/wpds/fwpds/FWPDS.hpp"
+	"wali/wfa/Trans.hpp"
+	"wali/wfa/State.hpp"
+	"Reach.hpp"
+	<string>
+	<sstream>
+	<fstream>
+
+1477028930 /home/zero/workspace/cb_projs/st-checker-new/test/model-builder/wpds-examples/Reach.hpp
+	"wali/SemElem.hpp"
+
+1477028930 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/wpds-examples/Reach.cpp
+	"Reach.hpp"
+
+1514863218 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/wpds_builder_test.cpp
+	<iostream>
+	"wali/Common.hpp"
+	"wali/SemElem.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/WPDS.hpp
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/HashMap.hpp"
+	"wali/KeyContainer.hpp"
+	"wali/SemElem.hpp"
+	"wali/Worklist.hpp"
+	"wali/wfa/WFA.hpp"
+	"wali/wfa/TransFunctor.hpp"
+	"wali/wpds/Wrapper.hpp"
+	<iostream>
+	<set>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Common.hpp
+	<climits>
+	<string>
+	<iostream>
+	"wali/Key.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Key.hpp
+	<string>
+	<set>
+	"wali/ref_ptr.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/ref_ptr.hpp
+	<cstdio>
+	<cassert>
+	<climits>
+	<iostream>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Printable.hpp
+	<string>
+	<iostream>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/HashMap.hpp
+	<climits>
+	<utility>
+	<functional>
+	<iostream>
+	"wali/hm_hash.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/hm_hash.hpp
+	<cstring>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/KeyContainer.hpp
+	"wali/Common.hpp"
+	"wali/hm_hash.hpp"
+	<utility>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/SemElem.hpp
+	"wali/Common.hpp"
+	"wali/ref_ptr.hpp"
+	"wali/Countable.hpp"
+	"wali/Printable.hpp"
+	<string>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Countable.hpp
+	"wali/Common.hpp"
+	"wali/ref_ptr.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Worklist.hpp
+	"wali/Common.hpp"
+	"wali/Countable.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/WFA.hpp
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/SemElem.hpp"
+	"wali/HashMap.hpp"
+	"wali/KeyContainer.hpp"
+	"wali/Progress.hpp"
+	"wali/wfa/WeightMaker.hpp"
+	"wali/wfa/Trans.hpp"
+	"wali/wfa/TransSet.hpp"
+	"wali/wfa/DeterminizeWeightGen.hpp"
+	<iostream>
+	<vector>
+	<list>
+	<set>
+	<map>
+
+1333492816 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Progress.hpp
+	"wali/ref_ptr.hpp"
+	"wali/Countable.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/WeightMaker.hpp
+	"wali/Common.hpp"
+	"wali/SemElem.hpp"
+	"wali/wfa/ITrans.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/ITrans.hpp
+	<iostream>
+	"wali/Common.hpp"
+	"wali/Markable.hpp"
+	"wali/Printable.hpp"
+	"wali/SemElem.hpp"
+	"wali/KeyContainer.hpp"
+	"wali/TaggedWeight.hpp"
+	"wali/util/WeightChanger.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/Markable.hpp
+	"wali/IMarkable.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/IMarkable.hpp
+	"wali/Common.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/TaggedWeight.hpp
+	"wali/SemElem.hpp"
+	<iostream>
+
+1228842554 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/util/WeightChanger.hpp
+	"wali/Common.hpp"
+	"wali/SemElem.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/Trans.hpp
+	<iostream>
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/Countable.hpp"
+	"wali/Markable.hpp"
+	"wali/SemElem.hpp"
+	"wali/KeyContainer.hpp"
+	"wali/wfa/ITrans.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/TransSet.hpp
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/wfa/ITrans.hpp"
+	<list>
+	<set>
+
+1334956002 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/DeterminizeWeightGen.hpp
+	"wali/Key.hpp"
+	"wali/SemElem.hpp"
+	<set>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/TransFunctor.hpp
+	<iostream>
+	<map>
+	"wali/HashMap.hpp"
+	"wali/wfa/TransSet.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/Wrapper.hpp
+	"wali/Common.hpp"
+	"wali/Countable.hpp"
+	"wali/SemElem.hpp"
+	"wali/MergeFn.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/MergeFn.hpp
+	"wali/Common.hpp"
+	"wali/ref_ptr.hpp"
+	"wali/IMergeFn.hpp"
+	<iostream>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/IMergeFn.hpp
+	"wali/Common.hpp"
+	"wali/ref_ptr.hpp"
+	"wali/SemElem.hpp"
+	<iostream>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/Rule.hpp
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/Countable.hpp"
+	"wali/Markable.hpp"
+	"wali/SemElem.hpp"
+	"wali/ref_ptr.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/Config.hpp
+	<list>
+	<string>
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/KeyContainer.hpp"
+	"wali/wpds/Rule.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/fwpds/FWPDS.hpp
+	"wali/Common.hpp"
+	"wali/wpds/WPDS.hpp"
+	"wali/wpds/Wrapper.hpp"
+	"wali/wpds/ewpds/EWPDS.hpp"
+	"wali/graph/GraphCommon.hpp"
+	"wali/graph/InterGraph.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wpds/ewpds/EWPDS.hpp
+	"wali/Common.hpp"
+	"wali/SemElemPair.hpp"
+	"wali/IMergeFn.hpp"
+	"wali/wpds/WPDS.hpp"
+	<set>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/SemElemPair.hpp
+	"wali/Common.hpp"
+	"wali/SemElem.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/graph/GraphCommon.hpp
+	"wali/Common.hpp"
+	"wali/wfa/ITrans.hpp"
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/graph/InterGraph.hpp
+	"wali/Countable.hpp"
+	"wali/ref_ptr.hpp"
+	"wali/MergeFn.hpp"
+	"wali/graph/GraphCommon.hpp"
+	<list>
+	<vector>
+	<iostream>
+	<map>
+	<set>
+
+1342623962 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/lib/wali/wfa/State.hpp
+	"wali/Common.hpp"
+	"wali/Printable.hpp"
+	"wali/Markable.hpp"
+	"wali/Countable.hpp"
+	"wali/SemElem.hpp"
+	"wali/wfa/TransSet.hpp"
+	<list>
+
+1514874113 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.h
+	<vector>
+	"wali/wpds/WPDS.hpp"
+	"../flow-graph-builder/CFG.h"
+	"../flow-graph-builder/Edge.h"
+	"../flow-graph-builder/Node.h"
 

@@ -26,6 +26,19 @@ bool CFG::is_false_edge(Edge *_edge)
     }
     return false;
 }
+void CFG::insert_node(Node *_node)
+{
+    std::stringstream ss;
+    ss << "n" << nodes.size();
+    _node->set_str_node_name(ss.str());
+
+    nodes.push_back(_node);
+}
+void CFG::insert_edge(Edge *_edge)
+{
+    edges.push_back(_edge);
+}
+
 
 
 /**
@@ -73,10 +86,7 @@ void CFG::print_dot(std::ostream &out)
 
     for (int i=0; i<n_len; i++)
     {
-        std::string str_node_name = "n";
-        str_node_name.push_back((char)('0' + i));
-        out << "\"" << str_node_name << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
-        nodes[i]->set_str_node_name(str_node_name);
+        out << "\"" << nodes[i]->get_str_node_name() << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
     }
     Abstract_transfer *w = 0;
     for (int i=0; i<e_len; i++)
@@ -124,20 +134,19 @@ void CFG::init()
     Node *t;
     int len = stmts_list->n;
 
-    nodes.push_back(f);
+    insert_node(f);
     for (int i=0; i<len; i++)
     {
         t = new Node(stmts_list->get_element(i));
-        nodes.push_back(t);
-        edges.push_back(new Edge(f, t));
+        insert_node(t);
+        insert_edge(new Edge(f, t));
         f = t;
     }
     t = new Node("End");
-    nodes.push_back(t);
-    edges.push_back(new Edge(f, t));
+    insert_node(t);
+    insert_edge(new Edge(f, t));
 
     refine();
-    std::cout << false_edges.size() << std::endl;
     compute_weight();
 }
 void CFG::refine()
@@ -181,7 +190,7 @@ void CFG::refine()
                 {
                     new_t = new Node(if_stmts_list->get_element(i));
                     new_e = new Edge(new_f, new_t);
-                    nodes.push_back(new_t);
+                    insert_node(new_t);
 
                     if (i>0 && new_f->get_node_type().compare(Node::IF) == 0)
                     {
@@ -190,7 +199,7 @@ void CFG::refine()
                     else
                     {
                         if (i==0)new_e->set_if_true();
-                        edges.push_back(new_e);
+                        insert_edge(new_e);
                     }
                     new_f = new_t;
                 }
@@ -201,7 +210,7 @@ void CFG::refine()
                 }
                 else
                 {
-                    edges.push_back(new_e);
+                    insert_edge(new_e);
                 }
             }
 
@@ -217,8 +226,8 @@ void CFG::refine()
                 {
                     new_t = new Node(elif_list->get_element(i));
                     new_e = new Edge(new_f, new_t);
-                    nodes.push_back(new_t);
-                    edges.push_back(new_e);
+                    insert_node(new_t);
+                    insert_edge(new_e);
                     false_edges.push_back(new_e);
                     new_e = 0;
 
@@ -227,7 +236,7 @@ void CFG::refine()
                     for (int j=0; j<elif_stmts_list->n; ++j)
                     {
                         tt = new Node(elif_stmts_list->get_element(j));
-                        nodes.push_back(tt);
+                        insert_node(tt);
                         new_e = new Edge(ff, tt);
 
                         if(ff->get_node_type().compare(Node::IF) == 0)
@@ -237,7 +246,7 @@ void CFG::refine()
                         else
                         {
                             if (j==0) new_e->set_if_true();
-                            edges.push_back(new_e);
+                            insert_edge(new_e);
                         }
                         ff = tt;
                     }
@@ -248,7 +257,7 @@ void CFG::refine()
                     }
                     else
                     {
-                        edges.push_back(new_e);
+                        insert_edge(new_e);
                     }
 
                     new_f = new_t;
@@ -265,7 +274,7 @@ void CFG::refine()
                         {
                             false_edges.push_back(new_e);
                         }
-                        nodes.push_back(new_t);
+                        insert_node(new_t);
 
                         if(new_f->get_node_type().compare(Node::IF) == 0)
                         {
@@ -273,7 +282,7 @@ void CFG::refine()
                         }
                         else
                         {
-                            edges.push_back(new_e);
+                            insert_edge(new_e);
                         }
                         new_f = new_t;
                     }
@@ -284,13 +293,13 @@ void CFG::refine()
                     }
                     else
                     {
-                        edges.push_back(new_e);
+                        insert_edge(new_e);
                     }
                 }
                 else
                 {
                     new_e = new Edge(new_f, t);
-                    edges.push_back(new_e);
+                    insert_edge(new_e);
                     false_edges.push_back(new_e);
                 }
 
@@ -312,7 +321,7 @@ void CFG::refine()
                         {
                             false_edges.push_back(new_e);
                         }
-                        nodes.push_back(new_t);
+                        insert_node(new_t);
 
                         if(i>0 && new_f->get_node_type().compare(Node::IF) == 0)
                         {
@@ -320,7 +329,7 @@ void CFG::refine()
                         }
                         else
                         {
-                            edges.push_back(new_e);
+                            insert_edge(new_e);
                         }
                         new_f = new_t;
                     }
@@ -331,13 +340,13 @@ void CFG::refine()
                     }
                     else
                     {
-                        edges.push_back(new_e);
+                        insert_edge(new_e);
                     }
                 }
                 else
                 {
                     new_e = new Edge(f, t);
-                    edges.push_back(new_e);
+                    insert_edge(new_e);
                     false_edges.push_back(new_e);
                 }
             }
