@@ -31,11 +31,11 @@ void Edge::set_to(Node *_to)
 {
     to = _to;
 }
-Abstract_transfer *Edge::get_weight()
+Value_set_transfer *Edge::get_weight()
 {
     return weight;
 }
-void Edge::set_weight(Abstract_transfer *_weight)
+void Edge::set_weight(Value_set_transfer *_weight)
 {
     weight = _weight;
 }

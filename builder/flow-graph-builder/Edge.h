@@ -4,7 +4,7 @@
 #include <iostream>
 
 #include "Node.h"
-#include "../../analyzer/transformer/Abstract_transfer.h"
+#include "../../analyzer/transformer/value_set_transfer.h"
 
 class Edge{
 public:
@@ -18,8 +18,8 @@ public:
     void set_from(Node *);
     Node *get_to();
     void set_to(Node *);
-    Abstract_transfer *get_weight();
-    void set_weight(Abstract_transfer *);
+    Value_set_transfer *get_weight();
+    void set_weight(Value_set_transfer *);
 
     bool get_if_true();
     void set_if_true();
@@ -36,7 +36,7 @@ public:
 private:
     Node *from;
     Node *to;
-    Abstract_transfer *weight;
+    Value_set_transfer *weight;
 
     bool if_true;
 

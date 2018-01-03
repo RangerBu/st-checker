@@ -13,12 +13,6 @@ std::string ST_parser::parse(symbol_c *_symbol)
     delete v;
     return ret;
 }
-void ST_parser::parse_weight(symbol_c *_symbol, Abstract_transfer *_abstract_transfer)
-{
-    Absyntax_visitor_weight *vw = new Absyntax_visitor_weight(_abstract_transfer);
-    _symbol->accept(*vw);
-    delete vw;
-}
 
 /**
 * public methods

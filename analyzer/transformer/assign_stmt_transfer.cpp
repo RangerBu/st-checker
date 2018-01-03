@@ -1,14 +1,10 @@
 #include "assign_stmt_transfer.h"
 #include "../../parser/ST_parser.h"
 
-
-
-Assign_stmt_transfer::Assign_stmt_transfer()
-{
-}
 Assign_stmt_transfer::Assign_stmt_transfer(symbol_c *_assignment)
 {
-    assignment_statement_c *stmt = (assignment_statement_c *)_assignment;
+    statement = _assignment;
+    assignment_statement_c *stmt = (assignment_statement_c *)statement;
 
     str_left_var = ST_parser::parse(stmt->l_exp);
 
@@ -43,11 +39,11 @@ Assign_stmt_transfer::~Assign_stmt_transfer()
 {
 }
 
-Value_set *Assign_stmt_transfer::Transform(symbol_c *_assignment, Value_set *_vs0)
+Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
 {
     Value_set *ret = new Value_set(_vs0);
 
-    assignment_statement_c *stmt = (assignment_statement_c *)_assignment;
+    assignment_statement_c *stmt = (assignment_statement_c *)statement;
 
     str_left_var = ST_parser::parse(stmt->l_exp);
     left_var = _vs0->contains_var(str_left_var);

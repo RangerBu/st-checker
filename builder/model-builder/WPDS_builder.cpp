@@ -8,23 +8,57 @@ WPDS_builder::~WPDS_builder()
 {
 }
 
-WPDS *WPDS_builder::create()
+WPDS *WPDS_builder::create(wali::Key _p, wali::Key &start)
 {
-    std::vector<Node *> nodes = cfg->get_nodes();
     std::vector<Edge *> edges = cfg->get_edges();
 
     WPDS *ret = new WPDS();
 
-    wali::Key p = wali::getKey("p");
-    wali::Key accept = wali::getKey("accept");
-
-    int len = nodes.size();
-    wali::Key N[len];
-
+    int len = edges.size();
     for (int i=0; i<len; i++)
     {
-        N[i] = wali::getKey(nodes[i]->get_str_node_name().c_str());
+        Node *from, *to;
+        from = edges[i]->get_from();
+        to = edges[i]->get_to();
+
+        wali::Key key1 = wali::getKey(from->get_str_node_name().c_str());
+        wali::Key key2 = wali::getKey(to->get_str_node_name().c_str());
+
+        Value_set_transfer *transfer = 0;
+        if (from->get_node_type().compare(Node::ENTRY) == 0)
+        {
+            // value_set_transfer::IDENTITY
+            transfer = Value_set_transfer::get_identity();
+            start = key1;
+        }
+        else if (from->get_node_type().compare(Node::ASSIGNMENT) == 0)
+        {
+            // assign_stmt_transfer
+            transfer = new Assign_stmt_transfer(from->get_stmt());
+        }
+        else if (from->get_node_type().compare(Node::IF) == 0 || from->get_node_type().compare(Node::ELSE_IF) == 0)
+        {
+            // elif_stmt_transfer
+            if (cfg->is_false_edge(edges[i]))
+            {
+                transfer = new Elif_stmt_transfer(from->get_stmt());
+            }
+            else
+            {
+                // if_stmt_transfer
+                transfer = new If_stmt_transfer(from->get_stmt());
+            }
+        }
+        else
+        {
+            std::cout << "Unsupported Node type in constructing WPDS!" << std::endl;
+            exit(0);
+        }
+        ret->add_rule(_p, key1, _p, key2, new Transfer_semiring(new Abstract_new_value(transfer)));
     }
 
-
+    return ret;
+//    std::ofstream fout("outputs/Example_4.wpds");
+//    ret->print(fout) << std::endl;
+//    fout.close();
 }

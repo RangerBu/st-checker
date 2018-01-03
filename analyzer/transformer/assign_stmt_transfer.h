@@ -4,20 +4,20 @@
 #include <string>
 #include <iostream>
 
-#include "Abstract_transfer.h"
+#include "value_set_transfer.h"
 #include "../domain/Var.h"
 #include "../structures/Strided_interval.h"
 #include "../structures/Bits_vector_8.h"
 
-class Assign_stmt_transfer : public Abstract_transfer
+class Assign_stmt_transfer : public Value_set_transfer
 {
 
 public:
-    Assign_stmt_transfer();
     Assign_stmt_transfer(symbol_c *);
     virtual ~Assign_stmt_transfer();
 
-    Value_set *Transform(symbol_c *, Value_set *);
+//    Value_set *Transform(symbol_c *, Value_set *);
+    Value_set *Transform(Value_set *);
     std::string format();
 
     /**
@@ -33,6 +33,8 @@ private:
     std::string str_left_var;
     std::string str_right_var1;
     std::string str_right_var2;
+
+    symbol_c *statement;
 };
 
 

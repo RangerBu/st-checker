@@ -13,8 +13,7 @@
 #include "analyzer/structures/Bits_vector_8.h"
 #include "analyzer/domain/Var.h"
 #include "analyzer/domain/Abstract_memory.h"
-#include "analyzer/transformer/Abstract_transfer.h"
-#include "parser/Absyntax_visitor_weight.h"
+#include "analyzer/transformer/value_set_transfer.h"
 #include "builder/flow-graph-builder/CFG_builder.h"
 
 using namespace std;

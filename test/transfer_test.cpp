@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "../analyzer/transformer/Abstract_transfer.h"
+#include "../analyzer/transformer/value_set_transfer.h"
 #include "../analyzer/transformer/assign_stmt_transfer.h"
 #include "../analyzer/transformer/if_stmt_transfer.h"
 #include "../parser/ST_parser.h"
@@ -13,14 +13,14 @@
 
 int main()
 {
-    std::string file_name = "outputs/Example 4.st";
+    std::string file_name = "outputs/Example_4.st";
     ST_parser parser(file_name);
     CFG_builder *builder = new CFG_builder(&parser);
 
     CFG *cfg = builder->create();
 
-    Abstract_transfer *t1 = new Assign_stmt_transfer();
-    Abstract_transfer *t2 = new If_stmt_transfer();
+    Value_set_transfer *t1;
+    Value_set_transfer *t2;
 
     Value_set *vs0 = new Value_set(cfg->get_vars());
 
@@ -28,14 +28,15 @@ int main()
 
     std::cout << vs0->format() << std::endl;
 
-    std::cout << cfg->get_nodes()[2] << std::endl;
+    std::cout << cfg->get_nodes()[4] << std::endl;
 
-    symbol_c *stmt = cfg->get_nodes()[2]->get_stmt();
+    symbol_c *stmt = cfg->get_nodes()[4]->get_stmt();
     std::string cname = stmt->absyntax_cname();
 
     if (cname.compare("assignment_statement_c") == 0)
     {
-        Value_set *vs1 = t1->Transform(stmt, vs0);
+        t1 = new Assign_stmt_transfer(stmt);
+        Value_set *vs1 = t1->Transform(vs0);
         std::cout << vs1->format() << std::endl;
     }
     else if (cname.compare("if_statement_c") == 0)
@@ -48,11 +49,16 @@ int main()
         Var *flag = vs0->contains_var("flag");
         vs0->update_bool_var(flag, Bits_vector_1::get_instance("*"));
 
-        Value_set *vs1 = t2->Transform(stmt, vs0);
+        t2 = new If_stmt_transfer(stmt);
+        Value_set *vs1 = t2->Transform(vs0);
         std::cout << vs1->format() << std::endl;
     }
 
-    std::cout << (1<<31)-1 << std::endl;
+    t1 = new Assign_stmt_transfer(cfg->get_nodes()[4]->get_stmt());
+    t2 = new If_stmt_transfer(cfg->get_nodes()[2]->get_stmt());
+
+    std::cout << t1->format() << "  " << t2->format() << std::endl;
+    std::cout << t1->equals(t2) << std::endl;
 
     return 0;
 }

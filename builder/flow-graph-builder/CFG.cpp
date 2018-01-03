@@ -88,7 +88,7 @@ void CFG::print_dot(std::ostream &out)
     {
         out << "\"" << nodes[i]->get_str_node_name() << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
     }
-    Abstract_transfer *w = 0;
+    Value_set_transfer *w = 0;
     for (int i=0; i<e_len; i++)
     {
         Edge *e = edges[i];
@@ -363,12 +363,12 @@ void CFG::compute_weight()
 {
     int n = edges.size();
     Node *from = 0;
-    Abstract_transfer *weight = 0;
+    Value_set_transfer *weight = 0;
     for (int i=0; i<n; i++)
     {
         from = edges[i]->get_from();
 
-        Abstract_transfer *transfer = 0;
+        Value_set_transfer *transfer = 0;
         if (from->get_node_type().compare(Node::IF) == 0 || from->get_node_type().compare(Node::ELSE_IF) == 0)
         {
             if (is_false_edge(edges[i]))

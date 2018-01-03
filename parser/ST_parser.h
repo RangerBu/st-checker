@@ -11,8 +11,6 @@
 #include "stage1_2/stage1_2.hh"
 
 #include "Absyntax_visitor.h"
-#include "Absyntax_visitor_weight.h"
-#include "../analyzer/transformer/Abstract_transfer.h"
 
 class ST_parser{
 
@@ -22,7 +20,6 @@ class ST_parser{
 
 public:
     static std::string parse(symbol_c *);
-    static void parse_weight(symbol_c *, Abstract_transfer *);
 
 public:
     ST_parser();

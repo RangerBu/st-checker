@@ -1,13 +1,11 @@
 #include "if_stmt_transfer.h"
 #include "../../parser/ST_parser.h"
 
-If_stmt_transfer::If_stmt_transfer()
-{
-}
 If_stmt_transfer::If_stmt_transfer(symbol_c *_if_statement)
 {
+    statement = _if_statement;
     //SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
-    if_statement_c *stmt = (if_statement_c *)_if_statement;
+    if_statement_c *stmt = (if_statement_c *)statement;
 
     std::string str_expression = stmt->expression->absyntax_cname();
 
@@ -87,12 +85,12 @@ If_stmt_transfer::~If_stmt_transfer()
 {
 }
 
-Value_set *If_stmt_transfer::Transform(symbol_c *_if_statement, Value_set *_vs0)
+Value_set *If_stmt_transfer::Transform(Value_set *_vs0)
 {
     Value_set *ret = new Value_set(_vs0);
 
     //SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
-    if_statement_c *stmt = (if_statement_c *)_if_statement;
+    if_statement_c *stmt = (if_statement_c *)statement;
 
     std::string str_expression = stmt->expression->absyntax_cname();
 

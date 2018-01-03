@@ -1,11 +1,10 @@
 #include "elif_stmt_transfer.h"
 #include "../../parser/ST_parser.h"
 
-Elif_stmt_transfer::Elif_stmt_transfer()
-{
-}
 Elif_stmt_transfer::Elif_stmt_transfer(symbol_c *_elif_statement)
 {
+    statement = _elif_statement;
+
     std::string str_stmt_name = _elif_statement->absyntax_cname();
     std::string str_expression;
     symbol_c *expression;
@@ -13,14 +12,14 @@ Elif_stmt_transfer::Elif_stmt_transfer(symbol_c *_elif_statement)
     if (str_stmt_name.compare("elseif_statement_c") == 0)
     {
         //SYM_REF2(elseif_statement_c, expression, statement_list)
-        expression = ((elseif_statement_c *)_elif_statement)->expression;
+        expression = ((elseif_statement_c *)statement)->expression;
         str_expression = expression->absyntax_cname();
 
     }
     else
     {
         //SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
-        expression = ((if_statement_c *)_elif_statement)->expression;
+        expression = ((if_statement_c *)statement)->expression;
         str_expression = expression->absyntax_cname();
     }
 
@@ -100,25 +99,25 @@ Elif_stmt_transfer::~Elif_stmt_transfer()
 {
 }
 
-Value_set *Elif_stmt_transfer::Transform(symbol_c *_elif_statement, Value_set *_vs0)
+Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 {
     Value_set *ret = new Value_set(_vs0);
 
-    std::string str_stmt_name = _elif_statement->absyntax_cname();
+    std::string str_stmt_name = statement->absyntax_cname();
     std::string str_expression;
     symbol_c *expression;
 
     if (str_stmt_name.compare("elseif_statement_c") == 0)
     {
         //SYM_REF2(elseif_statement_c, expression, statement_list)
-        expression = ((elseif_statement_c *)_elif_statement)->expression;
+        expression = ((elseif_statement_c *)statement)->expression;
         str_expression = expression->absyntax_cname();
 
     }
     else
     {
         //SYM_REF4(if_statement_c, expression, statement_list, elseif_statement_list, else_statement_list)
-        expression = ((if_statement_c *)_elif_statement)->expression;
+        expression = ((if_statement_c *)statement)->expression;
         str_expression = expression->absyntax_cname();
     }
 
