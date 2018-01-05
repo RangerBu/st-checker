@@ -11,7 +11,6 @@ class Node{
     /**
     * static constants
     */
-
 public:
     static const std::string ENTRY;
     static const std::string ASSIGNMENT;
@@ -25,47 +24,82 @@ public:
     /**
     * public methods
     */
-
 public:
+    /*
+    * create a Start node or End node with this constructor
+    */
     Node(std::string);
+
+    /*
+    * create an internal node attached a statement (symbol *) with this constructor
+    */
     Node(symbol_c *);
+
+    /*
+    * de-constructor
+    */
     virtual ~Node();
 
     /**
     *  getters and setters
     */
-
     std::string get_str_stmt();
-    void set_str_stmt(std::string);
-    symbol_c *get_stmt();
-    void set_stmt(symbol_c *);
-    std::string get_node_type();
 
-    // used in print_dot
-    std::string get_str_node_name();
-    void set_str_node_name(std::string);
+    symbol_c *get_stmt();
+
+    std::string get_str_type();
+
+    std::string get_str_node();
+
+    void set_str_node(std::string);
+
 
     /**
     * helpers
     */
+    bool equal(Node *);
 
-    void print(std::ostream &);
-    void print_dot(std::ostream &);
-    friend std::ostream &operator<<(std::ostream &, Node &);
+    std::ostream &print(std::ostream &);
+
+    std::ostream &print_dot(std::ostream &);
+
+
+    /**
+    * helpers - debug only
+    */
     friend std::ostream &operator<<(std::ostream &, Node *);
-    bool equals(Node *);
+
 
     /**
     * private attributes and methods
     */
-
 private:
-    std::string str_stmt;
-    symbol_c *stmt;
-    std::string type;
-    //used in print_dot
-    std::string str_node_name;
 
+    /*
+    * the string form of the statement attached to this node
+    */
+    std::string str_stmt;
+
+    /*
+    * the statement attached to this node
+    */
+    symbol_c *stmt;
+
+    /*
+    * the type of this node
+    */
+    std::string str_type;
+
+    /*
+    * the string representation of this node
+    *
+    * used in print_dot() function
+    */
+    std::string str_node;
+
+    /*
+    * initiate the node type according to stmt or str_stmt
+    */
     void init_node_type();
 
 };

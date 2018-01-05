@@ -21,22 +21,22 @@ WPDS *WPDS_builder::create(wali::Key _p, wali::Key &start)
         from = edges[i]->get_from();
         to = edges[i]->get_to();
 
-        wali::Key key1 = wali::getKey(from->get_str_node_name().c_str());
-        wali::Key key2 = wali::getKey(to->get_str_node_name().c_str());
+        wali::Key key1 = wali::getKey(from->get_str_node().c_str());
+        wali::Key key2 = wali::getKey(to->get_str_node().c_str());
 
         Value_set_transfer *transfer = 0;
-        if (from->get_node_type().compare(Node::ENTRY) == 0)
+        if (from->get_str_type().compare(Node::ENTRY) == 0)
         {
             // value_set_transfer::IDENTITY
             transfer = Value_set_transfer::get_identity();
             start = key1;
         }
-        else if (from->get_node_type().compare(Node::ASSIGNMENT) == 0)
+        else if (from->get_str_type().compare(Node::ASSIGNMENT) == 0)
         {
             // assign_stmt_transfer
             transfer = new Assign_stmt_transfer(from->get_stmt());
         }
-        else if (from->get_node_type().compare(Node::IF) == 0 || from->get_node_type().compare(Node::ELSE_IF) == 0)
+        else if (from->get_str_type().compare(Node::IF) == 0 || from->get_str_type().compare(Node::ELSE_IF) == 0)
         {
             // elif_stmt_transfer
             if (cfg->is_false_edge(edges[i]))

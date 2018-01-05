@@ -72,5 +72,5 @@ std::ostream &operator<<(std::ostream &out, Edge *e)
 }
 bool Edge::equals(Edge *_other)
 {
-    return from->equals(_other->get_from()) && to->equals(_other->get_to());
+    return from->equal(_other->get_from()) && to->equal(_other->get_to());
 }

@@ -30,7 +30,7 @@ void CFG::insert_node(Node *_node)
 {
     std::stringstream ss;
     ss << "n" << nodes.size();
-    _node->set_str_node_name(ss.str());
+    _node->set_str_node(ss.str());
 
     nodes.push_back(_node);
 }
@@ -86,14 +86,14 @@ void CFG::print_dot(std::ostream &out)
 
     for (int i=0; i<n_len; i++)
     {
-        out << "\"" << nodes[i]->get_str_node_name() << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
+        out << "\"" << nodes[i]->get_str_node() << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
     }
     Value_set_transfer *w = 0;
     for (int i=0; i<e_len; i++)
     {
         Edge *e = edges[i];
         w = e->get_weight();
-        out << "\"" << e->get_from()->get_str_node_name() << "\" -> \"" << e->get_to()->get_str_node_name();
+        out << "\"" << e->get_from()->get_str_node() << "\" -> \"" << e->get_to()->get_str_node();
 //        out << "\" [label=\"[" << w->get_left_var() << " to " << w->get_right_var1() << " " << w->get_op() << " " << w->get_right_var2() <<"]\",color=black]\n";
         std::string false_edge;
         if (w != 0)
@@ -157,7 +157,7 @@ void CFG::refine()
     for (it = edges.begin(); it != edges.end(); )
     {
 
-        if ((*it)->get_from()->get_node_type().compare(Node::IF) == 0)
+        if ((*it)->get_from()->get_str_type().compare(Node::IF) == 0)
         {
             re_queue.push(*it);
             it = edges.erase(it);
@@ -175,7 +175,7 @@ void CFG::refine()
         f = e->get_from();
         t = e->get_to();
 
-        if (f->get_node_type().compare(Node::IF) == 0)
+        if (f->get_str_type().compare(Node::IF) == 0)
         {
             if_statement_c *if_stmt = (if_statement_c *)(f->get_stmt());
 
@@ -192,7 +192,7 @@ void CFG::refine()
                     new_e = new Edge(new_f, new_t);
                     insert_node(new_t);
 
-                    if (i>0 && new_f->get_node_type().compare(Node::IF) == 0)
+                    if (i>0 && new_f->get_str_type().compare(Node::IF) == 0)
                     {
                         re_queue.push(new_e);
                     }
@@ -204,7 +204,7 @@ void CFG::refine()
                     new_f = new_t;
                 }
                 new_e = new Edge(new_f, t);
-                if (new_f->get_node_type().compare(Node::IF) == 0)
+                if (new_f->get_str_type().compare(Node::IF) == 0)
                 {
                     re_queue.push(new_e);
                 }
@@ -239,7 +239,7 @@ void CFG::refine()
                         insert_node(tt);
                         new_e = new Edge(ff, tt);
 
-                        if(ff->get_node_type().compare(Node::IF) == 0)
+                        if(ff->get_str_type().compare(Node::IF) == 0)
                         {
                             re_queue.push(new_e);
                         }
@@ -251,7 +251,7 @@ void CFG::refine()
                         ff = tt;
                     }
                     new_e = new Edge(ff, t);
-                    if(ff->get_node_type().compare(Node::IF) == 0)
+                    if(ff->get_str_type().compare(Node::IF) == 0)
                     {
                         re_queue.push(new_e);
                     }
@@ -276,7 +276,7 @@ void CFG::refine()
                         }
                         insert_node(new_t);
 
-                        if(new_f->get_node_type().compare(Node::IF) == 0)
+                        if(new_f->get_str_type().compare(Node::IF) == 0)
                         {
                             re_queue.push(new_e);
                         }
@@ -287,7 +287,7 @@ void CFG::refine()
                         new_f = new_t;
                     }
                     new_e = new Edge(new_f, t);
-                    if (new_f->get_node_type().compare(Node::IF) == 0)
+                    if (new_f->get_str_type().compare(Node::IF) == 0)
                     {
                         re_queue.push(new_e);
                     }
@@ -323,7 +323,7 @@ void CFG::refine()
                         }
                         insert_node(new_t);
 
-                        if(i>0 && new_f->get_node_type().compare(Node::IF) == 0)
+                        if(i>0 && new_f->get_str_type().compare(Node::IF) == 0)
                         {
                             re_queue.push(new_e);
                         }
@@ -334,7 +334,7 @@ void CFG::refine()
                         new_f = new_t;
                     }
                     new_e = new Edge(new_f, t);
-                    if (new_f->get_node_type().compare(Node::IF) == 0)
+                    if (new_f->get_str_type().compare(Node::IF) == 0)
                     {
                         re_queue.push(new_e);
                     }
@@ -369,7 +369,7 @@ void CFG::compute_weight()
         from = edges[i]->get_from();
 
         Value_set_transfer *transfer = 0;
-        if (from->get_node_type().compare(Node::IF) == 0 || from->get_node_type().compare(Node::ELSE_IF) == 0)
+        if (from->get_str_type().compare(Node::IF) == 0 || from->get_str_type().compare(Node::ELSE_IF) == 0)
         {
             if (is_false_edge(edges[i]))
             {
@@ -382,7 +382,7 @@ void CFG::compute_weight()
                 edges[i]->set_weight(transfer);
             }
         }
-        else if (from->get_node_type().compare(Node::ASSIGNMENT) == 0)
+        else if (from->get_str_type().compare(Node::ASSIGNMENT) == 0)
         {
             transfer = new Assign_stmt_transfer(from->get_stmt());
             edges[i]->set_weight(transfer);

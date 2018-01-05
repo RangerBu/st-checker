@@ -12,6 +12,7 @@ wali::sem_elem_t Transfer_semiring::one() const
 {
     if (ELEM_ONE == 0)
     {
+//        ELEM_ONE = new Transfer_semiring(Abstract_new_value::get_instance(Value_set_transfer::get_bot()));
         ELEM_ONE = new Transfer_semiring(new Abstract_new_value(Value_set_transfer::get_bot()));
     }
     return ELEM_ONE;
@@ -20,6 +21,7 @@ wali::sem_elem_t Transfer_semiring::zero() const
 {
     if (ELEM_ZERO == 0)
     {
+//        ELEM_ZERO = new Transfer_semiring(Abstract_new_value::get_instance(Value_set_transfer::get_identity()));
         ELEM_ZERO = new Transfer_semiring(new Abstract_new_value(Value_set_transfer::get_identity()));
     }
     return ELEM_ZERO;
@@ -37,6 +39,7 @@ wali::sem_elem_t Transfer_semiring::combine(SemElem *_other)
 {
     Transfer_semiring *other = static_cast<Transfer_semiring *>(_other);
 
+//    Abstract_new_value *new_value = Abstract_new_value::get_instance(Value_set_transfer::get_identity());
     Abstract_new_value *new_value = new Abstract_new_value(Value_set_transfer::get_identity());
 
     value->insert_post(new_value);

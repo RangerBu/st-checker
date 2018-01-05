@@ -1,4 +1,4 @@
-#define BUILDER_TEST
+//#define BUILDER_TEST
 
 #ifdef BUILDER_TEST
 
@@ -41,7 +41,6 @@ int main()
     Transfer_semiring *ts1 = new Transfer_semiring(av1);
     Transfer_semiring *ts2 = new Transfer_semiring(av2);
 
-
     WPDS_builder *wpds_builder = new WPDS_builder(cfg);
 
     wali::Key p = wali::getKey("p");
@@ -52,6 +51,7 @@ int main()
 
 
     wali::wfa::WFA post_query;
+
     post_query.addTrans(p, start, accept, new Transfer_semiring(new Abstract_new_value(Value_set_transfer::get_identity())));
     post_query.set_initial_state(p);
     post_query.addFinalState(accept);
@@ -60,9 +60,27 @@ int main()
     wpds->poststar(post_query, answer);
 
     std::ofstream fout("outputs/Example_4.wpds");
-    answer.print(fout) << std::endl;
-    fout.close();
+//    std::ofstream fout("outputs/Example_4_wpds.dot");
+//    answer.print_dot(fout) << std::endl;
+//    fout.close();
 
+    // queries of answer wfa
+
+    std::vector<Node *> nodes = cfg->get_nodes();
+    wali::wfa::Trans tr;
+    for (int i=0; i<nodes.size(); i++)
+    {
+        wali::Key key = wali::getKey(nodes[i]->get_str_node_name().c_str());
+        answer.find(p, key, accept, tr);
+
+//        fout << nodes[i] << std::endl;
+//        wali::sem_elem_t weight = tr.weight();
+////        if (i==3)std::cout << ((Transfer_semiring *) weight.get_ptr())->get_value()->format() << std::endl;
+//        fout << ((Transfer_semiring *) weight.get_ptr())->get_value()->format() << std::endl;
+//        fout << std::endl;
+
+    }
+    fout.close();
 
     return 0;
 }

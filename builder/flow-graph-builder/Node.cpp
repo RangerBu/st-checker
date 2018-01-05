@@ -14,93 +14,101 @@ const std::string Node::ELSE_IF = "ELSE_IF";
 const std::string Node::FOR = "FOR";
 const std::string Node::EXIT = "End";
 
+
+
+
+
+
 /**
 * public methods
 */
-
-Node::Node(symbol_c *_stmt)
-{
-    stmt = _stmt;
-    str_stmt = ST_parser::parse(_stmt);
-    init_node_type();
-}
+/*
+* create a Start node or End node with this constructor
+*/
 Node::Node(std::string _str_stmt)
 {
     stmt = 0;
     str_stmt = _str_stmt;
     init_node_type();
 }
+
+/*
+* create an internal node attached a statement (symbol *) with this constructor
+*/
+Node::Node(symbol_c *_stmt)
+{
+    stmt = _stmt;
+    str_stmt = ST_parser::parse(_stmt);
+    init_node_type();
+}
+
+/*
+* de-constructor
+*/
 Node::~Node()
 {
-
 }
 
 /**
 * getters and setters
 */
-
 std::string Node::get_str_stmt()
 {
     return str_stmt;
 }
-void Node::set_str_stmt(std::string _str_stmt)
-{
-    str_stmt = _str_stmt;
-}
+
 symbol_c *Node::get_stmt()
 {
     return stmt;
 }
-void Node::set_stmt(symbol_c *_stmt)
+
+std::string Node::get_str_type()
 {
-    stmt = _stmt;
+    return str_type;
 }
-std::string Node::get_node_type()
+
+std::string Node::get_str_node()
 {
-    return type;
+    return str_node;
 }
-std::string Node::get_str_node_name()
+
+void Node::set_str_node(std::string _str_node)
 {
-    return str_node_name;
+    str_node = _str_node;
 }
-void Node::set_str_node_name(std::string _str_node_name)
-{
-    str_node_name = _str_node_name;
-}
+
 
 /**
 * helpers
 */
+bool Node::equal(Node *_other)
+{
+    if (this == _other)
+    {
+        return true;
+    }
+    return str_stmt.compare(_other->get_str_stmt()) == 0 && str_type.compare(_other->get_str_type()) == 0;
+}
 
-void Node::print(std::ostream &out)
+std::ostream &Node::print(std::ostream &_out)
 {
-    out << *this;
+    return _out << "[" << str_stmt << "]";
 }
-void Node::print_dot(std::ostream &out)
+
+std::ostream &Node::print_dot(std::ostream &_out)
 {
-    // need to be implemented
+    //need to be implemented
 }
-std::ostream &operator<<(std::ostream &out, Node &n)
+
+
+/**
+* helpers - debug only
+*/
+std::ostream &operator<<(std::ostream &_out, Node *_node)
 {
-    if (n.get_str_stmt().length() > 0)
-    {
-        out << "[" << n.get_str_stmt() << "]";
-    }
-    else
-    {
-        out << "Uninitialized string";
-    }
-    return out;
+    return _node->print(_out);
 }
-std::ostream &operator<<(std::ostream &out, Node *n)
-{
-    out << *n;
-    return out;
-}
-bool Node::equals(Node *_other)
-{
-    return str_stmt.compare(_other->get_str_stmt()) == 0 && type.compare(_other->get_node_type()) == 0;
-}
+
 
 /**
 * private attributes and methods
@@ -112,11 +120,11 @@ void Node::init_node_type()
     {
         if (str_stmt.compare(Node::ENTRY) == 0)
         {
-            type = Node::ENTRY;
+            str_type = Node::ENTRY;
         }
         else if (str_stmt.compare(Node::EXIT) == 0)
         {
-            type = Node::EXIT;
+            str_type = Node::EXIT;
         }
         else
         {
@@ -125,31 +133,31 @@ void Node::init_node_type()
     }
     else
     {
-        std::string str_type = stmt->absyntax_cname();
+        std::string str_stmt_type = stmt->absyntax_cname();
 
-        if (str_type.compare("assignment_statement_c") == 0)
+        if (str_stmt_type.compare("assignment_statement_c") == 0)
         {
-            type = Node::ASSIGNMENT;
+            str_type = Node::ASSIGNMENT;
         }
-        else if (str_type.compare("return_statement_c") == 0)
+        else if (str_stmt_type.compare("return_statement_c") == 0)
         {
-            type = Node::RETURN;
+            str_type = Node::RETURN;
         }
-        else if (str_type.compare("fb_invocation_c") == 0)
+        else if (str_stmt_type.compare("fb_invocation_c") == 0)
         {
-            type = Node::FB_INVOCATION;
+            str_type = Node::FB_INVOCATION;
         }
-        else if (str_type.compare("if_statement_c") == 0)
+        else if (str_stmt_type.compare("if_statement_c") == 0)
         {
-            type = Node::IF;
+            str_type = Node::IF;
         }
-        else if (str_type.compare("elseif_statement_c") ==0 )
+        else if (str_stmt_type.compare("elseif_statement_c") ==0 )
         {
-            type = Node::ELSE_IF;
+            str_type = Node::ELSE_IF;
         }
-        else if (str_type.compare("for_statement_c") == 0)
+        else if (str_stmt_type.compare("for_statement_c") == 0)
         {
-            type = Node::FOR;
+            str_type = Node::FOR;
         }
         else
         {
