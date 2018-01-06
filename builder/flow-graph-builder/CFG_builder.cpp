@@ -1,44 +1,37 @@
 #include "CFG_builder.h"
 
 /**
+* static methods
+*/
+CFG_builder *CFG_builder::get_instance()
+{
+    if (builder == 0)
+    {
+        builder = new CFG_builder();
+    }
+    return builder;
+}
+
+
+/**
 * public methods
 */
-CFG_builder::CFG_builder()
-{
-    parser = new ST_parser();
-}
-CFG_builder::CFG_builder(ST_parser *_parser)
-{
-    parser = _parser;
-}
 CFG_builder::~CFG_builder()
 {
 }
 
-CFG *CFG_builder::create()
-{
-    CFG *ret = new CFG(parser->get_stmts_list());
-    init_vars();
-    ret->set_vars(vars);
-    return ret;
-}
 
 /**
-* getters and setters
+* external
 */
-std::vector<Var *> CFG_builder::get_vars()
+CFG *CFG_builder::create_CFG(ST_parser *_parser)
 {
-    return vars;
-}
+    CFG *ret = new CFG(_parser->get_stmts_list());
 
-/**
-* private methods
-*/
-void CFG_builder::init_vars()
-{
-    var_declarations_list_c *var_decls = parser->get_vars();
+    std::vector<Var *> var_list;
+    var_declarations_list_c *var_decls = _parser->get_vars();
+
     int len = var_decls->n;
-
     for (int i=0; i<len; i++)
     {
         symbol_c *elem = var_decls->get_element(i);
@@ -69,7 +62,7 @@ void CFG_builder::init_vars()
                     /* str_name */
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    vars.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("INPUT")));
+                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("INPUT")));
                 }
             }
         }
@@ -99,7 +92,7 @@ void CFG_builder::init_vars()
                     /* str_name */
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    vars.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("OUTPUT")));
+                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("OUTPUT")));
                 }
             }
         }
@@ -137,7 +130,7 @@ void CFG_builder::init_vars()
                 {
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    vars.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("VAR")));
+                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("VAR")));
                 }
             }
         }
@@ -170,7 +163,7 @@ void CFG_builder::init_vars()
                 {
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    vars.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("RETENTIVE")));
+                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("RETENTIVE")));
                 }
             }
         }
@@ -206,7 +199,7 @@ void CFG_builder::init_vars()
                         constant = ST_parser::parse(located_var_spec_init->constant);
                     }
 
-                    vars.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
+                    var_list.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
                 }
             }
             else
@@ -236,7 +229,7 @@ void CFG_builder::init_vars()
                     {
                         constant = ST_parser::parse(located_var_spec_init->constant);
                     }
-                    vars.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
+                    var_list.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
                 }
             }
         }
@@ -256,4 +249,19 @@ void CFG_builder::init_vars()
 
         }
     }
+
+    ret->set_var_list(var_list);
+
+    return ret;
 }
+
+
+/**
+* private attributes and methods
+*/
+CFG_builder *CFG_builder::builder = 0;
+
+CFG_builder::CFG_builder()
+{
+}
+

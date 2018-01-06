@@ -61,13 +61,12 @@ public:
 
     std::ostream &print(std::ostream &);
 
-    std::ostream &print_dot(std::ostream &);
+    friend std::ostream &operator<<(std::ostream &, Node *);
 
 
     /**
     * helpers - debug only
     */
-    friend std::ostream &operator<<(std::ostream &, Node *);
 
 
     /**

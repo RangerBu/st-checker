@@ -4,42 +4,58 @@
 #include <iostream>
 
 #include "Node.h"
-#include "../../analyzer/transformer/value_set_transfer.h"
 
 class Edge{
+    /**
+    * public attributes
+    */
 public:
+    /*
+    * create an edge with start node and end node using this constructor
+    */
     Edge(Node *, Node *);
+
+    /*
+    * de-constructor
+    */
     virtual ~Edge();
+
 
     /**
     * getters and setters
     */
     Node *get_from();
-    void set_from(Node *);
-    Node *get_to();
-    void set_to(Node *);
-    Value_set_transfer *get_weight();
-    void set_weight(Value_set_transfer *);
 
-    bool get_if_true();
-    void set_if_true();
+    Node *get_to();
+
 
     /**
     * helpers
     */
-    void print(std::ostream &);
-    void print_dot(std::ostream &);
-    friend std::ostream &operator<<(std::ostream &, Edge &);
+    bool equal(Edge *);
+
+    std::ostream &print(std::ostream &);
+
     friend std::ostream &operator<<(std::ostream &, Edge *);
-    bool equals(Edge *);
 
+    /**
+    * helpers - debug only
+    */
+
+
+    /**
+    * private attributes
+    */
 private:
+    /*
+    * the start node of a edge
+    */
     Node *from;
+
+    /*
+    * the end node of a edge
+    */
     Node *to;
-    Value_set_transfer *weight;
-
-    bool if_true;
-
 };
 
 #endif // EDGE_H

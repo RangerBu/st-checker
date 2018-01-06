@@ -9,31 +9,42 @@
 #include "../../analyzer/domain/Var.h"
 
 class CFG_builder{
+    /**
+    * static methods
+    */
+public:
+    static CFG_builder *get_instance();
+
 
     /**
     * public methods
     */
 public:
-    CFG_builder();
-    CFG_builder(ST_parser *);
+    /*
+    * de-constructor
+    */
     virtual ~CFG_builder();
 
-    CFG *create();
 
     /**
-    * getters and setters
+    * external
     */
-    std::vector<Var *> get_vars();
+    CFG *create_CFG(ST_parser *);
+
 
     /**
     * private attributes and methods
     */
 private:
-    ST_parser *parser;
-    std::vector<Var *> vars;
+    /*
+    * make sure there only one instance of this class
+    */
+    CFG_builder();
 
-    void init_vars();
-
+    /*
+    * the only one instance
+    */
+    static CFG_builder *builder;
 
 };
 

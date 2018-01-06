@@ -95,19 +95,15 @@ std::ostream &Node::print(std::ostream &_out)
     return _out << "[" << str_stmt << "]";
 }
 
-std::ostream &Node::print_dot(std::ostream &_out)
+std::ostream &operator<<(std::ostream &_out, Node *_node)
 {
-    //need to be implemented
+    return _node->print(_out);
 }
 
 
 /**
 * helpers - debug only
 */
-std::ostream &operator<<(std::ostream &_out, Node *_node)
-{
-    return _node->print(_out);
-}
 
 
 /**

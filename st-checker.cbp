@@ -75,31 +75,8 @@
 		<Unit filename="builder/flow-graph-builder/Edge.h" />
 		<Unit filename="builder/flow-graph-builder/Node.cpp" />
 		<Unit filename="builder/flow-graph-builder/Node.h" />
-		<Unit filename="builder/model-builder/CES.cpp" />
-		<Unit filename="builder/model-builder/CES.h" />
-		<Unit filename="builder/model-builder/CES_builder.cpp" />
-		<Unit filename="builder/model-builder/CES_builder.h" />
-		<Unit filename="builder/model-builder/WPDS_builder.cpp" />
-		<Unit filename="builder/model-builder/WPDS_builder.h" />
-		<Unit filename="builder/model-builder/abstract_new_value.cpp" />
-		<Unit filename="builder/model-builder/abstract_new_value.h" />
-		<Unit filename="builder/model-builder/transfer_semiring.cpp" />
-		<Unit filename="builder/model-builder/transfer_semiring.h" />
 		<Unit filename="main.cpp" />
-		<Unit filename="parser/Absyntax_visitor.cpp" />
-		<Unit filename="parser/Absyntax_visitor.h" />
-		<Unit filename="parser/ST_parser.cpp" />
-		<Unit filename="parser/ST_parser.h" />
-		<Unit filename="test/builder_test.cpp" />
-		<Unit filename="test/domain_test.cpp" />
-		<Unit filename="test/model-builder/wpds-examples/ExReach.cpp" />
-		<Unit filename="test/model-builder/wpds-examples/Reach.cpp" />
-		<Unit filename="test/model-builder/wpds-examples/Reach.hpp" />
-		<Unit filename="test/model-builder/wpds_builder_test.cpp" />
-		<Unit filename="test/structures_test.cpp" />
-		<Unit filename="test/transfer_test.cpp" />
-		<Unit filename="utils/utils.cpp" />
-		<Unit filename="utils/utils.h" />
+		<Unit filename="test/flow_graph_builder_test.cpp" />
 		<Extensions>
 			<envvars />
 			<code_completion />

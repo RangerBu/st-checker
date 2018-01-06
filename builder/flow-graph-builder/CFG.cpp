@@ -1,177 +1,196 @@
 #include "CFG.h"
 #include "../../parser/ST_parser.h"
 
-CFG::CFG()
+/**
+* public methods
+*/
+/*
+* create a cfg with statement list using this constructor
+*/
+CFG::CFG(statement_list_c *_statement_list)
 {
-
-}
-CFG::CFG(statement_list_c *_stmts_list)
-{
-    stmts_list = _stmts_list;
+    statement_list = _statement_list;
     init();
 }
+
+/*
+* de-constructor
+*/
 CFG::~CFG()
 {
 
 }
-bool CFG::is_false_edge(Edge *_edge)
-{
-    int len = false_edges.size();
-    for (int i=0; i<len; i++)
-    {
-        if (_edge->equals(false_edges[i]))
-        {
-            return true;
-        }
-    }
-    return false;
-}
-void CFG::insert_node(Node *_node)
-{
-    std::stringstream ss;
-    ss << "n" << nodes.size();
-    _node->set_str_node(ss.str());
-
-    nodes.push_back(_node);
-}
-void CFG::insert_edge(Edge *_edge)
-{
-    edges.push_back(_edge);
-}
-
 
 
 /**
 * getters and setters
 */
-std::vector<Node *> CFG::get_nodes()
+std::vector<Node *> CFG::get_node_list()
 {
-    return nodes;
+    return node_list;
 }
-std::vector<Edge *> CFG::get_edges()
+
+std::vector<Edge *> CFG::get_edge_list()
 {
-    return edges;
+    return edge_list;
 }
-statement_list_c *CFG::get_stmts_list()
+
+std::vector<Var *> CFG::get_var_list()
 {
-    return stmts_list;
+    return var_list;
 }
-void CFG::set_stmts_list(statement_list_c *_stmts_list)
+
+void CFG::set_var_list(std::vector<Var *> _var_list)
 {
-    stmts_list = _stmts_list;
+    for (int i=0; i<_var_list.size(); i++)
+    {
+        var_list.push_back(_var_list[i]);
+    }
 }
-std::vector<Var *> CFG::get_vars()
+
+std::map<Edge *, Value_set_transfer *> CFG::get_weight_map()
 {
-    return vars;
-}
-void CFG::set_vars(std::vector<Var *> _vars)
-{
-    vars = _vars;
+    return weight_map;
 }
 
 
 /**
 * helpers
 */
-void CFG::print(std::ostream &out)
+std::ostream &CFG::print(std::ostream &_out)
 {
-    out << *this;
-}
-void CFG::print_dot(std::ostream &out)
-{
-    out << "digraph \"CFG\" \{\n";
-    // output nodes
-    int n_len = nodes.size();
-    int e_len = edges.size();
+    // print nodes
+    for (int i=0; i<node_list.size(); i++)
+    {
+        _out << node_list[i] << "\n";
+    }
 
-    for (int i=0; i<n_len; i++)
+    // print edges
+    for (int i=0; i<edge_list.size(); i++)
     {
-        out << "\"" << nodes[i]->get_str_node() << "\" [label=\"" << nodes[i] << "\", color=lightblue,style=filled,shape=box]\n";
+        _out << edge_list[i] << "\n";
     }
-    Value_set_transfer *w = 0;
-    for (int i=0; i<e_len; i++)
-    {
-        Edge *e = edges[i];
-        w = e->get_weight();
-        out << "\"" << e->get_from()->get_str_node() << "\" -> \"" << e->get_to()->get_str_node();
-//        out << "\" [label=\"[" << w->get_left_var() << " to " << w->get_right_var1() << " " << w->get_op() << " " << w->get_right_var2() <<"]\",color=black]\n";
-        std::string false_edge;
-        if (w != 0)
-        {
-            false_edge = w->format();
-        }
-        else
-        {
-            false_edge = "T";
-        }
-        out << "\" [label=\"[ "<< false_edge <<" ]\",color=black]\n";
-    }
-    out << "}\n";
-}
-std::ostream &operator<<(std::ostream &out, CFG &c)
-{
-    std::vector<Edge *>::iterator it = c.get_edges().begin();
-    while(it != c.get_edges().end())
-    {
-        out << *it << "\n";
-        ++it;
-    }
-    return out;
-}
-std::ostream &operator<<(std::ostream &out, CFG *c)
-{
-    out << *c;
-    return out;
+    return _out;
 }
 
+std::ostream &CFG::print_dot(std::ostream &_out)
+{
+    _out << "digraph \"CFG\" \{\n";
 
-/**
-* private helpers
+    // print nodes in node_list
+    for (int i=0; i<node_list.size(); i++)
+    {
+        _out << "\"" << node_list[i]->get_str_node() << "\" [label=\"" << node_list[i] << "\", color=lightblue,style=filled,shape=box]\n";
+    }
+
+    // print edges in edge_list
+    for (int i=0; i<edge_list.size(); i++)
+    {
+        _out << "\"" << edge_list[i]->get_from()->get_str_node() << "\" -> \"" << edge_list[i]->get_to()->get_str_node();
+
+        //print weight of each edge
+        _out << "\" [label=\"[ "<< "abc" <<" ]\",color=black]\n";
+    }
+    return _out << "}\n";
+}
+
+std::ostream &operator << (std::ostream &_out, CFG *_cfg)
+{
+    return _cfg->print(_out);
+}
+
+/*
+* if the edge _edge in false_edge_set, then return true
 */
+bool CFG::is_false_edge(Edge *_edge)
+{
+    std::set<Edge *>::iterator it = false_edge_set.find(_edge);
+
+    if (it != false_edge_set.end())
+    {
+        return true;
+    }
+    return false;
+}
+
+/*
+* insert a node in node_list
+*/
+void CFG::insert_node(Node *_node)
+{
+    std::stringstream ss;
+    ss << "n" << node_list.size();
+    _node->set_str_node(ss.str());
+
+    node_list.push_back(_node);
+}
+
+/*
+* inset an edge in edge_list
+*/
+void CFG::insert_edge(Edge *_edge)
+{
+    edge_list.push_back(_edge);
+}
+
 void CFG::init()
 {
-    Node *f = new Node("Start");
-    Node *t;
-    int len = stmts_list->n;
+    // Start
+    Node *f = new Node("Start"); insert_node(f);
 
-    insert_node(f);
-    for (int i=0; i<len; i++)
+    if (statement_list ==0 || statement_list->n < 1)
     {
-        t = new Node(stmts_list->get_element(i));
+        std::cout << "Passed an invalid statement_list_c object in CFG::Init()" << std::endl;
+        exit(0);
+    }
+
+    Node *t = 0;
+    for (int i=0; i<statement_list->n; i++)
+    {
+        t = new Node(statement_list->get_element(i));
+
         insert_node(t);
         insert_edge(new Edge(f, t));
+
         f = t;
     }
+
+    // End
     t = new Node("End");
+
     insert_node(t);
     insert_edge(new Edge(f, t));
 
     refine();
+
     compute_weight();
 }
+
 void CFG::refine()
 {
-
-    std::queue<Edge *> re_queue;
-    std::vector<Edge *>::iterator it;
-    for (it = edges.begin(); it != edges.end(); )
+    std::queue<Edge *> refine_queue;
+    for (std::vector<Edge *>::iterator it = edge_list.begin(); it != edge_list.end(); )
     {
-
         if ((*it)->get_from()->get_str_type().compare(Node::IF) == 0)
         {
-            re_queue.push(*it);
-            it = edges.erase(it);
+            refine_queue.push(*it);
+            it = edge_list.erase(it);
         }
         else
         {
-            it++;
+            ++it;
         }
     }
+
     Edge *e = 0;
     Node *f = 0, *t = 0;
-    while (re_queue.size() > 0)
+
+    Edge *new_e = 0;
+    Node *new_f = 0, *new_t = 0;
+
+    while (refine_queue.size() > 0)
     {
-        e = re_queue.front(); re_queue.pop();
+        e = refine_queue.front(); refine_queue.pop();
         f = e->get_from();
         t = e->get_to();
 
@@ -181,32 +200,42 @@ void CFG::refine()
 
             // when condition is true
             statement_list_c *if_stmts_list = (statement_list_c *)if_stmt->statement_list;
-            Node *new_f = f, *new_t = 0;
-            Edge *new_e = 0;
+            new_f = f;
+            new_t = 0;
+            new_e = 0;
 
             if (if_stmts_list != 0)
             {
                 for (int i=0; i<if_stmts_list->n; ++i)
                 {
                     new_t = new Node(if_stmts_list->get_element(i));
-                    new_e = new Edge(new_f, new_t);
                     insert_node(new_t);
 
-                    if (i>0 && new_f->get_str_type().compare(Node::IF) == 0)
+                    new_e = new Edge(new_f, new_t);
+                    if (new_f->get_str_type().compare(Node::IF) == 0)
                     {
-                        re_queue.push(new_e);
+                        if (i > 0)
+                        {
+                            refine_queue.push(new_e);
+                        }
+                        else
+                        {
+                            insert_edge(new_e);
+                        }
+
                     }
                     else
                     {
-                        if (i==0)new_e->set_if_true();
                         insert_edge(new_e);
                     }
                     new_f = new_t;
                 }
+
+                // last statement
                 new_e = new Edge(new_f, t);
                 if (new_f->get_str_type().compare(Node::IF) == 0)
                 {
-                    re_queue.push(new_e);
+                    refine_queue.push(new_e);
                 }
                 else
                 {
@@ -220,40 +249,45 @@ void CFG::refine()
             new_f = f;
             new_t = 0;
             new_e = 0;
+
             if (elif_list !=0 && elif_list->n > 0)
             {
                 for (int i=0; i<elif_list->n; ++i)
                 {
                     new_t = new Node(elif_list->get_element(i));
-                    new_e = new Edge(new_f, new_t);
                     insert_node(new_t);
+
+                    new_e = new Edge(new_f, new_t);
                     insert_edge(new_e);
-                    false_edges.push_back(new_e);
-                    new_e = 0;
+
+                    false_edge_set.insert(new_e);
 
                     statement_list_c *elif_stmts_list = (statement_list_c *) ((elseif_statement_c *)new_t->get_stmt())->statement_list;
                     Node *ff = new_t, *tt = 0;
+                    new_e = 0;
                     for (int j=0; j<elif_stmts_list->n; ++j)
                     {
                         tt = new Node(elif_stmts_list->get_element(j));
                         insert_node(tt);
+
                         new_e = new Edge(ff, tt);
 
                         if(ff->get_str_type().compare(Node::IF) == 0)
                         {
-                            re_queue.push(new_e);
+                            refine_queue.push(new_e);
                         }
                         else
                         {
-                            if (j==0) new_e->set_if_true();
                             insert_edge(new_e);
                         }
                         ff = tt;
                     }
+
+                    // last statement
                     new_e = new Edge(ff, t);
                     if(ff->get_str_type().compare(Node::IF) == 0)
                     {
-                        re_queue.push(new_e);
+                        refine_queue.push(new_e);
                     }
                     else
                     {
@@ -272,13 +306,13 @@ void CFG::refine()
                         new_e = new Edge(new_f, new_t);
                         if (i==0)
                         {
-                            false_edges.push_back(new_e);
+                            false_edge_set.insert(new_e);
                         }
                         insert_node(new_t);
 
                         if(new_f->get_str_type().compare(Node::IF) == 0)
                         {
-                            re_queue.push(new_e);
+                            refine_queue.push(new_e);
                         }
                         else
                         {
@@ -289,7 +323,7 @@ void CFG::refine()
                     new_e = new Edge(new_f, t);
                     if (new_f->get_str_type().compare(Node::IF) == 0)
                     {
-                        re_queue.push(new_e);
+                        refine_queue.push(new_e);
                     }
                     else
                     {
@@ -300,7 +334,7 @@ void CFG::refine()
                 {
                     new_e = new Edge(new_f, t);
                     insert_edge(new_e);
-                    false_edges.push_back(new_e);
+                    false_edge_set.insert(new_e);
                 }
 
             }
@@ -319,13 +353,16 @@ void CFG::refine()
                         new_e = new Edge(new_f, new_t);
                         if(i==0)
                         {
-                            false_edges.push_back(new_e);
+                            false_edge_set.insert(new_e);
                         }
                         insert_node(new_t);
 
-                        if(i>0 && new_f->get_str_type().compare(Node::IF) == 0)
+                        if(new_f->get_str_type().compare(Node::IF) == 0)
                         {
-                            re_queue.push(new_e);
+                            if (i > 0)
+                            {
+                                refine_queue.push(new_e);
+                            }
                         }
                         else
                         {
@@ -336,7 +373,7 @@ void CFG::refine()
                     new_e = new Edge(new_f, t);
                     if (new_f->get_str_type().compare(Node::IF) == 0)
                     {
-                        re_queue.push(new_e);
+                        refine_queue.push(new_e);
                     }
                     else
                     {
@@ -347,7 +384,7 @@ void CFG::refine()
                 {
                     new_e = new Edge(f, t);
                     insert_edge(new_e);
-                    false_edges.push_back(new_e);
+                    false_edge_set.insert(new_e);
                 }
             }
 
@@ -359,37 +396,42 @@ void CFG::refine()
         }
     }
 }
+
 void CFG::compute_weight()
 {
-    int n = edges.size();
     Node *from = 0;
-    Value_set_transfer *weight = 0;
-    for (int i=0; i<n; i++)
-    {
-        from = edges[i]->get_from();
 
-        Value_set_transfer *transfer = 0;
+    Value_set_transfer *transfer = 0;
+    for (int i=0; i<edge_list.size(); i++)
+    {
+        from = edge_list[i]->get_from();
+
         if (from->get_str_type().compare(Node::IF) == 0 || from->get_str_type().compare(Node::ELSE_IF) == 0)
         {
-            if (is_false_edge(edges[i]))
+            if (is_false_edge(edge_list[i]))
             {
                 transfer = new Elif_stmt_transfer(from->get_stmt());
-                edges[i]->set_weight(transfer);
             }
             else
             {
                 transfer = new If_stmt_transfer(from->get_stmt());
-                edges[i]->set_weight(transfer);
             }
         }
         else if (from->get_str_type().compare(Node::ASSIGNMENT) == 0)
         {
             transfer = new Assign_stmt_transfer(from->get_stmt());
-            edges[i]->set_weight(transfer);
+
         }
         else
         {
-            edges[i]->set_weight(0);
+            transfer = Value_set_transfer::get_identity();
         }
+        weight_map[edge_list[i]] = transfer;
     }
 }
+
+
+/**
+* helpers - debug only
+*/
+

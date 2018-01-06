@@ -2,6 +2,7 @@
 #define CFG_H
 
 #include <vector>
+#include <set>
 #include <string>
 #include <queue>
 
@@ -10,55 +11,107 @@
 #include "Node.h"
 #include "Edge.h"
 #include "../../analyzer/domain/Var.h"
+#include "../../analyzer/transformer/value_set_transfer.h"
 #include "../../analyzer/transformer/assign_stmt_transfer.h"
 #include "../../analyzer/transformer/elif_stmt_transfer.h"
 #include "../../analyzer/transformer/if_stmt_transfer.h"
 
+
 class CFG
 {
+    /**
+    * public methods
+    */
 public:
-    CFG();
+    /*
+    * create a CFG with statement list
+    */
     CFG(statement_list_c *);
+
+    /*
+    * de-constructor
+    */
     virtual ~CFG();
 
-    bool is_false_edge(Edge *);
-    void insert_node(Node *);
-    void insert_edge(Edge *);
 
     /**
     * getters and setters
     */
-    std::vector<Node *> get_nodes();
-    std::vector<Edge *> get_edges();
-    statement_list_c *get_stmts_list();
-    void set_stmts_list(statement_list_c *);
-    std::vector<Var *> get_vars();
-    void set_vars(std::vector<Var *>);
+
+
+    std::vector<Node *> get_node_list();
+
+    std::vector<Edge *> get_edge_list();
+
+    std::vector<Var *> get_var_list();
+
+    void set_var_list(std::vector<Var *>);
+
+    std::map<Edge *, Value_set_transfer *> get_weight_map();
+
 
     /**
     * helpers
     */
-    void print(std::ostream &);
-    void print_dot(std::ostream &);
-    friend std::ostream &operator<<(std::ostream &, CFG &);
+    std::ostream &print(std::ostream &);
+
+    std::ostream &print_dot(std::ostream &);
+
+    bool is_false_edge(Edge *);
+
+    void insert_node(Node *);
+
+    void insert_edge(Edge *);
+
+    void init();
+
+    void refine();
+
+    void compute_weight();
+
+
+    /**
+    * helpers - debug only
+    */
+
+
     friend std::ostream &operator<<(std::ostream &, CFG *);
 
 
-
-private:
-    std::vector<Node *> nodes;
-    std::vector<Edge *> edges;
-    statement_list_c *stmts_list;
-    std::vector<Var *> vars;
-
-    std::vector<Edge *> false_edges;
-
     /**
-    * helpers
+    * private attributes
     */
-    void init();
-    void refine();
-    void compute_weight();
+private:
+    /*
+    * all nodes in a cfg
+    */
+    std::vector <Node *> node_list;
+
+    /*
+    * all edges in a cfg
+    */
+    std::vector<Edge *> edge_list;
+
+    /*
+    * weights that assigned to edges
+    */
+    std::map<Edge *, Value_set_transfer *> weight_map;
+
+    /*
+    * all false edges who has a Node::IF type start node and the condition is false
+    */
+    std::set<Edge *> false_edge_set;
+
+    /*
+    * all variables appeared in a cfg
+    */
+    std::vector<Var *> var_list;
+
+    /*
+    * the attached statements
+    */
+    statement_list_c *statement_list;
+
 
 };
 
