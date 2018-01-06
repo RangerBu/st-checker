@@ -12,6 +12,7 @@
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Compiler>
+					<Add option="-std=c++11" />
 					<Add option="-g" />
 					<Add option="-I parser/libmatiec" />
 					<Add option="-Xlinker -zmuldefs" />
@@ -76,7 +77,14 @@
 		<Unit filename="builder/flow-graph-builder/Node.cpp" />
 		<Unit filename="builder/flow-graph-builder/Node.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="parser/Absyntax_visitor.cpp" />
+		<Unit filename="parser/Absyntax_visitor.h" />
+		<Unit filename="parser/ST_parser.cpp" />
+		<Unit filename="parser/ST_parser.h" />
+		<Unit filename="test/domain_test.cpp" />
 		<Unit filename="test/flow_graph_builder_test.cpp" />
+		<Unit filename="utils/utils.cpp" />
+		<Unit filename="utils/utils.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

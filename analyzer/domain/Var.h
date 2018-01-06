@@ -6,65 +6,87 @@
 #include <sstream>
 
 
-class Var{
-
+class Var
+{
     /**
-    * static attributes and methods
+    * static attributes
     */
 public:
-    // variable types
-    static const int TYPE_INT = 0; // 0
-    static const int TYPE_BOOL = 1;// 1
-    static const int TYPE_BYTE = 2;// 2
+    /*
+    * string representation of variable types
+    */
+    static std::string TYPE_INT;
+    static std::string TYPE_BOOL;
+    static std::string TYPE_BYTE;
 
-    // variable semantics
-    static const int SEMANTIC_VAR = 0; // 0
-    static const int SEMANTIC_INPUT = 1; //1
-    static const int SEMANTIC_OUTPUT = 2; //2
-    static const int SEMANTIC_IN_OUT = 3; //3
-    static const int SEMANTIC_RETENTIVE = 4; //4
-    static const int SEMANTIC_LOCATED = 5; //5
-    static const int SEMANTIC_EXTERNAL = 6; //6
-    static const int SEMANTIC_GLOBAL = 7; //7
+    /*
+    * string representation of variable semantics
+    */
+    static std::string SEMANTICS_VAR;
+    static std::string SEMANTICS_INPUT;
+    static std::string SEMANTICS_OUTPUT;
+    static std::string SEMANTICS_RETENTIVE;
+    static std::string SEMANTICS_LOCATED;
 
-    static int get_int_semantic(std::string);
-    static int get_int_type(std::string);
 
     /**
     * public methods
     */
 public:
-    Var(std::string, int, int);
-    virtual ~Var();
+    /*
+    * constructor
+    */
+    Var(std::string, std::string, std::string);
+
+    /*
+    * de-constructor
+    */
+    ~Var();
+
 
     /**
     * getters and setters
     */
     std::string get_str_name();
-    int get_type();
-    int get_semantic();
+
+    std::string get_str_type();
+
+    std::string get_str_semantics();
+
 
     /**
     * helpers
     */
-    std::string format();
-    void print(std::ostream &);
-    bool equals(Var *);
+    bool equal(Var *);
+
+    std::ostream &print(std::ostream &);
+
+    friend std::ostream &operator<<(std::ostream &, Var *);
+
 
     /**
-    * private attributes and methods
+    * helpers - debug only
+    */
+
+
+    /**
+    * private attributes
     */
 private:
-
+    /*
+    * the string variable name
+    */
     std::string str_name;
-    int type;
-    int semantic;
 
+    /*
+    * the string variable type
+    */
+    std::string str_type;
 
-
-
-
-
+    /*
+    * the string variable semantics
+    */
+    std::string str_semantics;
 
 };
 

@@ -59,7 +59,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
         str_right_var1 = ST_parser::parse(r_exp->l_exp);
         str_right_var2 = ST_parser::parse(r_exp->r_exp);
 
-        if (left_var->get_type() == Var::TYPE_INT)
+        if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si1, si2;
             if (is_number(str_right_var1))
@@ -106,7 +106,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
 
         }
         /* need to be tested*/
-        else if (left_var->get_type() == Var::TYPE_BYTE)
+        else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
             Bits_vector_8 *bv1, *bv2;
             if (is_byte(str_right_var1))
@@ -158,7 +158,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
         str_right_var1 = ST_parser::parse(r_exp->l_exp);
         str_right_var2 = ST_parser::parse(r_exp->r_exp);
 
-        if (left_var->get_type() == Var::TYPE_INT)
+        if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si1, si2;
             if (is_number(str_right_var1))
@@ -202,7 +202,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
             ret->update_int_var(left_var, _vs0->get_int_value(left_var)->Union(si1->Sub(si2)));
         }
         /* need to be tested*/
-        else if (left_var->get_type() == Var::TYPE_BYTE)
+        else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
 
         }
@@ -215,7 +215,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
         // variable
         str_right_var1 = ST_parser::parse(stmt->r_exp);
 
-        if (left_var->get_type() == Var::TYPE_BOOL)
+        if (left_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
             Bits_vector_1 *bv;
             if (is_bool(str_right_var1))
@@ -239,11 +239,11 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
             ret->update_bool_var(left_var, (bool_value)_vs0->get_bool_value(left_var)->Join(bv));
         }
         /* need to be tested*/
-        else if (left_var->get_type() == Var::TYPE_BYTE)
+        else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
 
         }
-        else if (left_var->get_type() == Var::TYPE_INT)
+        else if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si;
             if (is_number(str_right_var1))

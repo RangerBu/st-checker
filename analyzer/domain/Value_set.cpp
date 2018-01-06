@@ -43,23 +43,23 @@ Value_set::~Value_set()
 
 void Value_set::insert_var(key _var)
 {
-    switch(_var->get_type())
+    std::string str_type = _var->get_str_type();
+
+    if (str_type.compare(Var::TYPE_INT) == 0)
     {
-    case Var::TYPE_INT:
-        {
-            insert_int_var(_var, Strided_interval::get_bot());
-            break;
-        }
-    case Var::TYPE_BYTE:
-        {
-            insert_byte_var(_var, Bits_vector_8::get_bot());
-            break;
-        }
-    case Var::TYPE_BOOL:
-        {
-            insert_bool_var(_var, Bits_vector_1::get_bot());
-            break;
-        }
+        insert_int_var(_var, Strided_interval::get_bot());
+    }
+    else if (str_type.compare(Var::TYPE_BOOL) == 0)
+    {
+        insert_bool_var(_var, Bits_vector_1::get_bot());
+    }
+    else if (str_type.compare(Var::TYPE_BYTE) == 0)
+    {
+        insert_byte_var(_var, Bits_vector_8::get_bot());
+    }
+    else
+    {
+        std::cout << "Passed an wrong type variable in Value_set::insert_var()" << std::endl;
     }
 }
 void Value_set::insert_bool_var(key _var, bool_value _value)
@@ -228,7 +228,7 @@ key Value_set::contains_var(key _var)
 {
     for (int i=0; i<vars_list.size(); i++)
     {
-        if (vars_list[i]->equals(_var))
+        if (vars_list[i]->equal(_var))
         {
             return vars_list[i];
         }

@@ -1,4 +1,4 @@
-//#define DOMAIN_TEST
+#define DOMAIN_TEST
 
 #ifdef DOMAIN_TEST
 
@@ -11,11 +11,11 @@
 int main()
 {
 
-    Var *in0 = new Var("in0", Var::TYPE_INT, Var::SEMANTIC_INPUT);
-    Var *flag = new Var("flag", Var::TYPE_BOOL, Var::SEMANTIC_INPUT);
-    Var *x = new Var("x", Var::TYPE_INT, Var::SEMANTIC_VAR);
-    Var *y = new Var("y", Var::TYPE_INT, Var::SEMANTIC_OUTPUT);
-    Var *tmp = new Var("tmp", Var::TYPE_BYTE, Var::SEMANTIC_VAR);
+    Var *in0 = new Var("in0", Var::TYPE_INT, Var::SEMANTICS_INPUT);
+    Var *flag = new Var("flag", Var::TYPE_BOOL, Var::SEMANTICS_INPUT);
+    Var *x = new Var("x", Var::TYPE_INT, Var::SEMANTICS_VAR);
+    Var *y = new Var("y", Var::TYPE_INT, Var::SEMANTICS_OUTPUT);
+    Var *tmp = new Var("tmp", Var::TYPE_BYTE, Var::SEMANTICS_VAR);
 
     Value_set *vs0 = new Value_set();
 

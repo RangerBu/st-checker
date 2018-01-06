@@ -62,7 +62,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                     /* str_name */
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("INPUT")));
+                    var_list.push_back(new Var(name, simple_specification, Var::SEMANTICS_INPUT));
                 }
             }
         }
@@ -92,7 +92,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                     /* str_name */
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("OUTPUT")));
+                    var_list.push_back(new Var(name, simple_specification, Var::SEMANTICS_OUTPUT));
                 }
             }
         }
@@ -130,7 +130,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                 {
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("VAR")));
+                    var_list.push_back(new Var(name, simple_specification, Var::SEMANTICS_VAR));
                 }
             }
         }
@@ -163,7 +163,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                 {
                     std::string name = ST_parser::parse(var1_list->get_element(k));
 
-                    var_list.push_back(new Var(name, Var::get_int_type(simple_specification), Var::get_int_semantic("RETENTIVE")));
+                    var_list.push_back(new Var(name, simple_specification, Var::SEMANTICS_RETENTIVE));
                 }
             }
         }
@@ -199,7 +199,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                         constant = ST_parser::parse(located_var_spec_init->constant);
                     }
 
-                    var_list.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
+                    var_list.push_back(new Var(variable_name, simple_specification, Var::SEMANTICS_LOCATED));
                 }
             }
             else
@@ -229,7 +229,7 @@ CFG *CFG_builder::create_CFG(ST_parser *_parser)
                     {
                         constant = ST_parser::parse(located_var_spec_init->constant);
                     }
-                    var_list.push_back(new Var(variable_name, Var::get_int_type(simple_specification), Var::get_int_semantic("LOCATED")));
+                    var_list.push_back(new Var(variable_name, simple_specification, Var::SEMANTICS_LOCATED));
                 }
             }
         }
