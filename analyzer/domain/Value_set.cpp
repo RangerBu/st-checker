@@ -1,5 +1,15 @@
 #include "Value_set.h"
 
+Bits_vector_1 *Bits_vector_1::BV1_ELEM_TOP = 0;
+
+Bits_vector_1 *Bits_vector_1::BV1_ELEM_BOT = 0;
+
+Bits_vector_8 *Bits_vector_8::BV8_ELEM_TOP = 0;
+
+Bits_vector_8 *Bits_vector_8::BV8_ELEM_BOT = 0;
+
+
+
 /**
 * public methods
 */
@@ -177,13 +187,13 @@ Value_set *Value_set::Union(Value_set *_other)
             std::cout << "There is no int variable " << it1->first->get_str_name() << " in the second value-set!" << std::endl;
             return 0;
         }
-        if (it1->second->equals(tmp))
+        if (it1->second->equal(tmp))
         {
             ret->insert_bool_var(it1->first, it1->second);
         }
         else
         {
-            ret->insert_bool_var(it1->first, (bool_value)it1->second->Join(tmp));
+            ret->insert_bool_var(it1->first, (bool_value)it1->second->op_union(tmp));
         }
     }
     std::map<key, byte_value>::iterator it2 = byte_vars.begin();
@@ -195,13 +205,13 @@ Value_set *Value_set::Union(Value_set *_other)
             std::cout << "There is no int variable " << it2->first->get_str_name() << " in the second value-set!" << std::endl;
             return 0;
         }
-        if (it2->second->equals(tmp))
+        if (it2->second->equal(tmp))
         {
             ret->insert_byte_var(it2->first, it2->second);
         }
         else
         {
-            ret->insert_byte_var(it2->first, (byte_value)it2->second->Join(tmp));
+            ret->insert_byte_var(it2->first, (byte_value)it2->second->op_union(tmp));
         }
     }
     std::map<key, int_value>::iterator it3 = int_vars.begin();
@@ -279,12 +289,12 @@ std::string Value_set::format()
     std::map<key, bool_value>::iterator it2 = bool_vars.begin();
     for (;it2 != bool_vars.end(); ++it2)
     {
-        ss << it2->first->get_str_name() << "\t" << it2->second->format() << "\n";
+        ss << it2->first->get_str_name() << "\t" << it2->second->to_string() << "\n";
     }
     std::map<key, byte_value>::iterator it3 = byte_vars.begin();
     for (;it3 != byte_vars.end(); ++it3)
     {
-        ss << it3->first->get_str_name() << "\t" << it3->second->format() << "\n";
+        ss << it3->first->get_str_name() << "\t" << it3->second->to_string() << "\n";
     }
     return ss.str();
 }
@@ -306,7 +316,7 @@ bool Value_set::equals(Value_set *_other)
         {
             return false;
         }
-        if (!it1->second->equals(tmp))
+        if (!it1->second->equal(tmp))
         {
             return false;
         }
@@ -319,7 +329,7 @@ bool Value_set::equals(Value_set *_other)
         {
             return false;
         }
-        if (!it2->second->equals(tmp))
+        if (!it2->second->equal(tmp))
         {
             return false;
         }
@@ -350,7 +360,7 @@ bool Value_set::is_top()
     std::map<key, bool_value>::iterator it1 = bool_vars.begin();
     for (; it1 != bool_vars.end(); ++it1)
     {
-        if (!it1->second->equals(Bits_vector_1::get_top()))
+        if (!it1->second->equal(Bits_vector_1::get_top()))
         {
             return false;
         }
@@ -358,7 +368,7 @@ bool Value_set::is_top()
     std::map<key, byte_value>::iterator it2 = byte_vars.begin();
     for (; it2 != byte_vars.end(); ++it2)
     {
-        if (!it2->second->equals(Bits_vector_8::get_top()))
+        if (!it2->second->equal(Bits_vector_8::get_top()))
         {
             return false;
         }
@@ -378,7 +388,7 @@ bool Value_set::is_bot()
     std::map<key, bool_value>::iterator it1 = bool_vars.begin();
     for (; it1 != bool_vars.end(); ++it1)
     {
-        if (!it1->second->equals(Bits_vector_1::get_bot()))
+        if (!it1->second->equal(Bits_vector_1::get_bot()))
         {
             return false;
         }
@@ -386,7 +396,7 @@ bool Value_set::is_bot()
     std::map<key, byte_value>::iterator it2 = byte_vars.begin();
     for (; it2 != byte_vars.end(); ++it2)
     {
-        if (!it2->second->equals(Bits_vector_8::get_bot()))
+        if (!it2->second->equal(Bits_vector_8::get_bot()))
         {
             return false;
         }

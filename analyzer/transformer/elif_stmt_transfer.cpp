@@ -779,7 +779,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             exit(0);
         }
 
-        ret->update_bool_var(left_var, (bool_value)left_bv->Join(Bits_vector_1::get_instance(true)));
+        ret->update_bool_var(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(true)));
 
 
     }
@@ -804,7 +804,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             exit(0);
         }
 
-        ret->update_bool_var(left_var, (bool_value)left_bv->Join(Bits_vector_1::get_instance(false)));
+        ret->update_bool_var(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(false)));
 
     }
 

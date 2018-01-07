@@ -2,34 +2,54 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="analyzer/domain/Var.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="analyzer/structures/bits_vector.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="454" topLine="42" />
+			<Cursor1 position="2328" topLine="97" />
 		</Cursor>
 	</File>
-	<File name="test/flow_graph_builder_test.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="analyzer/structures/bits_vector_1.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="599" topLine="1" />
+			<Cursor1 position="2078" topLine="82" />
+		</Cursor>
+	</File>
+	<File name="analyzer/transformer/if_stmt_transfer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="27102" topLine="755" />
+		</Cursor>
+	</File>
+	<File name="builder/flow-graph-builder/Node.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1507" topLine="90" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/Strided_interval.cpp" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="14447" topLine="0" />
 		</Cursor>
 	</File>
 	<File name="builder/flow-graph-builder/CFG_builder.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="9783" topLine="210" />
+			<Cursor1 position="93" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="analyzer/domain/Value_set.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="builder/flow-graph-builder/Node.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1114" topLine="35" />
-		</Cursor>
-	</File>
-	<File name="test/domain_test.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="535" topLine="0" />
+			<Cursor1 position="1087" topLine="42" />
 		</Cursor>
 	</File>
 	<File name="analyzer/transformer/assign_stmt_transfer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="8485" topLine="239" />
+			<Cursor1 position="71" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="analyzer/transformer/assign_stmt_transfer.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="133" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/boolean4.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="1173" topLine="54" />
 		</Cursor>
 	</File>
 	<File name="builder/flow-graph-builder/Edge.cpp" open="0" top="0" tabpos="12" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
@@ -37,9 +57,19 @@
 			<Cursor1 position="594" topLine="10" />
 		</Cursor>
 	</File>
-	<File name="builder/flow-graph-builder/Node.h" open="0" top="0" tabpos="9" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="test/domain_test.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1143" topLine="61" />
+			<Cursor1 position="204" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/bits_vector_8.hpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2404" topLine="99" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/boolean4.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="3540" topLine="243" />
 		</Cursor>
 	</File>
 	<File name="analyzer/domain/Var.h" open="0" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
@@ -47,9 +77,19 @@
 			<Cursor1 position="576" topLine="14" />
 		</Cursor>
 	</File>
-	<File name="builder/flow-graph-builder/Node.cpp" open="0" top="0" tabpos="10" split="0" active="1" splitpos="0" zoom_1="3" zoom_2="0">
+	<File name="analyzer/structures/abstract_data.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="1507" topLine="87" />
+			<Cursor1 position="297" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="analyzer/domain/Value_set.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="261" topLine="9" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/bits_vector.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="6210" topLine="112" />
 		</Cursor>
 	</File>
 	<File name="builder/flow-graph-builder/Edge.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="2" zoom_2="0">
@@ -57,14 +97,47 @@
 			<Cursor1 position="482" topLine="14" />
 		</Cursor>
 	</File>
-	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="analyzer/structures/Strided_interval.h" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="15" />
+			<Cursor1 position="3327" topLine="48" />
+		</Cursor>
+		<Folding>
+			<Collapse line="13" />
+		</Folding>
+	</File>
+	<File name="analyzer/structures/strided_interval.h" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="2245" topLine="96" />
 		</Cursor>
 	</File>
-	<File name="analyzer/domain/Value_set.h" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+	<File name="analyzer/domain/Var.cpp" open="0" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="383" topLine="0" />
+			<Cursor1 position="454" topLine="42" />
+		</Cursor>
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="430" topLine="21" />
+		</Cursor>
+	</File>
+	<File name="analyzer/transformer/elif_stmt_transfer.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="28069" topLine="793" />
+		</Cursor>
+	</File>
+	<File name="analyzer/structures/abstract_data.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="290" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="test/flow_graph_builder_test.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="599" topLine="1" />
+		</Cursor>
+	</File>
+	<File name="analyzer/domain/Value_set.cpp" open="0" top="0" tabpos="0" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="242" topLine="0" />
 		</Cursor>
 	</File>
 </CodeBlocks_layout_file>

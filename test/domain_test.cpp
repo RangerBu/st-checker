@@ -6,7 +6,7 @@
 
 #include "../analyzer/domain/Var.h"
 #include "../analyzer/domain/Value_set.h"
-#include "../analyzer/structures/Bits_vector_1.h"
+#include "../analyzer/structures/bits_vector_1.hpp"
 
 int main()
 {

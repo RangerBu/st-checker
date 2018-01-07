@@ -509,17 +509,17 @@ Boolean4 *Strided_interval::Compare(Strided_interval *_si)
 {
     if(equals(_si))
     {
-        return Boolean4::TRUE;
+        return Boolean4::get_instance(true);
     }
     else
     {
         if (Intersect(_si)->is_bot())
         {
-            return Boolean4::FALSE;
+            return Boolean4::get_instance(false);
         }
         else
         {
-            return Boolean4::MAYBE;
+            return Boolean4::get_top();
         }
     }
 }
@@ -527,15 +527,15 @@ Boolean4 *Strided_interval::Smaller(Strided_interval *_si)
 {
     if (upper < _si->get_lower())
     {
-        return Boolean4::TRUE;
+        return Boolean4::get_instance(true);
     }
     else if (lower > _si->get_upper())
     {
-        return Boolean4::FALSE;
+        return Boolean4::get_instance(false);
     }
     else
     {
-        return Boolean4::MAYBE;
+        return Boolean4::get_top();
     }
 }
 Strided_interval *Strided_interval::Except(Strided_interval *_other)
@@ -577,15 +577,15 @@ Strided_interval *Strided_interval::sign_extend()
 }
 Boolean4 *Strided_interval::Greater(Strided_interval *_si)
 {
-    return Smaller(_si)->Not();
+    return Smaller(_si)->op_not();
 }
 Boolean4 *Strided_interval::greater_or_equal(Strided_interval *_si)
 {
-    return Greater(_si)->Or(Compare(_si));
+    return Greater(_si)->op_or(Compare(_si));
 }
 Boolean4 *Strided_interval::smaller_or_equal(Strided_interval *_si)
 {
-    return Smaller(_si)->Or(Compare(_si));
+    return Smaller(_si)->op_or(Compare(_si));
 }
 int Strided_interval::shared_suffix_mask()
 {

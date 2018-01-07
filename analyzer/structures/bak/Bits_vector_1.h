@@ -1,7 +1,7 @@
 #ifndef BITS_VECTOR_1_H
 #define BITS_VECTOR_1_H
 
-#include "Bits_vector.h"
+#include "bits_vector.h"
 
 class Bits_vector_1 : public Bits_vector{
 

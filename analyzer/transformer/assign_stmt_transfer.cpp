@@ -236,7 +236,7 @@ Value_set *Assign_stmt_transfer::Transform(Value_set *_vs0)
                     exit(0);
                 }
             }
-            ret->update_bool_var(left_var, (bool_value)_vs0->get_bool_value(left_var)->Join(bv));
+            ret->update_bool_var(left_var, (bool_value)_vs0->get_bool_value(left_var)->op_union(bv));
         }
         /* need to be tested*/
         else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)

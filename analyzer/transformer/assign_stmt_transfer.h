@@ -7,7 +7,7 @@
 #include "value_set_transfer.h"
 #include "../domain/Var.h"
 #include "../structures/Strided_interval.h"
-#include "../structures/Bits_vector_8.h"
+#include "../structures/bits_vector_8.hpp"
 
 class Assign_stmt_transfer : public Value_set_transfer
 {

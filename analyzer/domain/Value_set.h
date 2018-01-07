@@ -7,8 +7,8 @@
 #include <map>
 
 #include "Var.h"
-#include "../structures/Bits_vector_1.h"
-#include "../structures/Bits_vector_8.h"
+#include "../structures/bits_vector_1.hpp"
+#include "../structures/bits_vector_8.hpp"
 #include "../structures/Strided_interval.h"
 
 typedef Var* key;

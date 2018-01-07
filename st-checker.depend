@@ -457,17 +457,17 @@
 	"Abstract_transfer.h"
 	"../domain/Value_set.h"
 
-1515254304 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.cpp
+1515334280 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.cpp
 	"Value_set.h"
 
-1514440165 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.h
+1515334271 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Value_set.h
 	<iostream>
 	<sstream>
 	<string>
 	<map>
 	"Var.h"
-	"../structures/Bits_vector_1.h"
-	"../structures/Bits_vector_8.h"
+	"../structures/bits_vector_1.hpp"
+	"../structures/bits_vector_8.hpp"
 	"../structures/Strided_interval.h"
 
 1515254787 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.h
@@ -475,30 +475,30 @@
 	<iostream>
 	<sstream>
 
-1514465793 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.h
-	"Bits_vector.h"
+1515325441 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.h
+	"bits_vector.h"
 
-1513323077 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.h
+1515311340 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.h
 	<vector>
 	<iostream>
-	"../../analyzer/structures/Boolean4.h"
+	<sstream>
+	"../../analyzer/structures/boolean4.h"
 
 1514381867 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.h
 	<string>
 	<sstream>
 	<iostream>
 
-1513240825 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.h
-	"Bits_vector.h"
+1515325450 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.h
+	"bits_vector.h"
 
-1514635857 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.h
+1515338264 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.h
 	<string>
 	<sstream>
 	<iostream>
 	<vector>
 	<set>
-	"Boolean4.h"
-	"../../analyzer/structures/Data_width.h"
+	"boolean4.h"
 
 1512466257 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.h
 	<string>
@@ -508,13 +508,13 @@
 1515255297 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/Var.cpp
 	"Var.h"
 
-1513323091 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.cpp
+1515311894 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector.cpp
 	"Bits_vector.h"
 
-1514466239 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.cpp
+1515311967 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_1.cpp
 	"Bits_vector_1.h"
 
-1513241013 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.cpp
+1515311994 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Bits_vector_8.cpp
 	"Bits_vector_8.h"
 
 1514425649 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Boolean4.cpp
@@ -523,7 +523,7 @@
 1512525362 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Data_width.cpp
 	"Data_width.h"
 
-1514638552 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.cpp
+1515312077 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/Strided_interval.cpp
 	"Strided_interval.h"
 
 1514961022 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/Abstract_transfer.cpp
@@ -554,17 +554,17 @@
 
 1501840301 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.def
 
-1515254568 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.cpp
+1515328804 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.cpp
 	"assign_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1515251811 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.h
+1515328461 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.h
 	<string>
 	<iostream>
 	"value_set_transfer.h"
 	"../domain/Var.h"
 	"../structures/Strided_interval.h"
-	"../structures/Bits_vector_8.h"
+	"../structures/bits_vector_8.hpp"
 
 1515251811 /home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.h
 	<string>
@@ -699,11 +699,11 @@
 	"../../analyzer/domain/Var.h"
 	"../../analyzer/transformer/value_set_transfer.h"
 
-1515251811 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.cpp
+1515328813 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.cpp
 	"elif_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1515251811 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
+1515328839 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
 	"if_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
@@ -763,7 +763,7 @@
 1515159220 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.cpp
 	"WPDS_builder.h"
 
-1515251811 source:/home/zero/workspace/cb_projs/st-checker-new/main.cpp
+1515328870 source:/home/zero/workspace/cb_projs/st-checker-new/main.cpp
 	<iostream>
 	<string>
 	<fstream>
@@ -773,9 +773,9 @@
 	"builder/flow-graph-builder/CFG.h"
 	"parser/ST_parser.h"
 	"analyzer/structures/Strided_interval.h"
-	"analyzer/structures/Bits_vector.h"
-	"analyzer/structures/Bits_vector_1.h"
-	"analyzer/structures/Bits_vector_8.h"
+	"analyzer/structures/bits_vector.h"
+	"analyzer/structures/bits_vector_1.hpp"
+	"analyzer/structures/bits_vector_8.hpp"
 	"analyzer/domain/Var.h"
 	"analyzer/domain/Abstract_memory.h"
 	"analyzer/transformer/value_set_transfer.h"
@@ -804,11 +804,11 @@
 1515251811 source:/home/zero/workspace/cb_projs/st-checker-new/parser/ST_parser.cpp
 	"ST_parser.h"
 
-1515255112 source:/home/zero/workspace/cb_projs/st-checker-new/test/domain_test.cpp
+1515328883 source:/home/zero/workspace/cb_projs/st-checker-new/test/domain_test.cpp
 	<iostream>
 	"../analyzer/domain/Var.h"
 	"../analyzer/domain/Value_set.h"
-	"../analyzer/structures/Bits_vector_1.h"
+	"../analyzer/structures/bits_vector_1.hpp"
 
 1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/test/structures_test.cpp
 	<iostream>
@@ -1151,4 +1151,35 @@
 	"../builder/flow-graph-builder/Node.h"
 	"../builder/flow-graph-builder/Edge.h"
 	"../parser/ST_parser.h"
+
+1515310784 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/abstract_data.cpp
+	"abstract_data.h"
+
+1515310761 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/abstract_data.h
+	<iostream>
+
+1515314634 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/boolean4.cpp
+	"boolean4.h"
+	<sstream>
+
+1515314616 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/boolean4.h
+	"abstract_data.h"
+
+1515330201 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/bits_vector.cpp
+	"bits_vector.h"
+
+1515330167 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/bits_vector.h
+	<vector>
+	<string>
+	<sstream>
+	"abstract_data.h"
+	"../../analyzer/structures/boolean4.h"
+
+1515334210 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/bits_vector_1.hpp
+	"bits_vector.h"
+
+1515334219 /home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/bits_vector_8.hpp
+	"bits_vector.h"
+
+1515336851 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/structures/strided_interval.cpp
 

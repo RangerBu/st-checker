@@ -10,7 +10,7 @@ Bits_vector_8 *Bits_vector_8::get_top()
         ELEM_TOP = new Bits_vector_8();
         for (int i=0; i<8; i++)
         {
-            ELEM_TOP->insert_element(i, Boolean4::MAYBE);
+            ELEM_TOP->insert_element(i, Boolean4::get_top());
         }
     }
     return ELEM_TOP;
@@ -41,11 +41,11 @@ Bits_vector_8 *Bits_vector_8::get_instance(std::string _value)
         {
             if (_value[i] == '0')
             {
-                ret->insert_element(i, Boolean4::FALSE);
+                ret->insert_element(i, Boolean4::get_instance(false));
             }
             else
             {
-                ret->insert_element(i, Boolean4::TRUE);
+                ret->insert_element(i, Boolean4::get_instance(true));
             }
         }
         return ret;
