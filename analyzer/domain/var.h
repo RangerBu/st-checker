@@ -38,6 +38,8 @@ public:
     */
     Var(std::string, std::string, std::string);
 
+    Var(Var *);
+
     /*
     * de-constructor
     */
@@ -67,7 +69,7 @@ public:
     /**
     * helpers - debug only
     */
-
+    std::string to_string();
 
     /**
     * private attributes

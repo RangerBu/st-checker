@@ -223,13 +223,13 @@ Value_set *Value_set::Union(Value_set *_other)
             std::cout << "There is no int variable " << it3->first->get_str_name() << " in the second value-set!" << std::endl;
             return 0;
         }
-        if (it3->second->equals(tmp))
+        if (it3->second->equal(tmp))
         {
             ret->insert_int_var(it3->first, tmp);
         }
         else
         {
-            ret->insert_int_var(it3->first, it3->second->Union(tmp));
+            ret->insert_int_var(it3->first, it3->second->op_union(tmp));
         }
     }
     return ret;
@@ -284,7 +284,7 @@ std::string Value_set::format()
     std::map<key, int_value>::iterator it1 = int_vars.begin();
     for (;it1 != int_vars.end(); ++it1)
     {
-        ss << it1->first->get_str_name() << "\t" << it1->second->format() << "\n";
+        ss << it1->first->get_str_name() << "\t" << it1->second->to_string() << "\n";
     }
     std::map<key, bool_value>::iterator it2 = bool_vars.begin();
     for (;it2 != bool_vars.end(); ++it2)
@@ -342,7 +342,7 @@ bool Value_set::equals(Value_set *_other)
         {
             return false;
         }
-        if (!it3->second->equals(tmp))
+        if (!it3->second->equal(tmp))
         {
             return false;
         }
@@ -376,7 +376,7 @@ bool Value_set::is_top()
     std::map<key, int_value>::iterator it3 = int_vars.begin();
     for (; it3 != int_vars.end(); ++it3)
     {
-        if (!it3->second->equals(Strided_interval::get_top()))
+        if (!it3->second->equal(Strided_interval::get_top()))
         {
             return false;
         }
@@ -404,7 +404,7 @@ bool Value_set::is_bot()
     std::map<key, int_value>::iterator it3 = int_vars.begin();
     for (; it3 != int_vars.end(); ++it3)
     {
-        if (!it3->second->equals(Strided_interval::get_bot()))
+        if (!it3->second->equal(Strided_interval::get_bot()))
         {
             return false;
         }

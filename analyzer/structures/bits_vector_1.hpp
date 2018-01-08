@@ -68,6 +68,12 @@ public:
         return ret;
     }
 
+    static Bits_vector_1 *get_instance(Bits_vector_1 *_other)
+    {
+        Bits_vector_1 *ret = new Bits_vector_1();
+        ret->set_element_at(0, _other->get_element_at(0));
+    }
+
 
     /**
     * public methods
@@ -96,5 +102,7 @@ private:
 
     static Bits_vector_1 *BV1_ELEM_BOT;
 };
+
+typedef Bits_vector_1* bool_value;
 
 #endif // BITS_VECTOR_1_H

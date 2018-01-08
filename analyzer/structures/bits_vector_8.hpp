@@ -83,6 +83,17 @@ public:
         return ret;
     }
 
+    static Bits_vector_8 *get_instance(Bits_vector_8 *_other)
+    {
+        Bits_vector_8 *ret = Bits_vector_8::get_instance(8);
+
+        for (int i=0; i<8; i++)
+        {
+            ret->set_element_at(i, _other->get_element_at(i));
+        }
+        return ret;
+    }
+
 
     /**
     * public methods
@@ -114,5 +125,6 @@ private:
     static Bits_vector_8 *BV8_ELEM_BOT;
 };
 
+typedef Bits_vector_8 * byte_value;
 
 #endif // BITS_VECTOR_8_H

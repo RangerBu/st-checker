@@ -7,7 +7,7 @@
 #include <string>
 #include <sstream>
 
-#include "Var.h"
+#include "var.h"
 #include "Value_set.h"
 
 class Abstract_memory{

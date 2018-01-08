@@ -44,12 +44,10 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="analyzer/domain/Value_set.cpp" />
-		<Unit filename="analyzer/domain/Value_set.h" />
-		<Unit filename="analyzer/domain/Var.cpp" />
-		<Unit filename="analyzer/domain/Var.h" />
-		<Unit filename="analyzer/structures/Strided_interval.cpp" />
-		<Unit filename="analyzer/structures/Strided_interval.h" />
+		<Unit filename="analyzer/domain/value_set.cpp" />
+		<Unit filename="analyzer/domain/value_set.h" />
+		<Unit filename="analyzer/domain/var.cpp" />
+		<Unit filename="analyzer/domain/var.h" />
 		<Unit filename="analyzer/structures/abstract_data.cpp" />
 		<Unit filename="analyzer/structures/abstract_data.h" />
 		<Unit filename="analyzer/structures/bits_vector.cpp" />
@@ -83,6 +81,7 @@
 		<Unit filename="parser/ST_parser.h" />
 		<Unit filename="test/domain_test.cpp" />
 		<Unit filename="test/flow_graph_builder_test.cpp" />
+		<Unit filename="test/transfer_test.cpp" />
 		<Unit filename="utils/utils.cpp" />
 		<Unit filename="utils/utils.h" />
 		<Extensions>

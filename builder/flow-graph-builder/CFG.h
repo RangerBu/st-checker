@@ -10,7 +10,7 @@
 
 #include "Node.h"
 #include "Edge.h"
-#include "../../analyzer/domain/Var.h"
+#include "../../analyzer/domain/var.h"
 #include "../../analyzer/transformer/value_set_transfer.h"
 #include "../../analyzer/transformer/assign_stmt_transfer.h"
 #include "../../analyzer/transformer/elif_stmt_transfer.h"
@@ -47,7 +47,7 @@ public:
 
     void set_var_list(std::vector<Var *>);
 
-    std::map<Edge *, Value_set_transfer *> get_weight_map();
+    std::map<Edge *, Abstract_value_set_transfer *> get_weight_map();
 
 
     /**
@@ -95,7 +95,7 @@ private:
     /*
     * weights that assigned to edges
     */
-    std::map<Edge *, Value_set_transfer *> weight_map;
+    std::map<Edge *, Abstract_value_set_transfer *> weight_map;
 
     /*
     * all false edges who has a Node::IF type start node and the condition is false

@@ -1,4 +1,4 @@
-#include "Var.h"
+#include "var.h"
 
 /**
 * static attributes
@@ -31,6 +31,13 @@ Var::Var(std::string _str_name, std::string _str_type, std::string _str_semantic
     str_name = _str_name;
     str_type = _str_type;
     str_semantics = _str_semantics;
+}
+
+Var::Var(Var *_other)
+{
+    str_name = _other->get_str_name();
+    str_type = _other->get_str_type();
+    str_semantics = _other->get_str_semantics();
 }
 
 /*
@@ -87,6 +94,13 @@ std::ostream &operator<<(std::ostream &_out, Var *_var)
 /**
 * helpers - debug only
 */
+std::string Var::to_string()
+{
+    std::stringstream ss;
+    ss << str_name << "[" << str_type << "](" << str_semantics << ")";
+
+    return ss.str();
+}
 
 
 ///**

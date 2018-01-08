@@ -141,14 +141,14 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if(right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
                 std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! lt_expression-1" << std::endl;
                 exit(0);
             }
-            ret->update_int_var(right_var, right_si->Intersect(left_si));
+            ret->set_var_value(right_var, right_si->op_intersect(left_si));
 
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
@@ -157,7 +157,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if(left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -169,7 +169,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var)-1);
             right_si = right_si->remove_upper_bound();
 
-            ret->update_int_var(left_var, left_si->Intersect(right_si));
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
         }
         else
@@ -180,8 +180,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if(left_var!=0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -193,7 +193,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (right_si->get_upper() > left_si->get_upper())
             {
                 //bot
-                ret->update_int_var(left_var, Strided_interval::get_bot());
+                ret->set_var_value(left_var, Strided_interval::get_bot());
             }
             else if (right_si->get_upper() > left_si->get_lower())
             {
@@ -207,11 +207,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(left_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
 
@@ -219,7 +219,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (left_si->get_lower() < right_si->get_lower())
             {
                 //bot
-                ret->update_int_var(right_var, Strided_interval::get_bot());
+                ret->set_var_value(right_var, Strided_interval::get_bot());
             }
             else if (left_si->get_lower() < right_si->get_upper())
             {
@@ -233,11 +233,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (lower == upper)
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(right_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
         }
@@ -263,14 +263,14 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if (right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
                 std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! le_expression-1" << std::endl;
                 exit(0);
             }
-            ret->update_int_var(right_var, right_si->Intersect(left_si));
+            ret->set_var_value(right_var, right_si->op_intersect(left_si));
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
         {
@@ -278,7 +278,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if (left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -290,7 +290,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var));
             right_si = right_si->remove_lower_bound();
 
-            ret->update_int_var(left_var, left_si->Intersect(right_si));
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
         }
         else
         {
@@ -300,8 +300,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if (left_var != 0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -313,7 +313,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (right_si->get_lower() < left_si->get_lower())
             {
                 //bot
-                ret->update_int_var(left_var, Strided_interval::get_bot());
+                ret->set_var_value(left_var, Strided_interval::get_bot());
             }
             else if (right_si->get_lower() < left_si->get_upper())
             {
@@ -327,18 +327,18 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(left_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
 
             //right
             if (left_si->get_upper() > right_si->get_upper())
             {
-                ret->update_int_var(right_var, Strided_interval::get_bot());
+                ret->set_var_value(right_var, Strided_interval::get_bot());
             }
             else if (left_si->get_upper() > right_si->get_lower())
             {
@@ -352,11 +352,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(right_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
         }
@@ -381,14 +381,14 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if (right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
                 std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! gt_expression-1" << std::endl;
                 exit(0);
             }
-            ret->update_int_var(right_var, right_si->Intersect(left_si));
+            ret->set_var_value(right_var, right_si->op_intersect(left_si));
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
         {
@@ -396,7 +396,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if (left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -408,7 +408,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var) + 1);
             right_si = right_si->remove_upper_bound();
 
-            ret->update_int_var(left_var, left_si->Intersect(right_si));
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
         }
         else
         {
@@ -418,8 +418,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if (left_var != 0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -432,7 +432,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (right_si->get_upper() >= left_si->get_upper())
             {
                 //bot
-                ret->update_int_var(left_var, Strided_interval::get_bot());
+                ret->set_var_value(left_var, Strided_interval::get_bot());
             }
             else if (right_si->get_upper() >= left_si->get_lower())
             {
@@ -446,11 +446,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(left_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
 
@@ -458,7 +458,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (left_si->get_lower() <= right_si->get_lower())
             {
                 //bot
-                ret->update_int_var(right_var, Strided_interval::get_bot());
+                ret->set_var_value(right_var, Strided_interval::get_bot());
             }
             else if (left_si->get_lower() <= right_si->get_upper())
             {
@@ -472,11 +472,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(right_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
 
@@ -502,14 +502,14 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if(right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
                 std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! lt_expression-1" << std::endl;
                 exit(0);
             }
-            ret->update_int_var(right_var, right_si->Intersect(left_si));
+            ret->set_var_value(right_var, right_si->op_intersect(left_si));
 
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
@@ -518,7 +518,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if(left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -530,7 +530,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var)-1);
             right_si = right_si->remove_lower_bound();
 
-            ret->update_int_var(left_var, left_si->Intersect(right_si));
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
         }
         else
@@ -541,8 +541,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if(left_var!=0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -554,7 +554,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             if (right_si->get_lower() <= left_si->get_lower())
             {
                 //bot
-                ret->update_int_var(left_var, Strided_interval::get_bot());
+                ret->set_var_value(left_var, Strided_interval::get_bot());
             }
             else if (right_si->get_lower() <= left_si->get_upper())
             {
@@ -568,18 +568,18 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (upper == lower)
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(left_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
 
             //right
             if (left_si->get_upper() >= right_si->get_upper())
             {
-                ret->update_int_var(right_var, Strided_interval::get_bot());
+                ret->set_var_value(right_var, Strided_interval::get_bot());
             }
             else if (left_si->get_upper() >= right_si->get_lower())
             {
@@ -593,11 +593,11 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 }
                 if (lower == upper)
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_singleton_set(lower));
+                    ret->set_var_value(right_var, Strided_interval::get_singleton_set(lower));
                 }
                 else
                 {
-                    ret->update_int_var(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
+                    ret->set_var_value(right_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
             }
         }
@@ -621,7 +621,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if (right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -630,7 +630,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             }
 
             // remove an element
-            ret->update_int_var(right_var, right_si->Except(left_si));
+            ret->set_var_value(right_var, right_si->op_except(left_si));
 
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
@@ -639,7 +639,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if (left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -651,7 +651,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var));
 
             //remove an element
-            ret->update_int_var(left_var, left_si->Except(right_si));
+            ret->set_var_value(left_var, left_si->op_except(right_si));
 
         }
         else
@@ -662,8 +662,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if (left_var != 0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -674,10 +674,10 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             //remove elements
 
             //left
-            ret->update_int_var(left_var, left_si->Except(right_si));
+            ret->set_var_value(left_var, left_si->op_except(right_si));
 
             //right
-            ret->update_int_var(right_var, right_si->Except(left_si));
+            ret->set_var_value(right_var, right_si->op_except(left_si));
 
         }
 
@@ -701,7 +701,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = _vs0->contains_var(str_right_var);
             if (right_var != 0)
             {
-                right_si = _vs0->get_int_value(right_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -709,7 +709,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
                 exit(0);
             }
 
-            ret->update_int_var(right_var, left_si);
+            ret->set_var_value(right_var, left_si);
         }
         else if (!is_number(str_left_var) && is_number(str_right_var))
         {
@@ -717,7 +717,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             left_var = _vs0->contains_var(str_left_var);
             if (left_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
+                left_si = _vs0->get_int_value_by(left_var);
             }
             else
             {
@@ -728,7 +728,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             right_var = 0;
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var));
 
-            ret->update_int_var(left_var, right_si);
+            ret->set_var_value(left_var, right_si);
 
         }
         else
@@ -739,8 +739,8 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
 
             if (left_var != 0 && right_var != 0)
             {
-                left_si = _vs0->get_int_value(left_var);
-                right_si = _vs0->get_int_value(right_var);
+                left_si = _vs0->get_int_value_by(left_var);
+                right_si = _vs0->get_int_value_by(right_var);
             }
             else
             {
@@ -749,10 +749,10 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             }
 
             //left
-            ret->update_int_var(left_var, left_si->Intersect(right_si));
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
             //right
-            ret->update_int_var(right_var, right_si->Intersect(left_si));
+            ret->set_var_value(right_var, right_si->op_intersect(left_si));
 
         }
     }
@@ -771,7 +771,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
         right_var = 0;
         if (left_var != 0)
         {
-            left_bv = _vs0->get_bool_value(left_var);
+            left_bv = _vs0->get_bool_value_by(left_var);
         }
         else
         {
@@ -779,7 +779,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             exit(0);
         }
 
-        ret->update_bool_var(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(true)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(true)));
 
 
     }
@@ -796,7 +796,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
         right_var = 0;
         if (left_var != 0)
         {
-            left_bv = _vs0->get_bool_value(left_var);
+            left_bv = _vs0->get_bool_value_by(left_var);
         }
         else
         {
@@ -804,7 +804,7 @@ Value_set *Elif_stmt_transfer::Transform(Value_set *_vs0)
             exit(0);
         }
 
-        ret->update_bool_var(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(false)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(false)));
 
     }
 

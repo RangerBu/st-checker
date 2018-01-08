@@ -41,6 +41,8 @@ public:
     */
     static Bits_vector *get_instance(int, std::string);
 
+    static Bits_vector *get_instance(Bits_vector *);
+
 
     /**
     * public methods

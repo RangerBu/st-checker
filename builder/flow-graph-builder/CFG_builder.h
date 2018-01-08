@@ -6,7 +6,7 @@
 
 #include "CFG.h"
 #include "../../parser/ST_parser.h"
-#include "../../analyzer/domain/Var.h"
+#include "../../analyzer/domain/var.h"
 
 class CFG_builder{
     /**

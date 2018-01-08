@@ -1,66 +1,116 @@
 #include "value_set_transfer.h"
 
-/**
-* public static attributes
-*/
-
-Value_set_transfer *Value_set_transfer::get_bot()
+Abstract_value_set_transfer *Abstract_value_set_transfer::get_bot()
 {
     if (ELEM_BOT == 0)
     {
-        ELEM_BOT = new Value_set_transfer();
+        ELEM_BOT = new Abstract_value_set_transfer();
     }
     return ELEM_BOT;
 }
-Value_set_transfer *Value_set_transfer::get_identity()
+
+Abstract_value_set_transfer *Abstract_value_set_transfer::get_identity()
 {
     if (ELEM_IDENTITY == 0)
     {
-        ELEM_IDENTITY = new Value_set_transfer();
+        ELEM_IDENTITY = new Abstract_value_set_transfer();
     }
     return ELEM_IDENTITY;
 }
 
+
 /**
 * public methods
 */
-Value_set_transfer::Value_set_transfer()
+/*
+* constructor
+*/
+Abstract_value_set_transfer::Abstract_value_set_transfer()
 {
-}
-Value_set_transfer::~Value_set_transfer()
-{
+
 }
 
-Value_set *Value_set_transfer::Transform(Value_set *_vs0)
+/*
+* de-constructor
+*/
+Abstract_value_set_transfer::~Abstract_value_set_transfer()
 {
-    return 0;
+
 }
-std::string Value_set_transfer::format()
-{
-    if (this == ELEM_BOT)
-    {
-        return "elem_bot";
-    }
-    else if (this == ELEM_IDENTITY)
-    {
-        return "elem_identity";
-    }
-    return "Value_set_transfer";
-}
+
 
 /**
-* helper methods
+* external visible methods
 */
-bool Value_set_transfer::equals(Value_set_transfer *_other)
+Value_set *Abstract_value_set_transfer::op_transform(Value_set *_vs0)
 {
-    return format().compare(_other->format()) == 0;
+    if (this->equal(Abstract_value_set_transfer::get_bot()))
+    {
+        return new Value_set(_vs0);
+    }
+    else if (this->equal(Abstract_value_set_transfer::get_identity()))
+    {
+        return _vs0;
+    }
+    else
+    {
+        std::cerr << "this instance is an instance of inherited class of Abstract_value_set_transfer in Abstract_value_set_transfer::op_transform()!" << std::endl;
+        exit(0);
+    }
+}
+
+
+/**
+* helpers
+*/
+bool Abstract_value_set_transfer::equal(Abstract_value_set_transfer *_other)
+{
+    return this == _other;
+}
+
+std::ostream &Abstract_value_set_transfer::print(std::ostream &_out)
+{
+    if (this->equal(Abstract_value_set_transfer::get_bot()))
+    {
+        return _out << "bot_transfer";
+    }
+    else if (this->equal(Abstract_value_set_transfer::get_identity()))
+    {
+        return _out << "identity_transfer";
+    }
+    else
+    {
+        std::cerr << "this instance is an instance of inherited class of Abstract_value_set_transfer in Abstract_value_set_transfer::print()!" << std::endl;
+        exit(0);
+    }
+}
+
+
+/**
+* helpers - debug only
+*/
+std::string Abstract_value_set_transfer::to_string()
+{
+    if (this->equal(Abstract_value_set_transfer::get_bot()))
+    {
+        return "bot_transfer";
+    }
+    else if (this->equal(Abstract_value_set_transfer::get_identity()))
+    {
+        return "identity_transfer";
+    }
+    else
+    {
+        std::cerr << "this instance is an instance of inherited class of Abstract_value_set_transfer in Abstract_value_set_transfer::to_string()!" << std::endl;
+        exit(0);
+    }
 }
 
 
 /**
 * helpers for inherited classes
 */
-bool Value_set_transfer::is_number(std::string _str)
+bool Abstract_value_set_transfer::is_number(std::string _str)
 {
     int len = _str.length();
     for (int i=0; i<len; i++)
@@ -73,11 +123,13 @@ bool Value_set_transfer::is_number(std::string _str)
     return true;
 
 }
-bool Value_set_transfer::is_bool(std::string _str)
+
+bool Abstract_value_set_transfer::is_bool(std::string _str)
 {
     return _str.compare("FALSE") == 0 || _str.compare("TRUE") == 0;
 }
-bool Value_set_transfer::is_byte(std::string _str)
+
+bool Abstract_value_set_transfer::is_byte(std::string _str)
 {
     int len = _str.length();
     for (int i=0; i<len; i++)
@@ -90,7 +142,7 @@ bool Value_set_transfer::is_byte(std::string _str)
     return true;
 }
 
-int Value_set_transfer::to_number(std::string _str)
+int Abstract_value_set_transfer::to_number(std::string _str)
 {
     int ret = 0;
     int len = _str.length();
@@ -105,7 +157,8 @@ int Value_set_transfer::to_number(std::string _str)
 
     return ret;
 }
-bool Value_set_transfer::to_bool(std::string _str)
+
+bool Abstract_value_set_transfer::to_bool(std::string _str)
 {
     if (_str.compare("FLASE") == 0)
     {
@@ -117,8 +170,10 @@ bool Value_set_transfer::to_bool(std::string _str)
     }
 }
 
+
 /**
 * private static attributes
 */
-Value_set_transfer* Value_set_transfer::ELEM_BOT = 0;
-Value_set_transfer* Value_set_transfer::ELEM_IDENTITY = 0;
+Abstract_value_set_transfer *Abstract_value_set_transfer::ELEM_BOT = 0;
+
+Abstract_value_set_transfer *Abstract_value_set_transfer::ELEM_IDENTITY = 0;

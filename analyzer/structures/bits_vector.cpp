@@ -81,6 +81,17 @@ Bits_vector *Bits_vector::get_instance(int _length, std::string _value)
     return ret;
 }
 
+Bits_vector *Bits_vector::get_instance(Bits_vector *_other)
+{
+    Bits_vector *ret = Bits_vector::get_instance(_other->get_length());
+
+    for (int i=0; i<ret->get_length(); i++)
+    {
+        ret->set_element_at(i, _other->get_element_at(i));
+    }
+    return ret;
+}
+
 
 /**
 * public methods
@@ -258,6 +269,7 @@ void Bits_vector::set_element_at(int _index, bit _value)
 {
     if (_index > length )
     {
+        std::cout << length << std::endl;
         std::cerr << "The passed _index out of the bound in Bits_vector::set_element_at()!" << std::endl;
         exit(0);
     }
@@ -289,6 +301,7 @@ std::string Bits_vector::to_string()
 */
 Bits_vector::Bits_vector(int _length)
 {
+    length = _length;
     values = new bit[_length];
     for (int i=0; i<_length; i++)
     {
@@ -298,6 +311,7 @@ Bits_vector::Bits_vector(int _length)
 
 Bits_vector::Bits_vector(int _length, bit _value)
 {
+    length = _length;
     values = new bit[_length];
     for (int i=0; i<length; i++)
     {

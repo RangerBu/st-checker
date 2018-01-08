@@ -48,7 +48,7 @@ void CFG::set_var_list(std::vector<Var *> _var_list)
     }
 }
 
-std::map<Edge *, Value_set_transfer *> CFG::get_weight_map()
+std::map<Edge *, Abstract_value_set_transfer *> CFG::get_weight_map()
 {
     return weight_map;
 }
@@ -401,7 +401,7 @@ void CFG::compute_weight()
 {
     Node *from = 0;
 
-    Value_set_transfer *transfer = 0;
+    Abstract_value_set_transfer *transfer = 0;
     for (int i=0; i<edge_list.size(); i++)
     {
         from = edge_list[i]->get_from();
@@ -424,7 +424,7 @@ void CFG::compute_weight()
         }
         else
         {
-            transfer = Value_set_transfer::get_identity();
+            transfer = Abstract_value_set_transfer::get_identity();
         }
         weight_map[edge_list[i]] = transfer;
     }

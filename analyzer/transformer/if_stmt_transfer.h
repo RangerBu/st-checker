@@ -4,9 +4,9 @@
 #include <string>
 
 #include "value_set_transfer.h"
-#include "../domain/Value_set.h"
+#include "../domain/value_set.h"
 
-class If_stmt_transfer : public Value_set_transfer
+class If_stmt_transfer : public Abstract_value_set_transfer
 {
     /**
     * public methods

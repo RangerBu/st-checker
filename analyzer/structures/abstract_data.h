@@ -32,6 +32,12 @@ public:
 
     friend std::ostream &operator<<(std::ostream &, Abstract_data *);
 
+
+    /**
+    * helpers - debug only
+    */
+    virtual std::string to_string()=0;
+
 };
 
 #endif // ABSTRACT_DATA_H

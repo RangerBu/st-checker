@@ -1,53 +1,77 @@
-#ifndef Value_set_transfer_H
-#define Value_set_transfer_H
+#ifndef ABSTRACT_VALUE_SET_TRANSFER_H
+#define ABSTRACT_VALUE_SET_TRANSFER_H
 
-#include <iostream>
 #include <string>
 
 #include "absyntax/absyntax.hh"
 
-#include "../domain/Value_set.h"
+#include "../domain/value_set.h"
 
-
-class Value_set_transfer{
+class Abstract_value_set_transfer
+{
     /**
-    * public static attributes
+    * public static methods
     */
-public:
-    static Value_set_transfer *get_bot();
-    static Value_set_transfer *get_identity();
+public :
+    static Abstract_value_set_transfer *get_bot();
 
-public:
-    Value_set_transfer();
-    virtual ~Value_set_transfer();
+    static Abstract_value_set_transfer *get_identity();
 
-    // all inherited class must implement this function
-    virtual Value_set *Transform(Value_set *);
-    virtual std::string format();
 
     /**
-    * helper methods
+    * public methods
     */
-    bool equals(Value_set_transfer *);
+    Abstract_value_set_transfer();
+
+    virtual ~Abstract_value_set_transfer();
+
+
+    /**
+    * external visible methods
+    */
+    virtual Value_set *op_transform(Value_set *);
+
+
+    /**
+    * helpers
+    */
+    virtual bool equal(Abstract_value_set_transfer *);
+
+    virtual std::ostream &print(std::ostream &);
+
+
+    /**
+    * helpers - debug only
+    */
+    std::string to_string();
+
 
     /**
     * helpers for inherited classes
     */
-protected:
     bool is_number(std::string);
+
     bool is_bool(std::string);
+
     bool is_byte(std::string);
 
     int to_number(std::string);
+
     bool to_bool(std::string);
+
+
+    /**
+    * private static attributes
+    */
+private:
+    static Abstract_value_set_transfer *ELEM_BOT;
+
+    static Abstract_value_set_transfer *ELEM_IDENTITY;
+
 
     /**
     * private attributes
     */
-private:
-    static Value_set_transfer *ELEM_BOT;
-    static Value_set_transfer *ELEM_IDENTITY;
-
 };
 
-#endif // Value_set_transfer_H
+#endif // ABSTRACT_VALUE_SET_TRANSFER_H

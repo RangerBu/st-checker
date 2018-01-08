@@ -6,10 +6,10 @@
 #include <string>
 #include <map>
 
-#include "Var.h"
+#include "var.h"
 #include "../structures/bits_vector_1.hpp"
 #include "../structures/bits_vector_8.hpp"
-#include "../structures/Strided_interval.h"
+#include "../structures/strided_interval.h"
 
 typedef Var* key;
 typedef Bits_vector_1* bool_value;
