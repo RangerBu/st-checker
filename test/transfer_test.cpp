@@ -1,4 +1,4 @@
-#define TRANSFER_TEST
+//#define TRANSFER_TEST
 
 #ifdef TRANSFER_TEST
 
@@ -21,6 +21,7 @@ int main()
 
     Abstract_value_set_transfer *t1;
     Abstract_value_set_transfer *t2;
+    Abstract_value_set_transfer *t3;
 
     std::vector<Var *> var_list = cfg->get_var_list();
 
@@ -42,9 +43,9 @@ int main()
 
         Value_set *vs1 = t1->op_transform(vs0);
 
-//        std::cout << vs1->get_vars_map().size() << std::endl;
+        std::cout << vs1->get_vars_map().size() << std::endl;
 
-//        std::cout << vs1->to_string() << std::endl;
+        std::cout << vs1->to_string() << std::endl;
     }
     else if (cname.compare("if_statement_c") == 0)
     {
@@ -63,9 +64,17 @@ int main()
 
     t1 = new Assign_stmt_transfer(cfg->get_node_list()[4]->get_stmt());
     t2 = new If_stmt_transfer(cfg->get_node_list()[2]->get_stmt());
+    t3 = new Elif_stmt_transfer(cfg->get_node_list()[2]->get_stmt());
 
-    std::cout << t1->to_string() << "  " << t2->to_string() << std::endl;
-    std::cout << t1->equal(t2) << std::endl;
+//    std::cout << t1->to_string() << "  " << t2->to_string() << std::endl;
+    t1->print(std::cout) << std::endl;
+
+    t2->print(std::cout) << std::endl;
+    std::cout << t2->equal(t3) << std::endl;
+
+    t2->print(std::cout) << std::endl;
+
+    t3->print(std::cout) << std::endl;
 
     return 0;
 }

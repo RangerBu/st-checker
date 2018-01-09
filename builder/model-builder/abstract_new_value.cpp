@@ -3,7 +3,7 @@
 /**
 * public methods
 */
-Abstract_new_value::Abstract_new_value(Value_set_transfer *_transfer)
+Abstract_new_value::Abstract_new_value(Abstract_value_set_transfer *_transfer)
 {
     transfer = _transfer;
     str_repr = "";
@@ -27,7 +27,7 @@ void Abstract_new_value::insert_pre(Abstract_new_value *_pre)
 */
 bool Abstract_new_value::equals(Abstract_new_value *_other)
 {
-    if (!transfer->equals(_other->get_transfer()))
+    if (!transfer->equal(_other->get_transfer()))
     {
         return false;
     }
@@ -61,13 +61,13 @@ std::string Abstract_new_value::format()
     if (len == 0)
     {
         // entry
-        ss << "[" << this << "] <" << transfer->format() << ">";
+        ss << "[" << this << "] <" << transfer->to_string() << ">";
 //        ss << "\"[" << this << "]\" \[label=\"" << transfer->format() << "\", color=lightblue,style=filled,shape=box]\n";
     }
     else if (len == 1)
     {
         // one node on a path
-        ss << "[" << this << "] <" << transfer->format() << "> otimes [" << pres[0] << "]";
+        ss << "[" << this << "] <" << transfer->to_string() << "> otimes [" << pres[0] << "]";
         ss << "\n" << pres[0]->format();
 //        ss << "\"[" << this << "]\" \[label=\"" << transfer->format() << "\", color=lightblue,style=filled,shape=box]\n";
 
@@ -76,7 +76,7 @@ std::string Abstract_new_value::format()
     else
     {
         // combined node
-        ss << "[" << this << "] <" << transfer->format() << "> = [" << pres[0] << "] oplus [" << pres[1] << "]";
+        ss << "[" << this << "] <" << transfer->to_string()<< "> = [" << pres[0] << "] oplus [" << pres[1] << "]";
         ss << "\n" << pres[0]->format() << "\n" << pres[1]->format();
     }
     str_repr = ss.str();
@@ -95,7 +95,7 @@ std::vector<Abstract_new_value *> Abstract_new_value::get_posts()
 {
     return posts;
 }
-Value_set_transfer *Abstract_new_value::get_transfer()
+Abstract_value_set_transfer *Abstract_new_value::get_transfer()
 {
     return transfer;
 }

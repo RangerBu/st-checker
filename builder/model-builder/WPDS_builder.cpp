@@ -10,7 +10,7 @@ WPDS_builder::~WPDS_builder()
 
 WPDS *WPDS_builder::create(wali::Key _p, wali::Key &start)
 {
-    std::vector<Edge *> edges = cfg->get_edges();
+    std::vector<Edge *> edges = cfg->get_edge_list();
 
     WPDS *ret = new WPDS();
 
@@ -24,11 +24,11 @@ WPDS *WPDS_builder::create(wali::Key _p, wali::Key &start)
         wali::Key key1 = wali::getKey(from->get_str_node().c_str());
         wali::Key key2 = wali::getKey(to->get_str_node().c_str());
 
-        Value_set_transfer *transfer = 0;
+        Abstract_value_set_transfer *transfer = 0;
         if (from->get_str_type().compare(Node::ENTRY) == 0)
         {
             // value_set_transfer::IDENTITY
-            transfer = Value_set_transfer::get_identity();
+            transfer = Abstract_value_set_transfer::get_identity();
             start = key1;
         }
         else if (from->get_str_type().compare(Node::ASSIGNMENT) == 0)
@@ -54,7 +54,7 @@ WPDS *WPDS_builder::create(wali::Key _p, wali::Key &start)
             std::cout << "Unsupported Node type in constructing WPDS!" << std::endl;
             exit(0);
         }
-        ret->add_rule(_p, key1, _p, key2, new Transfer_semiring(new Abstract_new_value(transfer)));
+        ret->add_rule(_p, key1, _p, key2, new Transfer_semiring(Abstract_value::get_instance(transfer)));
     }
 
     return ret;

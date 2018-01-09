@@ -1,0 +1,11 @@
+digraph "[x := 20]" {
+"0x278c500" [label="[x < 20 otimes 0x278c560 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x278c500" -> "0x278c560" [label=extend_pre,color=black]
+"0x278c560" [label="[x <-- x - 2 otimes 0x278c5c0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x278c560" -> "0x278c5c0" [label=extend_pre,color=black]
+"0x278c5c0" [label="[z < 100 otimes 0x278c920 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x278c5c0" -> "0x278c920" [label=extend_pre,color=black]
+"0x278c920" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+}
+
+

@@ -554,7 +554,7 @@
 
 1514691847 /home/zero/workspace/cb_projs/st-checker-new/parser/libmatiec/absyntax/absyntax.def
 
-1515420174 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.cpp
+1515420271 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/assign_stmt_transfer.cpp
 	"assign_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
@@ -699,15 +699,15 @@
 	"../../analyzer/domain/Var.h"
 	"../../analyzer/transformer/value_set_transfer.h"
 
-1515398492 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.cpp
+1515466013 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.cpp
 	"elif_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1515398680 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
+1515465994 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
 	"if_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1515415974 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.h
+1515463215 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.h
 	<string>
 	"value_set_transfer.h"
 	"../domain/value_set.h"
@@ -760,7 +760,7 @@
 
 1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/CES_builder.cpp
 
-1515159220 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.cpp
+1515485721 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/WPDS_builder.cpp
 	"WPDS_builder.h"
 
 1515388002 source:/home/zero/workspace/cb_projs/st-checker-new/main.cpp
@@ -820,7 +820,7 @@
 1514691847 source:/home/zero/workspace/cb_projs/st-checker-new/utils/utils.cpp
 	"utils.h"
 
-1515420185 source:/home/zero/workspace/cb_projs/st-checker-new/test/transfer_test.cpp
+1515467176 source:/home/zero/workspace/cb_projs/st-checker-new/test/transfer_test.cpp
 	<iostream>
 	"../analyzer/transformer/value_set_transfer.h"
 	"../analyzer/transformer/assign_stmt_transfer.h"
@@ -828,7 +828,7 @@
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
 
-1515155632 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
+1515504688 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
 	<iostream>
 	<fstream>
 	"../parser/ST_parser.h"
@@ -838,7 +838,7 @@
 	"../builder/model-builder/abstract_new_value.h"
 	"../builder/model-builder/transfer_semiring.h"
 
-1515415965 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.h
+1515465581 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.h
 	<string>
 	"value_set_transfer.h"
 	"../domain/value_set.h"
@@ -1112,7 +1112,7 @@
 	<string>
 	"value_set_transfer.h"
 
-1515415034 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/value_set_transfer.h
+1515504822 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/value_set_transfer.h
 	<string>
 	"absyntax/absyntax.hh"
 	"../domain/value_set.h"
@@ -1120,22 +1120,22 @@
 1515416197 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/value_set_transfer.cpp
 	"value_set_transfer.h"
 
-1515054419 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/abstract_new_value.cpp
+1515467113 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/abstract_new_value.cpp
 	"abstract_new_value.h"
 
-1515054395 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/abstract_new_value.h
+1515466541 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/abstract_new_value.h
 	<vector>
 	<string>
 	<sstream>
 	"../../analyzer/transformer/value_set_transfer.h"
 
-1515054378 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.cpp
+1515498601 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.cpp
 	"transfer_semiring.h"
 
-1515054364 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.h
-	<vector>
+1515483308 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.h
+	<queue>
 	"wali/SemElem.hpp"
-	"abstract_new_value.h"
+	"structures/abstract_value.h"
 
 1515217999 source:/home/zero/workspace/cb_projs/st-checker-new/test/flow_graph_builder.cpp
 	<iostream>
@@ -1197,7 +1197,7 @@
 	<iostream>
 	<sstream>
 
-1515419782 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/value_set.cpp
+1515461101 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/value_set.cpp
 	"value_set.h"
 
 1515402361 /home/zero/workspace/cb_projs/st-checker-new/analyzer/domain/value_set.h
@@ -1209,4 +1209,12 @@
 	"../structures/bits_vector_8.hpp"
 	"../structures/strided_interval.h"
 	"var.h"
+
+1515504895 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.cpp
+	"abstract_value.h"
+
+1515503330 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.h
+	<set>
+	<sstream>
+	"../../../analyzer/transformer/value_set_transfer.h"
 

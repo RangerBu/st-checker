@@ -44,15 +44,15 @@ Value_set::Value_set(Value_set *_other)
     {
         if (it->first->get_str_type().compare(Var::TYPE_INT) == 0)
         {
-            set_var_value(new Var(it->first), Strided_interval::get_strided_interval((int_value) it->second));
+            set_var_value(it->first, Strided_interval::get_strided_interval((int_value) it->second));
         }
         else if (it->first->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
-            set_var_value(new Var(it->first), Bits_vector_1::get_instance((bool_value) it->second));
+            set_var_value(it->first, Bits_vector_1::get_instance((bool_value) it->second));
         }
         else if (it->first->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
-            set_var_value(new Var(it->first), Bits_vector_8::get_instance((byte_value) it->second));
+            set_var_value(it->first, Bits_vector_8::get_instance((byte_value) it->second));
         }
         else
         {

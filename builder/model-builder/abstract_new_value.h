@@ -14,7 +14,7 @@ class Abstract_new_value
     * public methods
     */
 public:
-    Abstract_new_value(Value_set_transfer *);
+    Abstract_new_value(Abstract_value_set_transfer *);
     virtual ~Abstract_new_value();
 
     void insert_pre(Abstract_new_value *);
@@ -31,14 +31,14 @@ public:
     */
     std::vector<Abstract_new_value *> get_pres();
     std::vector<Abstract_new_value *> get_posts();
-    Value_set_transfer *get_transfer();
+    Abstract_value_set_transfer *get_transfer();
     std::string get_str_repr();
 
     /**
     * private attributes and methods
     */
 private:
-    Value_set_transfer *transfer;
+    Abstract_value_set_transfer *transfer;
     std::vector <Abstract_new_value *> pres;
     std::vector <Abstract_new_value *> posts;
 

@@ -43,7 +43,7 @@ public :
     /**
     * helpers - debug only
     */
-    std::string to_string();
+    virtual std::string to_string();
 
 
     /**

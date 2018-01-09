@@ -1,11 +1,11 @@
-#ifndef ABSTRACT_EFFECT
-#define ABSTRACT_EFFECT
+#ifndef TRANSFER_SEMIRING_H
+#define TRANSFER_SEMIRING_H
 
-#include <vector>
+#include <queue>
 
 #include "wali/SemElem.hpp"
 
-#include "abstract_new_value.h"
+#include "structures/abstract_value.h"
 
 class Transfer_semiring : public wali::SemElem
 {
@@ -13,34 +13,57 @@ class Transfer_semiring : public wali::SemElem
     * public methods
     */
 public:
-    Transfer_semiring(Abstract_new_value *);
+    Transfer_semiring(Abstract_value *);
+
     virtual ~Transfer_semiring();
 
 
     /**
-    * inherited from SemElem
+    * inherited methods from SemElem
     */
     wali::sem_elem_t one() const;
+
     wali::sem_elem_t zero() const;
 
     wali::sem_elem_t extend(SemElem *);
-    wali::sem_elem_t combine(SemElem *);
 
-    bool equal(SemElem *) const;
-    std::ostream& print(std::ostream& out) const;
+    wali::sem_elem_t combine(SemElem *);
 
 
     /**
     * getters and setters
     */
-    Abstract_new_value *get_value();
-    void set_value(Abstract_new_value *);
+    Abstract_value *get_value();
+
+
+    /**
+    * helpers - inherited methods from SemElem
+    */
+    bool equal(SemElem *) const;
+
+    std::ostream& print(std::ostream& out) const;
+
+
+    /**
+    * helpers
+    */
+    bool equal(Transfer_semiring *);
+
+    std::ostream &print(std::ostream &);
+
+
+    /**
+    * helpers - debug only
+    */
+    std::string to_string();
+
 
     /**
     * private attributes
     */
 private:
-    Abstract_new_value *value;
+    Abstract_value *value;
+
 
     /**
     * static attributes
@@ -50,4 +73,4 @@ private:
 
 };
 
-#endif // ABSTRACT_EFFECT
+#endif // TRANSFER_SEMIRING_H
