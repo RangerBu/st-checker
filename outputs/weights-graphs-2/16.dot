@@ -1,0 +1,13 @@
+digraph "[x := 10]" {
+"0x1fd0230" [label="[x < 10 otimes 0x1fd0290 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x1fd0230" -> "0x1fd0290" [label=extend_pre,color=black]
+"0x1fd0290" [label="[x >= 20 otimes 0x1fd02f0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x1fd0290" -> "0x1fd02f0" [label=extend_pre,color=black]
+"0x1fd02f0" [label="[x <-- x - 2 otimes 0x1fd05f0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x1fd02f0" -> "0x1fd05f0" [label=extend_pre,color=black]
+"0x1fd05f0" [label="[z < 100 otimes 0x1fd0650 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x1fd05f0" -> "0x1fd0650" [label=extend_pre,color=black]
+"0x1fd0650" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+}
+
+

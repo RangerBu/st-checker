@@ -1,0 +1,19 @@
+digraph "[IF in1 THEN]" {
+"0x23adbd0" [label="[y <-- x   otimes 0x23adc40 oplus 0x23add20]", color=lightblue,style=filled,shape=box]
+"0x23adbd0" -> "0x23adc40" [label=extend_pre,color=black]
+"0x23adc40" [label="[x <-- 2   otimes 0x23adcb0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23adc40" -> "0x23adcb0" [label=extend_pre,color=black]
+"0x23adcb0" [label="[in0 NOT  otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23adbd0" -> "0x23add20" [label=combine_pre,color=black]
+"0x23add20" [label="[y <-- x   otimes 0x23adfa0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23add20" -> "0x23adfa0" [label=extend_pre,color=black]
+"0x23adfa0" [label="[x <-- 2   otimes 0x23ae010 oplus 0x23ae080]", color=lightblue,style=filled,shape=box]
+"0x23adfa0" -> "0x23ae010" [label=extend_pre,color=black]
+"0x23ae010" [label="[in0 NOT  otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23adfa0" -> "0x23ae080" [label=combine_pre,color=black]
+"0x23ae080" [label="[x <-- 1   otimes 0x23ae0f0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23ae080" -> "0x23ae0f0" [label=extend_pre,color=black]
+"0x23ae0f0" [label="[in0   otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+}
+
+

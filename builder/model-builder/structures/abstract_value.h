@@ -33,6 +33,9 @@ public:
     */
     Value_set *op_transform(Value_set *);
 
+    void insert_combine_pre(Abstract_value *);
+
+
     /**
     * getters and setters
     */
@@ -46,6 +49,8 @@ public:
 
     Abstract_value_set_transfer *get_value();
 
+    std::vector<Abstract_value *> get_combine_pres();
+
 
     /**
     * helpers
@@ -53,6 +58,8 @@ public:
     bool equal(Abstract_value *);
 
     std::ostream &print(std::ostream &);
+
+    bool isomorphic(Abstract_value *);
 
 
     /**
@@ -69,7 +76,9 @@ public:
 private:
     Abstract_value *extend_pre;
 
-    Abstract_value *combine_pre;
+    Abstract_value * combine_pre;
+
+    std::vector<Abstract_value *> combine_pres;
 
     Abstract_value_set_transfer *value;
 

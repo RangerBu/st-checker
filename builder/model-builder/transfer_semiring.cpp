@@ -9,8 +9,8 @@ Abstract_value *_extend(Abstract_value *_first, Abstract_value *_second)
     Abstract_value *ret = Abstract_value::get_instance(_second);
 
     std::vector<Abstract_value*> update_list;
-
     std::queue<Abstract_value *> work_queue;
+
     work_queue.push(ret);
     Abstract_value *v = 0;
     while(work_queue.size() > 0)
@@ -37,9 +37,15 @@ Abstract_value *_extend(Abstract_value *_first, Abstract_value *_second)
 
 Abstract_value *_combine(Abstract_value *_first, Abstract_value *_second)
 {
-    Abstract_value *ret = Abstract_value::get_instance(_first);
+    Abstract_value *ret = Abstract_value::get_instance(_second);
 
-    ret->set_combine_pre(Abstract_value::get_instance(_second));
+    Abstract_value *update = ret;
+
+    while (update->get_combine_pre() != 0)
+    {
+        update = update->get_combine_pre();
+    }
+    update->set_combine_pre(Abstract_value::get_instance(_first));
 
     return ret;
 }
@@ -72,7 +78,7 @@ wali::sem_elem_t Transfer_semiring::one() const
 {
     if (ELEM_ONE == 0)
     {
-        ELEM_ONE = new Transfer_semiring(Abstract_value::get_instance(Abstract_value_set_transfer::get_bot()));
+        ELEM_ONE = new Transfer_semiring(Abstract_value::get_instance(Abstract_value_set_transfer::get_identity()));
     }
     return ELEM_ONE;
 }
@@ -81,12 +87,34 @@ wali::sem_elem_t Transfer_semiring::zero() const
 {
     if (ELEM_ZERO == 0)
     {
-        ELEM_ZERO = new Transfer_semiring(Abstract_value::get_instance(Abstract_value_set_transfer::get_identity()));
+        ELEM_ZERO = new Transfer_semiring(Abstract_value::get_instance(Abstract_value_set_transfer::get_bot()));
     }
     return ELEM_ZERO;
 }
 
 wali::sem_elem_t Transfer_semiring::extend(SemElem *_other)
+{
+    if (_other->equal(one().get_ptr()))
+    {
+        return this;
+    }
+
+    if (this->equal(one().get_ptr()))
+    {
+        return _other;
+    }
+
+    if (this->equal(zero().get_ptr()) || _other->equal(zero().get_ptr()))
+    {
+        return zero();
+    }
+
+    Transfer_semiring *other = static_cast<Transfer_semiring *>(_other);
+
+    return new Transfer_semiring(_extend(value, other->get_value()));
+}
+
+wali::sem_elem_t Transfer_semiring::combine(SemElem *_other)
 {
     if (_other->equal(zero().get_ptr()))
     {
@@ -98,19 +126,7 @@ wali::sem_elem_t Transfer_semiring::extend(SemElem *_other)
         return _other;
     }
 
-    Transfer_semiring *other = static_cast<Transfer_semiring *>(_other);
-
-    return new Transfer_semiring(_extend(value, other->get_value()));
-}
-
-wali::sem_elem_t Transfer_semiring::combine(SemElem *_other)
-{
-    if (_other->equal(one().get_ptr()))
-    {
-        return this;
-    }
-
-    if (this->equal(one().get_ptr()))
+    if (this->equal(_other))
     {
         return _other;
     }

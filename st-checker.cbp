@@ -90,6 +90,7 @@
 		<Unit filename="test/builder_test.cpp" />
 		<Unit filename="test/domain_test.cpp" />
 		<Unit filename="test/flow_graph_builder_test.cpp" />
+		<Unit filename="test/model-builder/transfer_semiring_test.cpp" />
 		<Unit filename="test/model-builder/wpds_builder_test.cpp" />
 		<Unit filename="test/transfer_test.cpp" />
 		<Unit filename="utils/utils.cpp" />

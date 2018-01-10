@@ -1,0 +1,11 @@
+digraph "[y := x]" {
+"0x23ad8e0" [label="[x <-- 2   otimes 0x23ad950 oplus 0x23ad9c0]", color=lightblue,style=filled,shape=box]
+"0x23ad8e0" -> "0x23ad950" [label=extend_pre,color=black]
+"0x23ad950" [label="[in0 NOT  otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23ad8e0" -> "0x23ad9c0" [label=combine_pre,color=black]
+"0x23ad9c0" [label="[x <-- 1   otimes 0x23ada30 oplus 0]", color=lightblue,style=filled,shape=box]
+"0x23ad9c0" -> "0x23ada30" [label=extend_pre,color=black]
+"0x23ada30" [label="[in0   otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
+}
+
+

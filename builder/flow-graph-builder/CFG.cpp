@@ -89,7 +89,7 @@ std::ostream &CFG::print_dot(std::ostream &_out)
         _out << "\"" << edge_list[i]->get_from()->get_str_node() << "\" -> \"" << edge_list[i]->get_to()->get_str_node();
 
         //print weight of each edge
-        _out << "\" [label=\"[ "<< "abc" <<" ]\",color=black]\n";
+        _out << "\" [label=\"[ "<< weight_map[edge_list[i]]->to_string() <<" ]\",color=black]\n";
     }
     return _out << "}\n";
 }
@@ -362,6 +362,10 @@ void CFG::refine()
                             if (i > 0)
                             {
                                 refine_queue.push(new_e);
+                            }
+                            else
+                            {
+                                insert_edge(new_e);
                             }
                         }
                         else

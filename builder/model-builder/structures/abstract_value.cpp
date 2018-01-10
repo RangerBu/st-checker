@@ -60,6 +60,21 @@ Value_set *Abstract_value::op_transform(Value_set *_vs0)
 
 }
 
+void Abstract_value::insert_combine_pre(Abstract_value *_combine_pre)
+{
+    if (this == _combine_pre)
+    {
+        std::cerr << "You cannot set itself as its combine_pre in Abstract_value::set_combine_pre!" << std::endl;
+        exit(0);
+    }
+    combine_pre = _combine_pre;
+
+    for (int i=0; i<combine_pres.size(); i++)
+    {
+
+    }
+}
+
 
 /**
 * getters and setters
@@ -99,6 +114,11 @@ Abstract_value_set_transfer *Abstract_value::get_value()
     return value;
 }
 
+std::vector<Abstract_value *>Abstract_value::get_combine_pres()
+{
+    return combine_pres;
+}
+
 
 /**
 * helpers
@@ -132,6 +152,35 @@ std::ostream &Abstract_value::print(std::ostream &_out)
     return _out;
 }
 
+bool Abstract_value::isomorphic(Abstract_value *_other)
+{
+    if (!value->equal(_other->get_value()))
+    {
+        return false;
+    }
+
+    if (extend_pre == 0 && _other->get_extend_pre() == 0 && combine_pres.size() == 0 && _other->get_combine_pres().size() == 0)
+    {
+        return true;
+    }
+
+    if (extend_pre != 0 && _other->get_extend_pre() != 0 && combine_pres.size() == 0 && _other->get_combine_pres().size() == 0)
+    {
+        return extend_pre->isomorphic(_other->get_extend_pre());
+    }
+
+    if (extend_pre == 0 && _other->get_extend_pre() == 0 && combine_pres.size() == _other->get_combine_pres().size())
+    {
+        return combine_pre->isomorphic(_other->get_combine_pre());
+    }
+
+    if (extend_pre != 0 && _other->get_extend_pre() != 0 && combine_pre != 0 && _other->get_combine_pre() != 0)
+    {
+        return extend_pre->isomorphic(_other->get_extend_pre()) && combine_pre->isomorphic(_other->get_combine_pre());
+    }
+
+    return false;
+}
 
 /**
 * helpers - debug only

@@ -712,7 +712,7 @@
 	"value_set_transfer.h"
 	"../domain/value_set.h"
 
-1515416048 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
+1515588805 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
 	"CFG.h"
 	"../../parser/ST_parser.h"
 
@@ -828,7 +828,7 @@
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
 
-1515504688 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
+1515588275 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
 	<iostream>
 	<fstream>
 	"../parser/ST_parser.h"
@@ -1129,7 +1129,7 @@
 	<sstream>
 	"../../analyzer/transformer/value_set_transfer.h"
 
-1515498601 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.cpp
+1515577021 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.cpp
 	"transfer_semiring.h"
 
 1515483308 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/transfer_semiring.h
@@ -1210,11 +1210,21 @@
 	"../structures/strided_interval.h"
 	"var.h"
 
-1515504895 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.cpp
+1515574740 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.cpp
 	"abstract_value.h"
 
-1515503330 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.h
+1515572305 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/abstract_value.h
 	<set>
 	<sstream>
 	"../../../analyzer/transformer/value_set_transfer.h"
+
+1515589222 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/transfer_semiring_test.cpp
+	<iostream>
+	<fstream>
+	"../../parser/ST_parser.h"
+	"../../builder/flow-graph-builder/CFG_builder.h"
+	"../../builder/model-builder/WPDS_builder.h"
+	"../../analyzer/transformer/value_set_transfer.h"
+	"../../builder/model-builder/abstract_new_value.h"
+	"../../builder/model-builder/transfer_semiring.h"
 
