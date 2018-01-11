@@ -76,10 +76,10 @@
 		<Unit filename="builder/flow-graph-builder/Node.h" />
 		<Unit filename="builder/model-builder/WPDS_builder.cpp" />
 		<Unit filename="builder/model-builder/WPDS_builder.h" />
-		<Unit filename="builder/model-builder/abstract_new_value.cpp" />
-		<Unit filename="builder/model-builder/abstract_new_value.h" />
 		<Unit filename="builder/model-builder/structures/abstract_value.cpp" />
 		<Unit filename="builder/model-builder/structures/abstract_value.h" />
+		<Unit filename="builder/model-builder/structures/value_set_semiring.cpp" />
+		<Unit filename="builder/model-builder/structures/value_set_semiring.h" />
 		<Unit filename="builder/model-builder/transfer_semiring.cpp" />
 		<Unit filename="builder/model-builder/transfer_semiring.h" />
 		<Unit filename="main.cpp" />
@@ -91,6 +91,7 @@
 		<Unit filename="test/domain_test.cpp" />
 		<Unit filename="test/flow_graph_builder_test.cpp" />
 		<Unit filename="test/model-builder/transfer_semiring_test.cpp" />
+		<Unit filename="test/model-builder/value_set_semiring_test.cpp" />
 		<Unit filename="test/model-builder/wpds_builder_test.cpp" />
 		<Unit filename="test/transfer_test.cpp" />
 		<Unit filename="utils/utils.cpp" />

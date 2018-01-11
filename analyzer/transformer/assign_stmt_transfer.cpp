@@ -56,22 +56,12 @@ Assign_stmt_transfer::~Assign_stmt_transfer()
 Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
 {
     Value_set *ret = new Value_set(_vs0);
-    assignment_statement_c *stmt = (assignment_statement_c *)statement;
 
-    str_left_var = ST_parser::parse(stmt->l_exp);
     left_var = _vs0->contains_var(str_left_var);
 
-    std::string str_r_exp_type = stmt->r_exp->absyntax_cname();
-
     /* binary expression*/
-    if (str_r_exp_type.compare("add_expression_c") == 0)
+    if (str_op.compare("+") == 0)
     {
-        //SYM_REF2(add_expression_c, l_exp, r_exp, bool deprecated_operation;)
-        add_expression_c *r_exp = (add_expression_c *)stmt->r_exp;
-        str_op = "+";
-        str_right_var1 = ST_parser::parse(r_exp->l_exp);
-        str_right_var2 = ST_parser::parse(r_exp->r_exp);
-
         if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si1, si2;
@@ -113,9 +103,6 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
             ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si1->op_add(si2)));
-
-//            std::cout << si1->format() << "  " << si2->format() << std::endl;
-//            std::cout << ret->get_int_value(left_var)->format() << std::endl;
 
         }
         /* need to be tested*/
@@ -163,13 +150,8 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         }
 
     }
-    else if (str_r_exp_type.compare("sub_expression_c") == 0)
+    else if (str_op.compare("-") == 0)
     {
-        //SYM_REF2(sub_expression_c, l_exp, r_exp, bool deprecated_operation;)
-        sub_expression_c *r_exp = (sub_expression_c *)stmt->r_exp;
-        str_op = "-";
-        str_right_var1 = ST_parser::parse(r_exp->l_exp);
-        str_right_var2 = ST_parser::parse(r_exp->r_exp);
 
         if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
@@ -226,7 +208,6 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         //SYM_TOKEN(integer_c)
         //SYM_REF2(boolean_literal_c, type, value)
         // variable
-        str_right_var1 = ST_parser::parse(stmt->r_exp);
 
         if (left_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {

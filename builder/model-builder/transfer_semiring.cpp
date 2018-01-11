@@ -111,6 +111,7 @@ wali::sem_elem_t Transfer_semiring::extend(SemElem *_other)
 
     Transfer_semiring *other = static_cast<Transfer_semiring *>(_other);
 
+    return new Transfer_semiring(value->extend(other->get_value()));
     return new Transfer_semiring(_extend(value, other->get_value()));
 }
 
@@ -131,8 +132,11 @@ wali::sem_elem_t Transfer_semiring::combine(SemElem *_other)
         return _other;
     }
 
+
+
     Transfer_semiring *other = static_cast<Transfer_semiring *>(_other);
 
+    return new Transfer_semiring(value->combine(other->get_value()));
     return new Transfer_semiring(_combine(value, other->get_value()));
 }
 
@@ -170,7 +174,7 @@ bool Transfer_semiring::equal(Transfer_semiring *_other)
     return value->equal(_other->get_value());
 }
 
-std::ostream &Transfer_semiring::print(std::ostream &_out)
+std::ostream &Transfer_semiring::print_dot(std::ostream &_out)
 {
 
 }

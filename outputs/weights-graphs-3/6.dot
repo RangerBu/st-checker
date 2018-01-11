@@ -1,5 +1,0 @@
-digraph "[x := 1]" {
-"0x23a8dd0" [label="[in0   otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

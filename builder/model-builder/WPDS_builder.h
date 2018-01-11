@@ -28,7 +28,6 @@ public:
 
 private:
     CFG *cfg;
-
 };
 
 #endif // WPDS_BUILDER_H

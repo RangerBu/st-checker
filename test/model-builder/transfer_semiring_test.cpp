@@ -1,4 +1,4 @@
-#define TRANSFER_SEMIRING_TEST
+//#define TRANSFER_SEMIRING_TEST
 
 #ifdef TRANSFER_SEMIRING_TEST
 
@@ -41,12 +41,15 @@ int main()
     post_query.set_initial_state(p);
     post_query.addFinalState(accept);
 
-    wali::wfa::WFA answer;
-    wpds->poststar(post_query, answer);
+//    wali::wfa::WFA answer;
+//    wpds->poststar(post_query, answer);
 
     std::vector<Node *> nodes = cfg->get_node_list();
+
+    cout << nodes[3] << endl;
     wali::wfa::Trans tr;
 
+/*
     std::ofstream fdot;
     string file_base = "outputs/weights-graphs-3/";
     stringstream ss;
@@ -75,6 +78,55 @@ int main()
         fdot << "}\n\n\n";
         fdot.close();
     }
+*/
+
+
+    Abstract_value *a = Abstract_value::get_instance("a");
+    Abstract_value *b = Abstract_value::get_instance("b");
+    Abstract_value *c = Abstract_value::get_instance("c");
+
+    Abstract_value *o = Abstract_value::get_instance("o");
+    Abstract_value *pp = Abstract_value::get_instance("p");
+    Abstract_value *q = Abstract_value::get_instance("q");
+
+//    Transfer_semiring *tsa = new Transfer_semiring(a);
+//    Transfer_semiring *tsb = new Transfer_semiring(b);
+//    Transfer_semiring *tsc = new Transfer_semiring(c);
+//
+//    Transfer_semiring *tso = new Transfer_semiring(o);
+//    Transfer_semiring *tsp = new Transfer_semiring(pp);
+//    Transfer_semiring *tsq = new Transfer_semiring(q);
+//
+//    Transfer_semiring *tsx = (Transfer_semiring *)tsa->extend(tsb).get_ptr();
+//    Transfer_semiring *tsy = (Transfer_semiring *)tsa->extend(tsc).get_ptr();
+//
+//    Transfer_semiring *tsu = (Transfer_semiring *)tso->extend(tsp).get_ptr();
+//    Transfer_semiring *tsv = (Transfer_semiring *)tso->extend(tsq).get_ptr();
+
+//     tsu->get_value()->print_dot(cout);
+
+    Abstract_value *x = a->extend(b);
+    Abstract_value *y = a->extend(c);
+
+    Abstract_value *u = o->extend(pp);
+    Abstract_value *v = o->extend(q);
+
+    Abstract_value *x_oplus_y = x->combine(y);
+    Abstract_value *u_oplus_v = u->combine(v);
+
+
+
+
+
+    std::ofstream fdot("outputs/weights-graphs-3/transfer_semiring_test.dot");
+    fdot << "digraph \"test\" {\n";
+    x_oplus_y->extend(u)->combine(u_oplus_v)->show_name(fdot);
+    fdot << "}\n\n\n";
+    fdot.close();
+
+
+
+
 
 
     return 0;

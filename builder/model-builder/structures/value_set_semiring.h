@@ -1,21 +1,25 @@
-#ifndef TRANSFER_SEMIRING_H
-#define TRANSFER_SEMIRING_H
-
-#include <queue>
+#ifndef VALUE_SET_SEMIRING_H
+#define VALUE_SET_SEMIRING_H
 
 #include "wali/SemElem.hpp"
 
-#include "structures/abstract_value.h"
+#include "../../../analyzer/transformer/value_set_transfer.h"
 
-class Transfer_semiring : public wali::SemElem
+class Value_set_semiring : public wali::SemElem
 {
     /**
     * public methods
     */
 public:
-    Transfer_semiring(Abstract_value *);
+    /*
+    * constructor
+    */
+    Value_set_semiring(Abstract_value_set_transfer *);
 
-    virtual ~Transfer_semiring();
+    /*
+    * de-constructor
+    */
+    virtual ~Value_set_semiring();
 
 
     /**
@@ -33,7 +37,11 @@ public:
     /**
     * getters and setters
     */
-    Abstract_value *get_value();
+    Value_set *get_value();
+
+    void set_value(Value_set *);
+
+    Abstract_value_set_transfer *get_transfer();
 
 
     /**
@@ -47,7 +55,7 @@ public:
     /**
     * helpers
     */
-    bool equal(Transfer_semiring *);
+    bool equal(Value_set_semiring *);
 
     std::ostream &print_dot(std::ostream &);
 
@@ -62,15 +70,18 @@ public:
     * private attributes
     */
 private:
-    Abstract_value *value;
+    Value_set *value;
+
+    Abstract_value_set_transfer *transfer;
 
 
     /**
-    * static attributes
+    * private static attributes
     */
-    static wali::sem_elem_t ELEM_ONE;
-    static wali::sem_elem_t ELEM_ZERO;
 
+    static wali::sem_elem_t ELEM_ONE;
+
+    static wali::sem_elem_t ELEM_ZERO;
 };
 
-#endif // TRANSFER_SEMIRING_H
+#endif // VALUE_SET_SEMIRING_H

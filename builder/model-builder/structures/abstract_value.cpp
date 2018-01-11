@@ -15,27 +15,24 @@ Abstract_value *Abstract_value::get_instance(Abstract_value_set_transfer *_value
 
 Abstract_value *Abstract_value::get_instance(Abstract_value *_other)
 {
-    Abstract_value *ret = 0;
+    Abstract_value *ret = ret = new Abstract_value(_other->get_value());
+
+    ret->set_str_name(_other->get_str_name());
+
     if (_other->get_extend_pre() == 0 && _other->get_combine_pre() == 0)
     {
-        ret = new Abstract_value(_other->get_value());
+
     }
     else if (_other->get_extend_pre() == 0)
     {
-        ret = new Abstract_value(_other->get_value());
-
         ret->set_combine_pre(Abstract_value::get_instance(_other->get_combine_pre()));
     }
     else if (_other->get_combine_pre() == 0)
     {
-        ret = new Abstract_value(_other->get_value());
-
         ret->set_extend_pre(Abstract_value::get_instance(_other->get_extend_pre()));
     }
     else
     {
-        ret = new Abstract_value(_other->get_value());
-
         ret->set_extend_pre(Abstract_value::get_instance(_other->get_extend_pre()));
         ret->set_combine_pre(Abstract_value::get_instance(_other->get_combine_pre()));
     }
@@ -73,6 +70,56 @@ void Abstract_value::insert_combine_pre(Abstract_value *_combine_pre)
     {
 
     }
+}
+
+Abstract_value *Abstract_value::extend(Abstract_value *_other)
+{
+    Abstract_value *ret = Abstract_value::get_instance(_other);
+
+    std::vector<Abstract_value*> update_list;
+    std::queue<Abstract_value *> work_queue;
+
+    work_queue.push(ret);
+    Abstract_value *v = 0;
+    while(work_queue.size() > 0)
+    {
+        v = work_queue.front(); work_queue.pop();
+
+        if (v->get_extend_pre() == 0)
+        {
+            update_list.push_back(v);
+        }
+        else
+        {
+            work_queue.push(v->get_extend_pre());
+        }
+        if (v->get_combine_pre() != 0)
+        {
+            work_queue.push(v->get_combine_pre());
+        }
+    }
+
+    Abstract_value *first = Abstract_value::get_instance(this);
+    for (int i=0; i<update_list.size(); i++)
+    {
+        update_list[i]->set_extend_pre(first);
+    }
+    return ret;
+}
+
+Abstract_value *Abstract_value::combine(Abstract_value *_other)
+{
+    Abstract_value *ret = Abstract_value::get_instance(_other);
+
+    Abstract_value *update = ret;
+
+    while (update->get_combine_pre() != 0)
+    {
+        update = update->get_combine_pre();
+    }
+    update->set_combine_pre(Abstract_value::get_instance(this));
+
+    return ret;
 }
 
 
@@ -208,6 +255,42 @@ std::ostream &Abstract_value::print_dot(std::ostream &_out)
         _out << "\"" << this <<"\" -> \"" << combine_pre << "\" [label=combine_pre,color=black]\n";
         combine_pre->print_dot(_out);
     }
+}
+
+Abstract_value *Abstract_value::get_instance(std::string _str_name)
+{
+    return new Abstract_value(_str_name);
+}
+
+Abstract_value::Abstract_value(std::string _str_name)
+{
+    str_name = _str_name;
+}
+
+std::ostream &Abstract_value::show_name(std::ostream &_out)
+{
+    _out << "\"" << this << "\" [label=\"[" << str_name << "]\", color=lightblue,style=filled,shape=box]\n";
+
+    if (extend_pre != 0)
+    {
+        _out << "\"" << this <<"\" -> \"" << extend_pre << "\" [label=extend_pre,color=black]\n";
+        extend_pre->show_name(_out);
+    }
+    if (combine_pre != 0)
+    {
+        _out << "\"" << this <<"\" -> \"" << combine_pre << "\" [label=combine_pre,color=black]\n";
+        combine_pre->show_name(_out);
+    }
+}
+
+std::string Abstract_value::get_str_name()
+{
+    return str_name;
+}
+
+void Abstract_value::set_str_name(std::string _str_name)
+{
+    str_name = _str_name;
 }
 
 

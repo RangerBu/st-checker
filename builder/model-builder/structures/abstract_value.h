@@ -3,6 +3,7 @@
 
 #include <set>
 #include <sstream>
+#include <queue>
 
 #include "../../../analyzer/transformer/value_set_transfer.h"
 
@@ -34,6 +35,10 @@ public:
     Value_set *op_transform(Value_set *);
 
     void insert_combine_pre(Abstract_value *);
+
+    Abstract_value *extend(Abstract_value *);
+
+    Abstract_value *combine(Abstract_value *);
 
 
     /**
@@ -68,6 +73,21 @@ public:
     std::string to_string();
 
     std::ostream &print_dot(std::ostream &);
+
+    /*
+    * debug combine and extend methods
+    */
+    static Abstract_value *get_instance(std::string);
+
+    std::ostream &show_name(std::ostream &);
+
+    Abstract_value(std::string);
+
+    std::string get_str_name();
+
+    void set_str_name(std::string);
+
+    private: std::string str_name;
 
 
     /**
