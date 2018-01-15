@@ -1,0 +1,102 @@
+[Start]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[IF z < 50 THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[IF x <= y THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    1[-3, 50]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[y := x - 1]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    1[-3, 50]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[flag := TRUE]
+y   [INT ](OUTPUT   )    1[-4, 49]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    1[-3, 50]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[End]
+y   [INT ](OUTPUT   )    1[-4, 49]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    1[-3, 50]
+flag[BOOL](RETENTIVE)    [*](1)
+
+[x := x - 1]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 49]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[ELSIF z < 100 THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 2147483647]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := x - 2]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 99]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[IF x < 20 THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 99]
+x   [INT ](RETENTIVE)    2[-2, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[ELSIF z < 200 THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[99, 2147483647]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := x - 3]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[99, 199]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := 50]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[199, 2147483647]
+x   [INT ](RETENTIVE)    0[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := x + 1]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[-2147483648, 2147483647]
+x   [INT ](RETENTIVE)    1[-3, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := 20]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 99]
+x   [INT ](RETENTIVE)    2[-2, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[ELSIF x < 10 THEN]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 99]
+x   [INT ](RETENTIVE)    -1[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+
+[x := 10]
+y   [INT ](OUTPUT   )    -1[0, 0]
+z   [INT ](INPUT    )    1[49, 99]
+x   [INT ](RETENTIVE)    -1[0, 0]
+flag[BOOL](RETENTIVE)    [0](1)
+

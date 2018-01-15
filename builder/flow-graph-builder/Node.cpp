@@ -104,7 +104,12 @@ std::ostream &operator<<(std::ostream &_out, Node *_node)
 /**
 * helpers - debug only
 */
-
+std::string Node::to_string()
+{
+    std::stringstream ss;
+    ss << "[" << str_stmt << "]";
+    return ss.str();
+}
 
 /**
 * private attributes and methods

@@ -18,8 +18,8 @@ int *extended_gcd(int _a, int _b)
     {
         return new int[3]{_a, 1, 0};
     }
-    int *ans = extended_gcd(_b, _a % _b);
-    return new int [3] {ans[0], ans[2], ans[1] - ((_a % _b) * ans[2])};
+    int *ans = extended_gcd(_b, _a  % _b);
+    return new int [3] {ans[0], ans[2], ans[1] - ((_a / _b) * ans[2])};
 }
 
 unsigned min_or(unsigned _a, unsigned _b, unsigned _c, unsigned _d)
@@ -429,7 +429,7 @@ Strided_interval *Strided_interval::op_intersect(Strided_interval *_si)
 
         if (!(anchor == (upper - (j0 * stride))))
         {
-            std::cout << "Anchor is invalid" << std::endl;
+            std::cerr << "Anchor is invalid" << std::endl;
         }
 
         int tmp = lower > _si->get_lower() ? lower : _si->get_lower();

@@ -82,7 +82,12 @@ bool Var::equal(Var *_other)
 
 std::ostream &Var::print(std::ostream &_out)
 {
-    return _out << str_name << "[" << str_type << "](" << str_semantics << ")";
+    std::stringstream ss;
+    ss.flags(std::ios::left);
+    ss<< std::setw(4) << str_name << "[" << std::setw(4) << str_type << "](" << std::setw(9) << str_semantics << ")";
+
+    _out.flags(std::ios::left);
+    return _out << std::setw(25) << ss.str();
 }
 
 std::ostream &operator<<(std::ostream &_out, Var *_var)

@@ -2,6 +2,7 @@
 #define NODE_H
 
 #include <string>
+#include <sstream>
 #include <iostream>
 
 #include "absyntax/absyntax.hh"
@@ -67,6 +68,7 @@ public:
     /**
     * helpers - debug only
     */
+    std::string to_string();
 
 
     /**

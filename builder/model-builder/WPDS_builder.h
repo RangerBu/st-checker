@@ -11,6 +11,7 @@
 #include "../flow-graph-builder/Edge.h"
 #include "../flow-graph-builder/Node.h"
 #include "transfer_semiring.h"
+#include "structures/value_set_semiring.h"
 
 using wali::wpds::WPDS;
 

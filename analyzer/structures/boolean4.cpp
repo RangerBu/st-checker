@@ -222,21 +222,20 @@ std::ostream &Boolean4::print(std::ostream &_out)
 {
     if (this == ELEM_TRUE)
     {
-        _out << "1";
+        return _out << "1";
     }
     else if (this == ELEM_FALSE)
     {
-        _out << "0";
+        return _out << "0";
     }
     else if (this == ELEM_TOP)
     {
-        _out << "*";
+        return _out << "*";
     }
     else if (this == ELEM_BOT)
     {
-        _out << "_";
+        return _out << "_";
     }
-    return _out;
 }
 
 
@@ -245,24 +244,24 @@ std::ostream &Boolean4::print(std::ostream &_out)
 */
 std::string Boolean4::to_string()
 {
-    std::stringstream _out;
+    std::stringstream ss;
     if (this == ELEM_TRUE)
     {
-        _out << "1";
+        ss << "1";
     }
     else if (this == ELEM_FALSE)
     {
-        _out << "0";
+        ss << "0";
     }
     else if (this == ELEM_TOP)
     {
-        _out << "*";
+        ss << "*";
     }
     else if (this == ELEM_BOT)
     {
-        _out << "_";
+        ss << "_";
     }
-    return _out.str();
+    return ss.str();
 }
 
 

@@ -72,6 +72,7 @@ public:
     {
         Bits_vector_1 *ret = new Bits_vector_1();
         ret->set_element_at(0, _other->get_element_at(0));
+        return ret;
     }
 
 

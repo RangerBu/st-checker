@@ -192,18 +192,75 @@ void Value_set::insert_var(key _var)
     {
         if (_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
-            int_vars_map[_var] = Strided_interval::get_bot();
-            vars_map[_var] = int_vars_map[_var];
+            if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+            {
+                /*
+                * initialize input int variable to \top
+                */
+                int_vars_map[_var] = Strided_interval::get_top();
+                vars_map[_var] = int_vars_map[_var];
+            }
+            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
+            {
+                /*
+                * initialize retentive int variable to 0
+                */
+                int_vars_map[_var] = Strided_interval::get_singleton_set(0);
+                vars_map[_var] = int_vars_map[_var];
+            }
+            else
+            {
+                int_vars_map[_var] = Strided_interval::get_bot();
+                vars_map[_var] = int_vars_map[_var];
+            }
         }
         else if (_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
-            bool_vars_map[_var] = Bits_vector_1::get_bot();
-            vars_map[_var] = bool_vars_map[_var];
+            if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+            {
+                /*
+                * initialize input boolean variable to \top
+                */
+                bool_vars_map[_var] = Bits_vector_1::get_top();
+                vars_map[_var] = bool_vars_map[_var];
+            }
+            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
+            {
+                /*
+                * initialize retentive boolean variable to false
+                */
+                bool_vars_map[_var] = Bits_vector_1::get_instance(false);
+                vars_map[_var] = bool_vars_map[_var];
+            }
+            else
+            {
+                bool_vars_map[_var] = Bits_vector_1::get_bot();
+                vars_map[_var] = bool_vars_map[_var];
+            }
         }
         else if (_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
-            byte_vars_map[_var] = Bits_vector_8::get_bot();
-            vars_map[_var] = byte_vars_map[_var];
+            if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+            {
+                /*
+                * initialize input byte variable to \top
+                */
+                byte_vars_map[_var] = Bits_vector_8::get_top();
+                vars_map[_var] = byte_vars_map[_var];
+            }
+            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
+            {
+                /*
+                * initialize retentive byte variable to "00000000"
+                */
+                byte_vars_map[_var] = Bits_vector_8::get_instance("00000000");
+                vars_map[_var] = byte_vars_map[_var];
+            }
+            else
+            {
+                byte_vars_map[_var] = Bits_vector_8::get_bot();
+                vars_map[_var] = byte_vars_map[_var];
+            }
         }
         else
         {
@@ -340,7 +397,7 @@ std::ostream &Value_set::print(std::ostream &_out)
     std::map<key, value>::iterator it = vars_map.begin();
     for (; it != vars_map.end(); ++it)
     {
-        it->second->print(it->first->print(_out) << "\t") << "\n";
+        it->second->print(it->first->print(_out)) << "\n";
     }
     return _out;
 }
@@ -352,11 +409,12 @@ std::ostream &Value_set::print(std::ostream &_out)
 std::string Value_set::to_string()
 {
     std::stringstream ss;
+    ss.flags(std::ios::left);
+
     std::map<key, value>::iterator it = vars_map.begin();
     for (; it != vars_map.end(); ++it)
     {
-        ss.flags(std::ios::left);
-        ss << std::setw(20) << it->first->to_string() << it->second->to_string() << "\n";
+        ss << std::setw(25) << it->first->to_string() << it->second->to_string() << "\n";
     }
     return ss.str();
 }

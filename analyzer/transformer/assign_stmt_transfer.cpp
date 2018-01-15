@@ -37,7 +37,9 @@ Assign_stmt_transfer::Assign_stmt_transfer(symbol_c *_assignment)
         //SYM_TOKEN(integer_c)
         //SYM_REF2(boolean_literal_c, type, value)
         // variable
+        str_op = "";
         str_right_var1 = ST_parser::parse(stmt->r_exp);
+        str_right_var2 = "";
     }
 
 }
@@ -65,6 +67,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si1, si2;
+
+            /*
+            * get the first operand
+            */
             if (is_number(str_right_var1))
             {
                 si1 = Strided_interval::get_singleton_set(to_number(str_right_var1));
@@ -84,6 +90,9 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
 
+            /*
+            * get the second operand
+            */
             if (is_number(str_right_var2))
             {
                 si2 = Strided_interval::get_singleton_set(to_number(str_right_var2));
@@ -102,6 +111,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                     exit(0);
                 }
             }
+
+            /*
+            * update the value of left_var
+            */
             ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si1->op_add(si2)));
 
         }
@@ -109,6 +122,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
             Bits_vector_8 *bv1, *bv2;
+
+            /*
+            * get the first operand
+            */
             if (is_byte(str_right_var1))
             {
                 bv1 = Bits_vector_8::get_instance(str_right_var1);
@@ -128,6 +145,9 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
 
+            /*
+            * get the second operand
+            */
             if (is_byte(str_right_var2))
             {
                 bv2 = Bits_vector_8::get_instance(str_right_var2);
@@ -147,26 +167,33 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
 
+            /*
+            * update the value of left_var
+            */
         }
 
     }
     else if (str_op.compare("-") == 0)
     {
-
         if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
-            int_value si1, si2;
+
+            int_value right_si1, right_si2;
+
+            /*
+            * get the first operand
+            */
             if (is_number(str_right_var1))
             {
-                si1 = Strided_interval::get_singleton_set(to_number(str_right_var1));
                 right_var1 = 0;
+                right_si1 = Strided_interval::get_singleton_set(to_number(str_right_var1));
             }
             else
             {
                 right_var1 = _vs0->contains_var(str_right_var1);
                 if (right_var1 != 0)
                 {
-                    si1 = _vs0->get_int_value_by(right_var1);
+                    right_si1 = _vs0->get_int_value_by(right_var1);
                 }
                 else
                 {
@@ -175,17 +202,20 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
 
+            /*
+            * get the second operand
+            */
             if (is_number(str_right_var2))
             {
-                si2 = Strided_interval::get_singleton_set(to_number(str_right_var2));
                 right_var2 = 0;
+                right_si2 = Strided_interval::get_singleton_set(to_number(str_right_var2));
             }
             else
             {
                 right_var2 = _vs0->contains_var(str_right_var2);
                 if (right_var2 != 0)
                 {
-                    si2 = _vs0->get_int_value_by(right_var2);
+                    right_si2 = _vs0->get_int_value_by(right_var2);
                 }
                 else
                 {
@@ -194,7 +224,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
             }
 
-            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si1->op_sub(si2)));
+            /*
+            * update the value of left_var
+            */
+            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(right_si1->op_sub(right_si2)));
         }
         /* need to be tested*/
         else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
@@ -212,6 +245,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         if (left_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
             Bits_vector_1 *bv;
+
+            /*
+            * get the operand
+            */
             if (is_bool(str_right_var1))
             {
 
@@ -231,6 +268,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                     exit(0);
                 }
             }
+
+            /*
+            * update the value of left_var
+            */
             ret->set_var_value(left_var, (bool_value)_vs0->get_bool_value_by(left_var)->op_union(bv));
 
         }
@@ -242,6 +283,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
         else if (left_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
             int_value si;
+
+            /*
+            * get the operand
+            */
             if (is_number(str_right_var1))
             {
                 right_var1 = 0;
@@ -260,6 +305,10 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                     exit(0);
                 }
             }
+
+            /*
+            * update the value of left_var
+            */
             ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si));
         }
 

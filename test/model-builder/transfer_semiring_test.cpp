@@ -9,7 +9,6 @@
 #include "../../builder/flow-graph-builder/CFG_builder.h"
 #include "../../builder/model-builder/WPDS_builder.h"
 #include "../../analyzer/transformer/value_set_transfer.h"
-#include "../../builder/model-builder/abstract_new_value.h"
 #include "../../builder/model-builder/transfer_semiring.h"
 
 using namespace std;
