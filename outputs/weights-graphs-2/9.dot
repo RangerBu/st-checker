@@ -1,9 +1,0 @@
-digraph "[IF x < 20 THEN]" {
-"0x1fcaa40" [label="[x <-- x - 2 otimes 0x1fcfe40 oplus 0]", color=lightblue,style=filled,shape=box]
-"0x1fcaa40" -> "0x1fcfe40" [label=extend_pre,color=black]
-"0x1fcfe40" [label="[z < 100 otimes 0x1fcfea0 oplus 0]", color=lightblue,style=filled,shape=box]
-"0x1fcfe40" -> "0x1fcfea0" [label=extend_pre,color=black]
-"0x1fcfea0" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

@@ -12,6 +12,12 @@ Value_set_semiring::Value_set_semiring(Abstract_value_set_transfer *_transfer)
     value = 0;
 }
 
+Value_set_semiring::Value_set_semiring(Abstract_value_set_transfer *_transfer, Value_set *_value)
+{
+    transfer = _transfer;
+    value = _value;
+}
+
 Value_set_semiring::Value_set_semiring()
 {
     transfer = 0;

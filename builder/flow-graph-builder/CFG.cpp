@@ -10,6 +10,10 @@
 CFG::CFG(statement_list_c *_statement_list)
 {
     statement_list = _statement_list;
+
+    start_node = new Node("Start");
+    end_node = new Node("End");
+
     init();
 }
 
@@ -51,6 +55,16 @@ void CFG::set_var_list(std::vector<Var *> _var_list)
 std::map<Edge *, Abstract_value_set_transfer *> CFG::get_weight_map()
 {
     return weight_map;
+}
+
+Node *CFG::get_start_node()
+{
+    return start_node;
+}
+
+Node *CFG::get_end_node()
+{
+    return end_node;
 }
 
 
@@ -136,11 +150,11 @@ void CFG::insert_edge(Edge *_edge)
 void CFG::init()
 {
     // Start
-    Node *f = new Node("Start"); insert_node(f);
+    Node *f = start_node; insert_node(f);
 
     if (statement_list ==0 || statement_list->n < 1)
     {
-        std::cout << "Passed an invalid statement_list_c object in CFG::Init()" << std::endl;
+        std::cerr << "Passed an invalid statement_list_c object in CFG::Init()" << std::endl;
         exit(0);
     }
 
@@ -156,7 +170,7 @@ void CFG::init()
     }
 
     // End
-    t = new Node("End");
+    t = end_node;
 
     insert_node(t);
     insert_edge(new Edge(f, t));

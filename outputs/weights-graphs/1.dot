@@ -1,5 +1,0 @@
-digraph "[IF z < 50 THEN]" {
-"0x24d2570" [label="[identity_transfer otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

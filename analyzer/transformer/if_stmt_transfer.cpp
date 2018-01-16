@@ -458,7 +458,7 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
             */
             ret->set_var_value(left_var, left_si->op_intersect(right_si));
         }
-        else
+        else if (!is_number(str_left_var) && !is_number(str_right_var1))
         {
             int_value left_si, right_si;
             left_var = _vs0->contains_var(str_left_var);

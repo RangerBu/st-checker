@@ -1,9 +1,0 @@
-digraph "[x := x - 3]" {
-"0x24d3910" [label="[z < 200 otimes 0x24d3bb0 oplus 0]", color=lightblue,style=filled,shape=box]
-"0x24d3910" -> "0x24d3bb0" [label=extend_pre,color=black]
-"0x24d3bb0" [label="[z >= 100 otimes 0x24d3c40 oplus 0]", color=lightblue,style=filled,shape=box]
-"0x24d3bb0" -> "0x24d3c40" [label=extend_pre,color=black]
-"0x24d3c40" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

@@ -1,5 +1,0 @@
-digraph "[Start]" {
-"0xfa7050" [label="[identity_transfer otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

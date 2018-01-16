@@ -1,7 +1,0 @@
-digraph "[ELSIF z < 200 THEN]" {
-"0x24d3650" [label="[z >= 100 otimes 0x24d36e0 oplus 0]", color=lightblue,style=filled,shape=box]
-"0x24d3650" -> "0x24d36e0" [label=extend_pre,color=black]
-"0x24d36e0" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

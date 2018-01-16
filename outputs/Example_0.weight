@@ -1,0 +1,42 @@
+[Start]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 2147483647]
+
+[IF flag THEN]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 2147483647]
+
+[End]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    1[-2147483648, 99]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 2147483647]
+
+[IF in0 < 100 THEN]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 2147483647]
+
+[y := x]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 2147483647]
+
+[x := in0]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[-2147483648, 99]
+
+[x := 0]
+flag[BOOL](INPUT    )    [*](1)
+x   [INT ](VAR      )    -1[0, 0]
+y   [INT ](OUTPUT   )    -1[0, 0]
+in0 [INT ](INPUT    )    1[99, 2147483647]
+

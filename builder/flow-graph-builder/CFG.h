@@ -49,6 +49,10 @@ public:
 
     std::map<Edge *, Abstract_value_set_transfer *> get_weight_map();
 
+    Node *get_start_node();
+
+    Node *get_end_node();
+
 
     /**
     * helpers
@@ -111,6 +115,16 @@ private:
     * the attached statements
     */
     statement_list_c *statement_list;
+
+    /*
+    * the start node
+    */
+    Node *start_node;
+
+    /*
+    * the end node
+    */
+    Node *end_node;
 
 
 };

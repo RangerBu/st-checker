@@ -1,5 +1,0 @@
-digraph "[ELSIF z < 100 THEN]" {
-"0x24cf920" [label="[z >= 50 otimes 0 oplus 0]", color=lightblue,style=filled,shape=box]
-}
-
-

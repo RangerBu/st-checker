@@ -703,7 +703,7 @@
 	"elif_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
-1516004484 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
+1516065703 source:/home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/if_stmt_transfer.cpp
 	"if_stmt_transfer.h"
 	"../../parser/ST_parser.h"
 
@@ -712,11 +712,11 @@
 	"value_set_transfer.h"
 	"../domain/value_set.h"
 
-1515588805 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
+1516088727 source:/home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.cpp
 	"CFG.h"
 	"../../parser/ST_parser.h"
 
-1515416021 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.h
+1516088577 /home/zero/workspace/cb_projs/st-checker-new/builder/flow-graph-builder/CFG.h
 	<vector>
 	<set>
 	<string>
@@ -829,14 +829,15 @@
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
 
-1516021566 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
+1516089385 source:/home/zero/workspace/cb_projs/st-checker-new/test/builder_test.cpp
 	<iostream>
 	<fstream>
 	"../parser/ST_parser.h"
 	"../builder/flow-graph-builder/CFG_builder.h"
-	"../builder/model-builder/WPDS_builder.h"
+	"../builder/model-builder/wpds_builder.h"
 	"../analyzer/transformer/value_set_transfer.h"
-	"../builder/model-builder/transfer_semiring.h"
+	"../builder/model-builder/structures/cts.h"
+	"../builder/model-builder/cts_builder.h"
 
 1515465581 /home/zero/workspace/cb_projs/st-checker-new/analyzer/transformer/elif_stmt_transfer.h
 	<string>
@@ -1230,14 +1231,14 @@
 	"../../analyzer/transformer/value_set_transfer.h"
 	"../../builder/model-builder/transfer_semiring.h"
 
-1516005632 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/value_set_semiring.cpp
+1516072293 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/value_set_semiring.cpp
 	"value_set_semiring.h"
 
-1515985616 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/value_set_semiring.h
+1516072251 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/value_set_semiring.h
 	"wali/SemElem.hpp"
 	"../../../analyzer/transformer/value_set_transfer.h"
 
-1516023871 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/value_set_semiring_test.cpp
+1516070036 source:/home/zero/workspace/cb_projs/st-checker-new/test/model-builder/value_set_semiring_test.cpp
 	<string>
 	<iostream>
 	<fstream>
@@ -1247,4 +1248,46 @@
 	"../../analyzer/transformer/value_set_transfer.h"
 	"../../builder/model-builder/transfer_semiring.h"
 	"../../builder/model-builder/structures/value_set_semiring.h"
+
+1516071429 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/wpds_builder.cpp
+	"wpds_builder.h"
+
+1516071051 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/wpds_builder.h
+	"wali/wpds/WPDS.hpp"
+	"../flow-graph-builder/CFG.h"
+	"structures/value_set_semiring.h"
+
+1516082494 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/cts.cpp
+	"cts.h"
+
+1516109399 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/cts.h
+	<vector>
+	<set>
+	<map>
+	<string>
+	<ostream>
+	"../../flow-graph-builder/Node.h"
+	"../../../analyzer/domain/value_set.h"
+	"program_state.h"
+	"transition_rule.h"
+
+1516109645 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/cts_builder.cpp
+	"cts_builder.h"
+
+1516083879 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/cts_builder.h
+	"structures/cts.h"
+	"wpds_builder.h"
+
+1516106466 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/program_state.cpp
+	"program_state.h"
+
+1516105977 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/program_state.h
+	"../../flow-graph-builder/Node.h"
+	"../../../analyzer/domain/value_set.h"
+
+1516107308 source:/home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/transition_rule.cpp
+	"transition_rule.h"
+
+1516107314 /home/zero/workspace/cb_projs/st-checker-new/builder/model-builder/structures/transition_rule.h
+	"program_state.h"
 

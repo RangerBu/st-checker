@@ -16,6 +16,8 @@ public:
     */
     Value_set_semiring(Abstract_value_set_transfer *);
 
+    Value_set_semiring(Abstract_value_set_transfer *, Value_set *);
+
     Value_set_semiring();
 
     /*
