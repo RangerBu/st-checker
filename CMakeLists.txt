@@ -1,51 +1,53 @@
-cmake_minimum_required(VERSION 3.9)
-project(st_checker)
-
-add_definitions("-D_GLIBCXX_USE_CXX11_ABI=0")
-add_definitions("-Woverflow")
+cmake_minimum_required(VERSION 3.6)
+project(verify_st_programs)
 
 set(CMAKE_CXX_STANDARD 11)
 
-link_directories(libs/wali/ libs/matiec/stage1_2/ libs/matiec/absyntax/ libs/matiec/absyntax_utils/)
-include_directories(libs/wali/ )
+include_directories(parser/matiec/)
+include_directories(simulator/)
 
-add_executable(st_checker main.cpp
-        analyzer/domain/value_set.cpp
-        analyzer/domain/var.cpp
-        analyzer/structures/abstract_data.cpp
-        analyzer/structures/bits_vector.cpp
-        analyzer/structures/bits_vector_1.hpp
-        analyzer/structures/bits_vector_8.hpp
-        analyzer/structures/boolean4.cpp
-        analyzer/structures/strided_interval.cpp
-        analyzer/transformer/assign_stmt_transfer.cpp
-        analyzer/transformer/elif_stmt_transfer.cpp
-        analyzer/transformer/if_stmt_transfer.cpp
-        analyzer/transformer/value_set_transfer.cpp
-        builder/flow-graph-builder/node.cpp
-        builder/flow-graph-builder/edge.cpp
-        builder/flow-graph-builder/cfg.cpp
-        builder/flow-graph-builder/cfg_builder.cpp
-        builder/model-builder/structures/cts.cpp
-        builder/model-builder/structures/program_state.cpp
-        builder/model-builder/structures/transition_rule.cpp
-        builder/model-builder/structures/value_set_semiring.cpp
-        builder/model-builder/cts_builder.cpp
-        builder/model-builder/wpds_builder.cpp
-        parser/absyntax_visitor.cpp
-        parser/absyntax_visitor.h
-        parser/st_parser.cpp
-        test/model-builder/transfer_semiring_test.cpp
-        test/model-builder/value_set_semiring_test.cpp
-        test/model-builder/wpds_builder_test.cpp
-        test/builder_test.cpp
-        test/domain_test.cpp
-        test/flow_graph_builder_test.cpp
-        test/structures_test.cpp
-        test/transfer_test.cpp
+set(STRUCTURES_SRC
+        parser/structures/program.cpp
+        parser/structures/program.h
+        parser/structures/pou.cpp
+        parser/structures/pou.h
+        parser/structures/function.cpp
+        parser/structures/function.h
+        parser/structures/function_block.cpp
+        parser/structures/function_block.h
+        parser/structures/vertex.cpp
+        parser/structures/vertex.h
+        parser/structures/edge.cpp
+        parser/structures/edge.h
+        parser/structures/cfg.cpp
+        parser/structures/cfg.h
+        parser/structures/variable.cpp
+        parser/structures/variable.h
+        parser/structures/abstract_value.cpp
+        parser/structures/abstract_value.h
+        parser/structures/extended_boolean.cpp
+        parser/structures/extended_boolean.h
+        parser/structures/interval.cpp
+        parser/structures/interval.h
+        simulator/structures/semiring.cpp
+        simulator/structures/semiring.h simulator/structures/configuration.cpp simulator/structures/configuration.h simulator/structures/stack_symbol.cpp simulator/structures/stack_symbol.h simulator/structures/value_assignment.cpp simulator/structures/value_assignment.h)
+
+add_library(structures ${STRUCTURES_SRC})
+
+add_executable(checker main.cpp
+        parser/parser.cpp
+        parser/parser.h
+        debug_helper.cpp
+        debug_helper.h
+        parser/utils.cpp
+        parser/utils.h
+        parser/visitors/symbol_to_string_visitor.cpp
+        parser/visitors/symbol_to_string_visitor.h
+        simulator/abstract_simulator.cpp
+        simulator/abstract_simulator.h
         )
 
-target_link_libraries(st_checker wali stage1_2 absyntax absyntax_utils)
+target_link_libraries(checker matiec structures wali)
 
-add_subdirectory(libs/matiec)
-add_subdirectory(libs/wali)
+add_subdirectory(parser/matiec/)
+add_subdirectory(simulator/wali)
