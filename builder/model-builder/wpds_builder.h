@@ -3,7 +3,7 @@
 
 #include "wali/wpds/WPDS.hpp"
 
-#include "../flow-graph-builder/CFG.h"
+#include "../flow-graph-builder/cfg.h"
 #include "structures/value_set_semiring.h"
 
 class WPDS_builder

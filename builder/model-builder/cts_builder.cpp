@@ -1,3 +1,5 @@
+#include <time.h>
+
 #include "cts_builder.h"
 
 /**
@@ -39,6 +41,52 @@ bool reaches_fixed_point(std::vector<Value_set *> &_list, Value_set *_vs0)
     return false;
 }
 
+/*
+ * update the value of input, temporary variables in a value-set
+ */
+Value_set *update_value_set(Value_set *_vs0)
+{
+    Value_set *ret = new Value_set(_vs0);
+
+    std::vector<key> vars_list = ret->get_vars_list();
+
+    std::vector<key>::iterator it = vars_list.begin();
+    for (; it != vars_list.end(); ++it)
+    {
+        if ((*it)->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+        {
+            if ((*it)->get_str_type().compare(Var::TYPE_BOOL) == 0)
+            {
+                ret->set_var_value(*it, Bits_vector_1::get_top());
+            }
+            else if ((*it)->get_str_type().compare(Var::TYPE_BYTE) == 0)
+            {
+
+            }
+            else if ((*it)->get_str_type().compare(Var::TYPE_INT) == 0)
+            {
+                ret->set_var_value(*it, Strided_interval::get_top());
+            }
+        }
+        else if ((*it)->get_str_semantics().compare(Var::SEMANTICS_OUTPUT) == 0)
+        {
+            if ((*it)->get_str_type().compare(Var::TYPE_BOOL) == 0)
+            {
+                ret->set_var_value(*it, Bits_vector_1::get_bot());
+            }
+            else if ((*it)->get_str_type().compare(Var::TYPE_BYTE) == 0)
+            {
+
+            }
+            else if ((*it)->get_str_type().compare(Var::TYPE_INT) == 0)
+            {
+                ret->set_var_value(*it, Strided_interval::get_bot());
+            }
+        }
+    }
+
+    return ret;
+}
 
 
 /**
@@ -88,9 +136,30 @@ CTS *CTS_builder::create(CFG *_cfg)
 
     Value_set *vs0 = new Value_set(_cfg->get_var_list());
 
+
+    // one-pass vsa
+
+//    wali::wfa::WFA answer = VSA_process(wpds, p, start, accept, vs0);
+//    wali::wfa::Trans tr;
+//    for (int i=0; i<nodes_list.size(); i++)
+//    {
+//        wali::Key key = wali::getKey(nodes_list[i]->get_str_node().c_str());
+//        answer.find(p, key, accept, tr);
+//        Program_state *p = new Program_state(nodes_list[i], ((Value_set_semiring *) tr.weight().get_ptr())->get_value());
+//        p->print(std::cout) << std::endl;
+//    }
+
+    /*
+     * the beginning of the build process
+     */
+    double t1, t2, cost;
+    t1 = clock();
+
+    int tmp = 0;
     while(!reaches_fixed_point(initial_list, vs0))
     {
-        vs0->print(std::cout) << std::endl;
+//        std::cout << tmp << std::endl;tmp++;
+//        vs0->print(std::cout) << std::endl;
 
         initial_list.push_back(vs0);
 
@@ -111,45 +180,21 @@ CTS *CTS_builder::create(CFG *_cfg)
         wali::Key end_key = wali::getKey(_cfg->get_end_node()->get_str_node().c_str());
         answer.find(p, end_key, accept, tr);
         vs0 = ((Value_set_semiring *) tr.weight().get_ptr())->get_value();
+//        vs0 = update_value_set(vs0);
 
     }
+    vs0->print(std::cout) << std::endl;
+
+    t2 = clock();
+    cost = (t2-t1) / CLOCKS_PER_SEC;
+
+    std::cout << nodes_list.size() << std::endl;
 
     std::cout << s_set.size() << std::endl;
 
+    std::cout << cost << std::endl;
+
     std::set<Program_state *>::iterator it = s_set.begin();
-
-    for (; it!=s_set.end(); ++it)
-    {
-        (*it)->get_location()->print(std::cout) << "\n";
-        (*it)->get_value()->print(std::cout) << std::endl;
-    }
-
-//
-//
-//
-//
-//    initial_list.push_back(vs0);
-//    wali::wfa::WFA answer = VSA_process(wpds, p, start, accept, vs0);
-//
-//
-//
-//
-//
-//    wali::Key key = wali::getKey(_cfg->get_end_node()->get_str_node().c_str());
-//    wali::wfa::Trans tr;
-//    answer.find(p, key, accept, tr);
-//    Value_set_semiring *weight = (Value_set_semiring *) tr.weight().get_ptr();
-//
-//    weight->get_value()->print(std::cout) << std::endl;
-//
-//    answer = VSA_process(wpds, p, start, accept, weight->get_value());
-//    answer.find(p, key, accept, tr);
-//    weight = (Value_set_semiring *)tr.weight().get_ptr();
-//
-//    weight->get_value()->print(std::cout);
-
-
-
 
 }
 

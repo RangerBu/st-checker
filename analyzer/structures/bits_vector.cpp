@@ -186,6 +186,23 @@ Bits_vector *Bits_vector::op_union(Bits_vector *_other)
     return ret;
 }
 
+Bits_vector *Bits_vector::op_intersect(Bits_vector *_other)
+{
+    if (length != _other->get_length())
+    {
+        std::cerr << "Two operands that are not matched in length in Bits_vector::op_intersect!" << std::endl;
+        exit(0);
+    }
+
+    Bits_vector *ret = new Bits_vector(length);
+
+    for (int i = 0; i < length; i++)
+    {
+        ret->set_element_at(i, get_element_at(i)->op_intersect(_other->get_element_at(i)));
+    }
+    return ret;
+}
+
 
 /**
 * getters and setters

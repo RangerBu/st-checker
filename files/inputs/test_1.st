@@ -1,0 +1,15 @@
+PROGRAM Example
+VAR_INPUT
+	flag: BOOL;
+END_VAR
+VAR_OUTPUT
+	out: INT;
+END_VAR
+
+IF flag THEN
+	out := 2;
+ELSE
+	out := 1;
+END_IF;
+
+END_PROGRAM

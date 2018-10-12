@@ -26,8 +26,6 @@ public:
     static std::string SEMANTICS_VAR;
     static std::string SEMANTICS_INPUT;
     static std::string SEMANTICS_OUTPUT;
-    static std::string SEMANTICS_RETENTIVE;
-    static std::string SEMANTICS_LOCATED;
 
 
     /**
@@ -55,6 +53,10 @@ public:
     std::string get_str_type();
 
     std::string get_str_semantics();
+
+    std::string get_str_constant();
+
+    void set_str_constant(std::string);
 
 
     /**
@@ -90,6 +92,11 @@ private:
     * the string variable semantics
     */
     std::string str_semantics;
+
+    /*
+     * the initial constant of the variable
+     */
+    std::string str_constant;
 
 };
 

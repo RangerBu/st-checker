@@ -115,6 +115,7 @@ bool Abstract_value_set_transfer::is_number(std::string _str)
     int len = _str.length();
     for (int i=0; i<len; i++)
     {
+        if (i==0 && _str[0] == '-') continue;
         if (!(_str[i] <= '9' && _str[i] >= '0'))
         {
             return false;
@@ -146,7 +147,8 @@ int Abstract_value_set_transfer::to_number(std::string _str)
 {
     int ret = 0;
     int len = _str.length();
-    for (int i=0; i<len; i++)
+    int i = _str[0] == '-' ? 1 : 0;
+    for ( ; i<len; i++)
     {
         ret += (_str[i] - '0');
         if (i<len-1)
@@ -154,6 +156,7 @@ int Abstract_value_set_transfer::to_number(std::string _str)
             ret *= 10;
         }
     }
+    if (_str[0] == '-') ret = -ret;
 
     return ret;
 }

@@ -1,11 +1,16 @@
-#ifndef NODE_H
-#define NODE_H
+//
+// Created by zero on 1/18/18.
+//
+
+#ifndef ST_CHECKER_NODE_H
+#define ST_CHECKER_NODE_H
+
 
 #include <string>
 #include <sstream>
 #include <iostream>
 
-#include "absyntax/absyntax.hh"
+#include "../../libs/matiec/absyntax/absyntax.hh"
 
 class Node{
 
@@ -105,5 +110,4 @@ private:
 
 };
 
-
-#endif // NODE_H
+#endif //ST_CHECKER_NODE_H

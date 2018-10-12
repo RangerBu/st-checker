@@ -1,5 +1,9 @@
-#include "CFG.h"
-#include "../../parser/ST_parser.h"
+//
+// Created by zero on 1/18/18.
+//
+
+#include "cfg.h"
+#include "../../parser/st_parser.h"
 
 /**
 * public methods

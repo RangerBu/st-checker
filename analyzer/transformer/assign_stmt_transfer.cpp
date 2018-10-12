@@ -1,5 +1,5 @@
 #include "assign_stmt_transfer.h"
-#include "../../parser/ST_parser.h"
+#include "../../parser/st_parser.h"
 
 /**
 * public methods
@@ -115,7 +115,8 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of left_var
             */
-            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si1->op_add(si2)));
+//            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si1->op_add(si2)));
+            ret->set_var_value(left_var, si1->op_add(si2));
 
         }
         /* need to be tested*/
@@ -197,7 +198,7 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
                 else
                 {
-                    std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! sub_expression--int" << std::endl;
+                    std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! sub_expression--int-1" << std::endl;
                     exit(0);
                 }
             }
@@ -219,15 +220,16 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
                 }
                 else
                 {
-                    std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! sub_expression--int" << std::endl;
+
+                    std::cout << "An error occurred when getting value of variable, may pass a wrong variable name! sub_expression--int-2" << std::endl;
                     exit(0);
                 }
             }
-
             /*
             * update the value of left_var
             */
-            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(right_si1->op_sub(right_si2)));
+//            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(right_si1->op_sub(right_si2)));
+            ret->set_var_value(left_var, right_si1->op_sub(right_si2));
         }
         /* need to be tested*/
         else if (left_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
@@ -244,7 +246,7 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
 
         if (left_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
-            Bits_vector_1 *bv;
+            bool_value bv;
 
             /*
             * get the operand
@@ -272,7 +274,8 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of left_var
             */
-            ret->set_var_value(left_var, (bool_value)_vs0->get_bool_value_by(left_var)->op_union(bv));
+//            ret->set_var_value(left_var, (bool_value)_vs0->get_bool_value_by(left_var)->op_union(bv));
+            ret->set_var_value(left_var, bv);
 
         }
         /* need to be tested*/
@@ -309,7 +312,8 @@ Value_set *Assign_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of left_var
             */
-            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si));
+//            ret->set_var_value(left_var, _vs0->get_int_value_by(left_var)->op_union(si));
+            ret->set_var_value(left_var, si);
         }
 
     }

@@ -1,6 +1,10 @@
-#include "../../parser/ST_parser.h"
+//
+// Created by zero on 1/18/18.
+//
 
-#include "Node.h"
+#include "../../parser/st_parser.h"
+
+#include "node.h"
 
 /**
 * static constants

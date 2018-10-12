@@ -1,16 +1,21 @@
-#ifndef ST_PARSER_H
-#define ST_PARSER_H
+//
+// Created by zero on 1/17/18.
+//
+
+#ifndef ST_CHECKER_ST_PARSER_H
+#define ST_CHECKER_ST_PARSER_H
+
 
 #include <string>
 #include <stdarg.h>
 #include <cstdlib>
 
-#include "absyntax/absyntax.hh"
-#include "main.hh"
-#include "absyntax_utils/absyntax_utils.hh"
-#include "stage1_2/stage1_2.hh"
+#include "../libs/matiec/absyntax/absyntax.hh"
+#include "../libs/matiec/main.hh"
+#include "../libs/matiec/absyntax_utils/absyntax_utils.hh"
+#include "../libs/matiec/stage1_2/stage1_2.hh"
 
-#include "Absyntax_visitor.h"
+#include "absyntax_visitor.h"
 
 class ST_parser{
 
@@ -48,4 +53,4 @@ private:
 
 };
 
-#endif // ST_PARSER_H
+#endif //ST_CHECKER_ST_PARSER_H

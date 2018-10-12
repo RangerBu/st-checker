@@ -76,6 +76,8 @@ public:
 private:
     Value_set *value;
 
+    bool is_reached;
+
     Abstract_value_set_transfer *transfer;
 
 

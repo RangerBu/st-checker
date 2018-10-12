@@ -137,6 +137,8 @@ public:
 
     static Strided_interval *get_strided_interval(Strided_interval *);
 
+    static Data_width *get_width();
+
 
     /**
     * public methods

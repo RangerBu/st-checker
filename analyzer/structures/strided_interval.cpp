@@ -26,7 +26,7 @@ unsigned min_or(unsigned _a, unsigned _b, unsigned _c, unsigned _d)
 {
     unsigned m, tmp;
 //    m = 1 << (width->get_width() - 1);
-    m = 1 << (32 - 1);
+    m = 1 << (Strided_interval::get_width()->get_width() - 1);
     while (m != 0)
     {
         if ((~_a & _c & m) != 0)
@@ -56,7 +56,7 @@ unsigned max_or(unsigned _a, unsigned _b, unsigned _c, unsigned _d)
 {
     unsigned m, tmp;
 //    m = 1 << (width->get_width() - 1);
-    m = 1 << (32 - 1);
+    m = 1 << (Strided_interval::get_width()->get_width() - 1);
     while (m != 0)
     {
         if ((_b & _d &m) != 0)
@@ -82,7 +82,7 @@ unsigned max_or(unsigned _a, unsigned _b, unsigned _c, unsigned _d)
 
 int min_or_signed(int _a, int _b, int _c, int _d)
 {
-    unsigned m = 1 << 31;
+    unsigned m = 1 << (Strided_interval::get_width()->get_width() - 1);
     if ((_a & _b & _c & _d & m) != 0)
     {
         return min_or(_a, _b, _c, _d);
@@ -123,7 +123,7 @@ int min_or_signed(int _a, int _b, int _c, int _d)
 
 int max_or_signed(int _a, int _b, int _c, int _d)
 {
-    unsigned m = 1 << 31;
+    unsigned m = 1 << (Strided_interval::get_width()->get_width() - 1);
     if ((_a & _b & _c & _d & m) != 0)
     {
         return max_or(_a, _b, _c, _d);
@@ -162,10 +162,14 @@ int max_or_signed(int _a, int _b, int _c, int _d)
     }
 }
 
+/*
+ * need to be modified to a more general way
+ */
 int number_of_trailing_zeros(int i)
 {
+    /*
     int y;
-    if (i == 0)return 32;
+    if (i == 0)return 16;
     int n = 31;
     y = i << 16; if (y != 0){n -= 16; i = y;}
     y = i << 8; if (y != 0) { n = n - 8; i = y; }
@@ -173,19 +177,39 @@ int number_of_trailing_zeros(int i)
     y = i << 2; if (y != 0) { n = n - 2; i = y; }
 
     return n-((unsigned)(i << 1) >> 31);
+    */
+    int y;
+    if (i == 0)return 16;
+    int n = 15;
+    y = i << 8; if (y != 0) { n = n - 8; i = y; }
+    y = i << 4; if (y != 0) { n = n - 4; i = y; }
+    y = i << 2; if (y != 0) { n = n - 2; i = y; }
+
+    return n-((unsigned)(i << 1) >> 15);
 }
 
 int number_of_leading_zeros(int i)
 {
+    /*
     unsigned tmp = (unsigned) i;
     if (tmp == 0)
-        return 32;
+        return Strided_interval::get_width()->get_width();
     int n = 1;
     if (tmp >> 16 == 0) { n += 16; tmp <<= 16; }
     if (tmp >> 24 == 0) { n +=  8; tmp <<=  8; }
     if (tmp >> 28 == 0) { n +=  4; tmp <<=  4; }
     if (tmp >> 30 == 0) { n +=  2; tmp <<=  2; }
     n -= tmp >> 31;
+    return n;
+    */
+    unsigned tmp = (unsigned) i;
+    if (tmp == 0)
+        return 16;
+    int n = 1;
+    if (tmp >> 8 == 0) { n += 8; tmp <<= 8; }
+    if (tmp >> 12 == 0) { n +=  4; tmp <<=  4; }
+    if (tmp >> 14 == 0) { n +=  2; tmp <<=  2; }
+    n -= tmp >> 15;
     return n;
 }
 
@@ -200,7 +224,7 @@ Strided_interval *Strided_interval::get_top()
 {
     if (ELEM_TOP == 0)
     {
-        ELEM_TOP = new Strided_interval(1, (1 << (WIDTH->get_width() - 1)), ((1 << (WIDTH->get_width() - 1)) - 1));
+        ELEM_TOP = new Strided_interval(1, WIDTH->get_minimum_value(), WIDTH->get_maximum_value());
     }
     return ELEM_TOP;
 }
@@ -235,8 +259,8 @@ Strided_interval *Strided_interval::get_strided_interval(std::vector<int> _array
     {
         return Strided_interval::get_bot();
     }
-    int max_value = 1 << 31;
-    int min_value = (1<<31) -1;
+    int max_value = WIDTH->get_minimum_value();
+    int min_value = WIDTH->get_maximum_value();
 
     for (int i=0; i<_array.size(); i++)
     {
@@ -273,6 +297,11 @@ Strided_interval *Strided_interval::get_strided_interval(std::vector<int> _array
 Strided_interval *Strided_interval::get_strided_interval(Strided_interval *_other)
 {
     return new Strided_interval(_other->get_stride(), _other->get_lower(), _other->get_upper());
+}
+
+Data_width *Strided_interval::get_width()
+{
+    return WIDTH;
 }
 
 
@@ -535,6 +564,7 @@ Strided_interval *Strided_interval::op_except(Strided_interval *_other)
             ret.push_back(left_hand[i]);
         }
     }
+
     return Strided_interval::get_strided_interval(ret);
 
 }
@@ -853,4 +883,4 @@ Strided_interval *Strided_interval::ELEM_BOT = 0;
 
 Strided_interval *Strided_interval::ELEM_TOP = 0;
 
-Data_width *Strided_interval::WIDTH = Data_width::get_instance(32);
+Data_width *Strided_interval::WIDTH = Data_width::get_instance(16);

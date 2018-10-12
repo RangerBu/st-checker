@@ -71,6 +71,7 @@ wali::wpds::WPDS *WPDS_builder::create(CFG *_cfg, wali::Key _p, wali::Key &start
         else
         {
             std::cerr << "Unsupported Node type in constructing WPDS!" << std::endl;
+            from->print(std::cerr) << std::endl;
             exit(0);
         }
         ret->add_rule(_p, key_from, _p, key_to, new Value_set_semiring(transfer));

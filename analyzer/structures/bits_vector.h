@@ -64,6 +64,8 @@ public:
 
     virtual Bits_vector *op_union(Bits_vector *);
 
+    virtual Bits_vector *op_intersect(Bits_vector *);
+
 
     /**
     * getters and setters

@@ -16,9 +16,6 @@ std::string Var::TYPE_BYTE = "BYTE";
 std::string Var::SEMANTICS_VAR = "VAR";
 std::string Var::SEMANTICS_INPUT = "INPUT";
 std::string Var::SEMANTICS_OUTPUT = "OUTPUT";
-std::string Var::SEMANTICS_RETENTIVE = "RETENTIVE";
-std::string Var::SEMANTICS_LOCATED = "LOCATED";
-
 
 /**
 * public methods
@@ -31,6 +28,7 @@ Var::Var(std::string _str_name, std::string _str_type, std::string _str_semantic
     str_name = _str_name;
     str_type = _str_type;
     str_semantics = _str_semantics;
+    str_constant = "";
 }
 
 Var::Var(Var *_other)
@@ -38,6 +36,7 @@ Var::Var(Var *_other)
     str_name = _other->get_str_name();
     str_type = _other->get_str_type();
     str_semantics = _other->get_str_semantics();
+    str_constant = _other->get_str_constant();
 }
 
 /*
@@ -64,6 +63,16 @@ std::string Var::get_str_type()
 std::string Var::get_str_semantics()
 {
     return str_semantics;
+}
+
+std::string Var::get_str_constant()
+{
+    return str_constant;
+}
+
+void Var::set_str_constant(std::string _str_constant)
+{
+    str_constant = _str_constant;
 }
 
 

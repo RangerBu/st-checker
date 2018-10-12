@@ -1,5 +1,5 @@
 #include "if_stmt_transfer.h"
-#include "../../parser/ST_parser.h"
+#include "../../parser/st_parser.h"
 
 /**
 * public methods
@@ -171,7 +171,7 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
             ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
         }
-        else
+        else if (!is_number(str_left_var) && !is_number(str_right_var1))
         {
             int_value left_si, right_si;
             /*
@@ -221,6 +221,12 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
                 {
                     ret->set_var_value(left_var, Strided_interval::get_strided_interval(stride, lower, upper));
                 }
+            }
+            else if (right_si->get_lower() > left_si->get_upper())
+            {
+                /*
+                 * do nothing
+                 */
             }
 
             /*
@@ -707,7 +713,7 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of right_var as left_var is a number
             */
-            ret->set_var_value(right_var1, left_si);
+            ret->set_var_value(right_var1, right_si->op_intersect(left_si));
         }
         else if (!is_number(str_left_var) && is_number(str_right_var1))
         {
@@ -716,6 +722,7 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
             */
             int_value left_si;
             left_var = _vs0->contains_var(str_left_var);
+
             if (left_var != 0)
             {
                 left_si = _vs0->get_int_value_by(left_var);
@@ -729,13 +736,15 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * get the right operand
             */
+
             right_var1 = 0;
             int_value right_si = Strided_interval::get_singleton_set(to_number(str_right_var1));
+
 
             /*
             * update the value of left_var as right_var is a number
             */
-            ret->set_var_value(left_var, right_si);
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
         }
         else
@@ -894,13 +903,14 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
         else
         {
             std::cerr << "An error occurred when getting value of variable, may pass a wrong variable name! not_expression-1" << std::endl;
+            std::cerr << str_left_var << std::endl;
             exit(0);
         }
 
         /*
         * update the only operand left_var
         */
-        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(false)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_intersect(Bits_vector_1::get_instance(false)));
 
     }
     /* variable */
@@ -920,13 +930,14 @@ Value_set *If_stmt_transfer::op_transform(Value_set *_vs0)
         else
         {
             std::cerr << "An error occurred when getting value of variable, may pass a wrong variable name! other_expression-1" << std::endl;
+            std::cerr << str_left_var << std::endl;
             exit(0);
         }
 
         /*
         * update the only operand left_var
         */
-        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(true)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_intersect(Bits_vector_1::get_instance(true)));
 
     }
     return ret;

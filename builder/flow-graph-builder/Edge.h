@@ -1,9 +1,14 @@
-#ifndef EDGE_H
-#define EDGE_H
+//
+// Created by zero on 1/18/18.
+//
+
+#ifndef ST_CHECKER_EDGE_H
+#define ST_CHECKER_EDGE_H
+
 
 #include <iostream>
 
-#include "Node.h"
+#include "node.h"
 
 class Edge{
     /**
@@ -58,4 +63,6 @@ private:
     Node *to;
 };
 
-#endif // EDGE_H
+
+
+#endif //ST_CHECKER_EDGE_H

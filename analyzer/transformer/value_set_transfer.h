@@ -3,7 +3,7 @@
 
 #include <string>
 
-#include "absyntax/absyntax.hh"
+#include "../../libs/matiec/absyntax/absyntax.hh"
 
 #include "../domain/value_set.h"
 

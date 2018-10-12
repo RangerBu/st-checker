@@ -1,5 +1,5 @@
 #include "elif_stmt_transfer.h"
-#include "../../parser/ST_parser.h"
+#include "../../parser/st_parser.h"
 
 /**
 * public methods
@@ -830,7 +830,7 @@ Value_set *Elif_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of right_var1 as left-var is a number
             */
-            ret->set_var_value(right_var1, left_si);
+            ret->set_var_value(right_var1, right_si->op_intersect(left_si));
         }
         else if (!is_number(str_left_var) && is_number(str_right_var1))
         {
@@ -858,7 +858,7 @@ Value_set *Elif_stmt_transfer::op_transform(Value_set *_vs0)
             /*
             * update the value of left_var as right_var1 is a number
             */
-            ret->set_var_value(left_var, right_si);
+            ret->set_var_value(left_var, left_si->op_intersect(right_si));
 
         }
         else
@@ -922,7 +922,7 @@ Value_set *Elif_stmt_transfer::op_transform(Value_set *_vs0)
         /*
         * update the value of the only operand left_var
         */
-        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(true)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_intersect(Bits_vector_1::get_instance(true)));
 
 
     }
@@ -950,7 +950,7 @@ Value_set *Elif_stmt_transfer::op_transform(Value_set *_vs0)
         /*
         * update the value of the only operand left_var
         */
-        ret->set_var_value(left_var, (bool_value)left_bv->op_union(Bits_vector_1::get_instance(false)));
+        ret->set_var_value(left_var, (bool_value)left_bv->op_intersect(Bits_vector_1::get_instance(false)));
 
     }
 

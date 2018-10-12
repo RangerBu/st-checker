@@ -61,6 +61,8 @@ public:
 
     Boolean4 *op_union(Boolean4 *);
 
+    Boolean4 *op_intersect(Boolean4 *);
+
     /**
     * inherited methods (helpers)
     */

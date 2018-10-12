@@ -1,4 +1,8 @@
-#include "ST_parser.h"
+//
+// Created by zero on 1/17/18.
+//
+
+#include "st_parser.h"
 
 
 /**
@@ -9,6 +13,7 @@ std::string ST_parser::parse(symbol_c *_symbol)
     AbsyntaxVisitor *v = new AbsyntaxVisitor();
     v->init_str_statement();
     _symbol->accept(*v);
+
     std::string ret = v->get_str_statement();
     delete v;
     return ret;
@@ -78,18 +83,18 @@ void ST_parser::init()
 * others
 */
 void error_exit(const char *file_name, int line_no, const char *errmsg, ...) {
-  va_list argptr;
-  va_start(argptr, errmsg); /* second argument is last fixed pamater of error_exit() */
+    va_list argptr;
+    va_start(argptr, errmsg); /* second argument is last fixed pamater of error_exit() */
 
-  fprintf(stderr, "\nInternal compiler error in file %s at line %d", file_name, line_no);
-  if (errmsg != NULL) {
-    fprintf(stderr, ": ");
-    vfprintf(stderr, errmsg, argptr);
-  } else {
-    fprintf(stderr, ".");
-  }
-  fprintf(stderr, "\n");
-  va_end(argptr);
+    fprintf(stderr, "\nInternal compiler error in file %s at line %d", file_name, line_no);
+    if (errmsg != NULL) {
+        fprintf(stderr, ": ");
+        vfprintf(stderr, errmsg, argptr);
+    } else {
+        fprintf(stderr, ".");
+    }
+    fprintf(stderr, "\n");
+    va_end(argptr);
 
-  exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
 }

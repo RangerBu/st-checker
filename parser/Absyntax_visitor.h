@@ -1,26 +1,31 @@
-#ifndef ABSYNTAX_VISITOR_H
-#define ABSYNTAX_VISITOR_H
+//
+// Created by zero on 1/17/18.
+//
+
+#ifndef ST_CHECKER_ABSYNTAX_VISITOR_H
+#define ST_CHECKER_ABSYNTAX_VISITOR_H
+
 
 #include <string>
 #include <iostream>
 
-#include "absyntax/visitor.hh"
+#include "../libs/matiec/absyntax/visitor.hh"
 
 using std::string;
 
 class AbsyntaxVisitor : public iterator_visitor_c
 {
-    public:
-        AbsyntaxVisitor();
-        virtual ~AbsyntaxVisitor();
+public:
+    AbsyntaxVisitor();
+    virtual ~AbsyntaxVisitor();
 
-        std::string get_str_statement();
-        void init_str_statement();
+    std::string get_str_statement();
+    void init_str_statement();
 
-    private:
-        static std::string str_statement;
+private:
+    static std::string str_statement;
 
-    public:
+public:
 
     /***************************/
     /* B 0 - Programming Model */
@@ -244,7 +249,7 @@ class AbsyntaxVisitor : public iterator_visitor_c
     //SYM_REF0(sint_type_name_c)
     void *visit(sint_type_name_c *symbol)
     {
-       string value = "SINT";
+        string value = "SINT";
         this->str_statement += value;
         return NULL;
     }
@@ -394,9 +399,9 @@ class AbsyntaxVisitor : public iterator_visitor_c
     }
 
 
-      /*****************************************************************/
-      /* Keywords defined in "Safety Software Technical Specification" */
-      /*****************************************************************/
+    /*****************************************************************/
+    /* Keywords defined in "Safety Software Technical Specification" */
+    /*****************************************************************/
 
     //SYM_REF0(safetime_type_name_c)
     //SYM_REF0(safebool_type_name_c)
@@ -1101,7 +1106,7 @@ class AbsyntaxVisitor : public iterator_visitor_c
         symbol->function_name->accept(*this);
         this->str_statement += ("(");
         this->str_statement
-         += ")";
+                += ")";
         return NULL;
     }
 
@@ -1203,4 +1208,5 @@ class AbsyntaxVisitor : public iterator_visitor_c
     void *visit(exit_statement_c *symbol);
 };
 
-#endif // ABSYNTAX_VISITOR_H
+
+#endif //ST_CHECKER_ABSYNTAX_VISITOR_H

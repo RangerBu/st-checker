@@ -209,6 +209,40 @@ Boolean4 *Boolean4::op_union(Boolean4 *_other)
     }
 }
 
+Boolean4 *Boolean4::op_intersect(Boolean4 *_other)
+{
+    if (this == ELEM_BOT || _other == ELEM_BOT)
+    {
+        return ELEM_BOT;
+    }
+    else if (this == ELEM_TRUE)
+    {
+        if (_other == ELEM_FALSE)
+        {
+            return ELEM_BOT;
+        }
+        else
+        {
+            return ELEM_TRUE;
+        }
+    }
+    else if (this == ELEM_FALSE)
+    {
+        if (_other == ELEM_TRUE)
+        {
+            return ELEM_BOT;
+        }
+        else
+        {
+            return ELEM_FALSE;
+        }
+    }
+    else if (this == ELEM_TOP)
+    {
+        return _other;
+    }
+}
+
 
 /**
 * inherited methods

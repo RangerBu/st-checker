@@ -1,7 +1,7 @@
 #ifndef PROGRAM_STATE_H
 #define PROGRAM_STATE_H
 
-#include "../../flow-graph-builder/Node.h"
+#include "../../flow-graph-builder/node.h"
 #include "../../../analyzer/domain/value_set.h"
 
 class Program_state

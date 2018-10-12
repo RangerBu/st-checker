@@ -1,5 +1,23 @@
-#include "Absyntax_visitor.h"
-#include "../utils/utils.h"
+//
+// Created by zero on 1/17/18.
+//
+
+#include "absyntax_visitor.h"
+
+/**
+ * methods that only used in this files
+ */
+std::string &trim(std::string &_str)
+{
+    if (_str.empty())
+    {
+        return _str;
+    }
+    _str.erase(0, _str.find_first_not_of(" "));
+    _str.erase(_str.find_last_not_of(" ") + 1);
+    return _str;
+}
+
 
 string AbsyntaxVisitor::str_statement = "";
 
@@ -15,7 +33,7 @@ AbsyntaxVisitor::~AbsyntaxVisitor()
 
 string AbsyntaxVisitor::get_str_statement()
 {
-    return utils::trim(str_statement);
+    return trim(str_statement);
 }
 void AbsyntaxVisitor::init_str_statement()
 {

@@ -1,15 +1,21 @@
-#ifndef CFG_H
-#define CFG_H
+//
+// Created by zero on 1/18/18.
+//
+
+#ifndef ST_CHECKER_CFG_H
+#define ST_CHECKER_CFG_H
+
+
 
 #include <vector>
 #include <set>
 #include <string>
 #include <queue>
 
-#include "absyntax/absyntax.hh"
+#include "../../libs/matiec/absyntax/absyntax.hh"
 
-#include "Node.h"
-#include "Edge.h"
+#include "node.h"
+#include "edge.h"
 #include "../../analyzer/domain/var.h"
 #include "../../analyzer/transformer/value_set_transfer.h"
 #include "../../analyzer/transformer/assign_stmt_transfer.h"
@@ -129,4 +135,6 @@ private:
 
 };
 
-#endif // CFG_H
+
+
+#endif //ST_CHECKER_CFG_H

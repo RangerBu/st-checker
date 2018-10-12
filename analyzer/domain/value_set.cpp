@@ -1,5 +1,38 @@
 #include "value_set.h"
 
+/**
+ * methods used only in this file
+ */
+bool str_to_bool(std::string _constant)
+{
+    if (_constant.compare("TRUE") == 0)
+    {
+        return true;
+    }
+    else if (_constant.compare("FALSE") == 0)
+    {
+        return false;
+    }
+}
+
+int str_to_int(std::string _constant)
+{
+    int ret = 0;
+    int len = _constant.length();
+    int i = _constant[0] == '-' ? 1 : 0;
+    for ( ; i<len; i++)
+    {
+        ret += (_constant[i] - '0');
+        if (i<len-1)
+        {
+            ret *= 10;
+        }
+    }
+    if (_constant[0] == '-') ret = -ret;
+    return ret;
+}
+
+
 Bits_vector_1 *Bits_vector_1::BV1_ELEM_TOP = 0;
 
 Bits_vector_1 *Bits_vector_1::BV1_ELEM_BOT = 0;
@@ -192,68 +225,66 @@ void Value_set::insert_var(key _var)
     {
         if (_var->get_str_type().compare(Var::TYPE_INT) == 0)
         {
-            if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+            if (_var->get_str_constant().length() == 0)
             {
-                /*
-                * initialize input int variable to \top
-                */
-                int_vars_map[_var] = Strided_interval::get_top();
-                vars_map[_var] = int_vars_map[_var];
-            }
-            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
-            {
-                /*
-                * initialize retentive int variable to 0
-                */
-                int_vars_map[_var] = Strided_interval::get_singleton_set(0);
-                vars_map[_var] = int_vars_map[_var];
+                if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+                {
+                    /*
+                     * initialize input variable
+                     */
+                    int_vars_map[_var] = Strided_interval::get_top();
+                }
+                else
+                {
+                    /*
+                     * initialize output variable and internal varaible
+                     */
+                    int_vars_map[_var] = Strided_interval::get_bot();
+                }
+
             }
             else
             {
-                int_vars_map[_var] = Strided_interval::get_bot();
-                vars_map[_var] = int_vars_map[_var];
+                int_vars_map[_var] = Strided_interval::get_singleton_set(str_to_int(_var->get_str_constant()));
             }
+            vars_map[_var] = int_vars_map[_var];
         }
         else if (_var->get_str_type().compare(Var::TYPE_BOOL) == 0)
         {
-            if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+            if (_var->get_str_constant().length() == 0)
             {
-                /*
-                * initialize input boolean variable to \top
-                */
-                bool_vars_map[_var] = Bits_vector_1::get_top();
-                vars_map[_var] = bool_vars_map[_var];
-            }
-            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
-            {
-                /*
-                * initialize retentive boolean variable to false
-                */
-                bool_vars_map[_var] = Bits_vector_1::get_instance(false);
-                vars_map[_var] = bool_vars_map[_var];
+                if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
+                {
+                    /*
+                     * initialize input variable
+                     */
+                    bool_vars_map[_var] = Bits_vector_1::get_top();
+                }
+                else
+                {
+                    /*
+                     * initialize output variable and internal varaible
+                     */
+                    bool_vars_map[_var] = Bits_vector_1::get_bot();
+                }
             }
             else
             {
-                bool_vars_map[_var] = Bits_vector_1::get_bot();
-                vars_map[_var] = bool_vars_map[_var];
+                bool_vars_map[_var] = Bits_vector_1::get_instance(str_to_bool(_var->get_str_constant()));
             }
+            vars_map[_var] = bool_vars_map[_var];
         }
         else if (_var->get_str_type().compare(Var::TYPE_BYTE) == 0)
         {
+            /*
+             * add the support for byte variable
+             */
             if (_var->get_str_semantics().compare(Var::SEMANTICS_INPUT) == 0)
             {
                 /*
                 * initialize input byte variable to \top
                 */
                 byte_vars_map[_var] = Bits_vector_8::get_top();
-                vars_map[_var] = byte_vars_map[_var];
-            }
-            else if (_var->get_str_semantics().compare(Var::SEMANTICS_RETENTIVE) == 0)
-            {
-                /*
-                * initialize retentive byte variable to "00000000"
-                */
-                byte_vars_map[_var] = Bits_vector_8::get_instance("00000000");
                 vars_map[_var] = byte_vars_map[_var];
             }
             else

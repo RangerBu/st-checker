@@ -1,11 +1,16 @@
-#ifndef CFG_BUILDER_H
-#define CFG_BUILDER_H
+//
+// Created by zero on 1/18/18.
+//
+
+#ifndef ST_CHECKER_CFG_BUILDER_H
+#define ST_CHECKER_CFG_BUILDER_H
+
 
 #include <vector>
 #include <string>
 
-#include "CFG.h"
-#include "../../parser/ST_parser.h"
+#include "cfg.h"
+#include "../../parser/st_parser.h"
 #include "../../analyzer/domain/var.h"
 
 class CFG_builder{
@@ -48,4 +53,5 @@ private:
 
 };
 
-#endif // CFG_BUILDER_H
+
+#endif //ST_CHECKER_CFG_BUILDER_H

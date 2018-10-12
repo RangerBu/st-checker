@@ -45,7 +45,8 @@ bool Program_state::equal(Program_state *_other)
 
 std::ostream& Program_state::print(std::ostream &_out)
 {
-    _out << "<" << location->get_str_node() << ", \n";
+    _out << "<" << location->get_str_node() << ",";
+    location->print(_out) << "\n";
     return value->print(_out) << ">";
 }
 

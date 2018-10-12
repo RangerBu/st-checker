@@ -1,4 +1,2 @@
-/bin
-/obj
-
-!*.md
+/.idea
+/cmake-build-debug

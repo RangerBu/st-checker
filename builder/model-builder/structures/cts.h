@@ -7,7 +7,7 @@
 #include <string>
 #include <ostream>
 
-#include "../../flow-graph-builder/Node.h"
+#include "../../flow-graph-builder/node.h"
 #include "../../../analyzer/domain/value_set.h"
 #include "program_state.h"
 #include "transition_rule.h"

@@ -3,17 +3,18 @@
 #include <fstream>
 #include <cmath>
 
-#include "builder/flow-graph-builder/Node.h"
-#include "builder/flow-graph-builder/Edge.h"
-#include "builder/flow-graph-builder/CFG.h"
-#include "parser/ST_parser.h"
-#include "analyzer/structures/strided_interval.h"
-#include "analyzer/structures/bits_vector.h"
-#include "analyzer/structures/bits_vector_1.hpp"
-#include "analyzer/structures/bits_vector_8.hpp"
-#include "analyzer/domain/var.h"
-#include "analyzer/transformer/value_set_transfer.h"
-#include "builder/flow-graph-builder/CFG_builder.h"
+
+#include "parser/st_parser.h"
+//#include "analyzer/structures/strided_interval.h"
+//#include "analyzer/structures/bits_vector.h"
+//#include "analyzer/structures/bits_vector_1.hpp"
+//#include "analyzer/structures/bits_vector_8.hpp"
+//#include "analyzer/domain/var.h"
+//#include "analyzer/transformer/value_set_transfer.h"
+//#include "builder/flow-graph-builder/CFG_builder.h"
+//#include "builder/flow-graph-builder/Node.h"
+//#include "builder/flow-graph-builder/Edge.h"
+//#include "builder/flow-graph-builder/CFG.h"
 
 using namespace std;
 
@@ -24,7 +25,7 @@ runtime_options_t runtime_options;
 
 int main()
 {
-    std::string file_name = "outputs/Example 4.st";
+    std::string file_name = "files/inputs/Example_0.st";
     ST_parser parser(file_name);
 
 //    CFG c(parser.get_stmts_list());
